@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WomenSafety</string>
+    <string-array name="gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+</resources>

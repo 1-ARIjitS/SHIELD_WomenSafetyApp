@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registration_background"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bangers"
+            android:gravity="center"
+            android:text="REGISTRATION"
+            android:textColor="#FFFFFF"
+            android:textSize="50dp" />
+
+        <EditText
+            android:id="@+id/registration_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#191818" />
+
+        <EditText
+            android:id="@+id/registration_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#191818" />
+
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/registration_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="Email Id"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#191818" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_fields"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"/>
+
+            <EditText
+                android:id="@+id/registration_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:ems="10"
+                android:hint="Mobile number"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#191818" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/registration_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textMultiLine"
+            android:paddingStart="10dp"
+            android:paddingTop="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="30dp"
+            android:textAlignment="textStart"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#191818" />
+
+        <EditText
+            android:id="@+id/registration_uvc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="unique verification code"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#191818" />
+
+        <EditText
+            android:id="@+id/registration_confirm_uvc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="confirm unique verification code"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#191818" />
+
+        <EditText
+            android:id="@+id/registratin_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColorHint="#191818" />
+
+        <EditText
+            android:id="@+id/registration_confirm_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="confirm password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColorHint="#191818" />
+
+        <Button
+            android:id="@+id/registration_verify_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_view"
+            android:text="continue"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/registration_already_an_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_view"
+            android:backgroundTint="#FF5722"
+            android:text="Already have an Account ? login"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
