@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,10 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 
-public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-    Spinner spinner;
-
+public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
     FirebaseFirestore database;
@@ -45,17 +39,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     EditText password;
     EditText confirm_password;
 
-    public String mFull_name;
-    public String mAge;
-    public String mEmail_id;
-    public String mMobile_number;
-    public String mAddress;
-    public String mPassword;
-    public String mUVC;
-
-    public static final String gender="Female";
-
-    CountryCodePicker ccp;
+   String mFull_name;
+   String mAge;
+   String mEmail_id;
+   String mMobile_number;
+   String mAddress;
+   String mPassword;
+   String mUVC;
 
     Button continue_button;
 
@@ -67,78 +57,99 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        spinner = (Spinner) findViewById(R.id.gender_spinner);
+        auth=FirebaseAuth.getInstance();
 
-        auth = FirebaseAuth.getInstance();
+        database=FirebaseFirestore.getInstance();
 
-        database = FirebaseFirestore.getInstance();
+        full_name=findViewById(R.id.registration_full_name);
 
-        continue_button = (Button) findViewById(R.id.registration_verify_button);
+        email_id=findViewById(R.id.registration_email);
 
-        already_button = (Button) findViewById(R.id.registration_already_an_user);
+        age=findViewById(R.id.registration_age);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        mobile_number=findViewById(R.id.registration_phone_number);
 
-        full_name = (EditText) findViewById(R.id.registration_full_name);
-        age = (EditText) findViewById(R.id.registration_age);
-        mobile_number = (EditText) findViewById(R.id.registration_phone_number);
-        address = (EditText) findViewById(R.id.registration_address);
-        email_id = (EditText) findViewById(R.id.registration_email);
-        confirm_unique = (EditText) findViewById(R.id.registration_confirm_uvc);
-        unique = (EditText) findViewById(R.id.registration_uvc);
-        confirm_password = (EditText) findViewById(R.id.registration_confirm_pass);
-        password = (EditText) findViewById(R.id.registratin_pass);
+        address=findViewById(R.id.registration_address);
 
-        ccp.registerCarrierNumberEditText(mobile_number);
+        unique=findViewById(R.id.registration_uvc);
 
-        mFull_name = full_name.getText().toString();
-        mAge = age.getText().toString();
-        mMobile_number = mobile_number.getText().toString();
-        mEmail_id = email_id.getText().toString();
-        mAddress = address.getText().toString();
-        mPassword = password.getText().toString();
-        mUVC = unique.getText().toString();
+        confirm_unique=findViewById(R.id.registration_confirm_uvc);
 
-        final User user = new User(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC,gender);
+        password=findViewById(R.id.registratin_pass);
+
+        confirm_password=findViewById(R.id.registration_confirm_pass);
+
+        already_button=findViewById(R.id.registration_already_an_user);
+
+        continue_button=findViewById(R.id.registration_verify_button);
+
+        already_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+            }
+        });
+
 
         continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mMobile_number.replace(" ", "").length() == 0 || mFull_name.length() == 0 || mEmail_id.length() == 0 || mAge.length() == 0 || mAddress.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
-                } else if (mMobile_number.replace(" ", "").length() < 10) {
-                    Toast.makeText(getApplicationContext(), "INVALID,phone number entered is too short", Toast.LENGTH_SHORT).show();
-                } else if (mMobile_number.replace(" ", "").length() > 10) {
-                    Toast.makeText(getApplicationContext(), "INVALID,phone number entered is too long", Toast.LENGTH_SHORT).show();
-                } else if (mMobile_number.replace(" ", "").length() > 10) {
-                    Toast.makeText(getApplicationContext(), "INVALID,phone number entered is too long", Toast.LENGTH_SHORT).show();
-                } else if (mPassword != confirm_password.getText().toString()) {
-                    Toast.makeText(getApplicationContext(), "INVALID,confirm password does not match password entered", Toast.LENGTH_SHORT).show();
-                } else if (mUVC != confirm_unique.getText().toString()) {
-                    Toast.makeText(getApplicationContext(), "INVALID,confirm unique verification code does not match unique verification code entered", Toast.LENGTH_SHORT).show();
-                } else {
-                    auth.createUserWithEmailAndPassword(mEmail_id, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mFull_name=full_name.getText().toString();
+                mUVC=unique.getText().toString();
+                mPassword=password.getText().toString();
+                mAddress=address.getText().toString();
+                mMobile_number=mobile_number.getText().toString();
+                mEmail_id=email_id.getText().toString();
+                mAge=age.getText().toString();
+
+                final User user=new User();
+
+                user.setAddress(mAddress);
+                user.setAge(mAge);
+                user.setFull_name(mFull_name);
+                user.setPassword(mPassword);
+                user.setUVC(mUVC);
+                user.setMobile_number(mMobile_number);
+                user.setEmail_id(mEmail_id);
+
+                if(mMobile_number.isEmpty()||mUVC.isEmpty()||mPassword.isEmpty()||mEmail_id.isEmpty()||mFull_name.isEmpty()||mAddress.isEmpty()||mAge.isEmpty())
+                {
+                    Toast.makeText(RegisterActivity.this,"INVALID,Blank Field",Toast.LENGTH_SHORT).show();
+                }
+                else if(mMobile_number.length()<10)
+                {
+                    Toast.makeText(RegisterActivity.this,"INVALID,mobile number entered is too short",Toast.LENGTH_SHORT).show();
+                }
+                else if(mMobile_number.length()>10)
+                {
+                    Toast.makeText(RegisterActivity.this,"INVALID,mobile number entered is too long",Toast.LENGTH_SHORT).show();
+                }
+                else if(mPassword.length()!=confirm_password.getText().toString().length())
+                {
+                    Toast.makeText(RegisterActivity.this,"INVALID,password does not match confirm password",Toast.LENGTH_SHORT).show();
+                }
+                else if(mUVC.length()!=confirm_unique.getText().toString().length())
+                {
+                    Toast.makeText(RegisterActivity.this,"INVALID,unique verification password does not match confirm unique verification password",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    auth.createUserWithEmailAndPassword(mEmail_id,mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                database.collection("Users")
-                                        .document().set(user)
+                            if(task.isSuccessful())
+                            {
+                                database.collection("User").document().set(user)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Intent intent;
-                                                intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                                intent.putExtra("username", mFull_name);
-                                                intent.putExtra("password", mPassword);
-                                                startActivity(intent);
+                                                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
                                             }
                                         });
-                                Toast.makeText(getApplicationContext(), "Account Successfully Created", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this,"Account successfully created",Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -146,25 +157,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        already_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-            }
-        });
 
 
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-
 }

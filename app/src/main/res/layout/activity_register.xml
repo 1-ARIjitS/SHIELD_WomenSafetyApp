@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/registration_background"
-    tools:context=".RegisterActivity">
-
+    tools:context=".RegisterActivity"
+    android:background="@drawable/registration_background">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/bangers"
-            android:gravity="center"
-            android:text="REGISTRATION"
-            android:textColor="#FFFFFF"
-            android:textSize="50dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        android:text="REGISTRATION"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bangers"/>
 
         <EditText
             android:id="@+id/registration_full_name"
@@ -48,11 +46,14 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
 
-        <Spinner
+        <TextView
             android:id="@+id/gender_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:text="Female"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
             android:background="@drawable/text_fields"
             android:padding="10dp" />
 
@@ -80,14 +81,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_fields"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"/>
+                android:layout_gravity="center" />
 
             <EditText
                 android:id="@+id/registration_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/text_fields"
                 android:ems="10"
                 android:hint="Mobile number"
@@ -124,6 +124,7 @@
             android:hint="unique verification code"
             android:inputType="textPersonName"
             android:padding="10dp"
+            android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
 
         <EditText
@@ -136,6 +137,7 @@
             android:hint="confirm unique verification code"
             android:inputType="textPersonName"
             android:padding="10dp"
+            android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
 
         <EditText
@@ -148,6 +150,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
+            android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
 
         <EditText
@@ -160,6 +163,7 @@
             android:hint="confirm password"
             android:inputType="textPassword"
             android:padding="10dp"
+            android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
 
         <Button
@@ -183,7 +187,5 @@
             android:text="Already have an Account ? login"
             android:textColor="#FFFFFF" />
 
-
     </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

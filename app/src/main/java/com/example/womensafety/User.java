@@ -9,17 +9,8 @@ public class User {
     public String mAddress;
     public String mPassword;
     public String mUVC;
-    public String mGender;
 
-    public User(String Full_name, String Age, String Email_id, String Mobile_number, String Address, String password, String UVC,String gender) {
-        mFull_name = Full_name;
-        mAge = Age;
-        mEmail_id = Email_id;
-        mMobile_number = Mobile_number;
-        mAddress = Address;
-        mPassword = password;
-        mUVC = UVC;
-        mGender=gender;
+    public User() {
     }
 
     public String getFull_name() {
