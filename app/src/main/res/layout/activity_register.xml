@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:textSize="50dp"
         android:text="REGISTRATION"
+        android:padding="5dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bangers"/>
