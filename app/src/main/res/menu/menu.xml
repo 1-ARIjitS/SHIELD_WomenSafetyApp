@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_nextToKin"
+            android:title="Next to Kin"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/travellingALone"
+            android:title="Travelling Alone"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_emergencyContacts"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Emergency Contacts" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_travelLog"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Travel Log" />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_manageAccount"
+            android:title="Manage Account"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_aboutUs"
+            android:title="About Us"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_helpDesk"
+            android:title="Help Desk"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Log out"
+            android:icon="@drawable/ic_launcher_background">
+
+        </item>
+
+    </group>
+
+
+</menu>
