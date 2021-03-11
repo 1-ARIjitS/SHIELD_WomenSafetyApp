@@ -105,6 +105,10 @@ public class Detail_Forms extends AppCompatActivity {
 
                     case R.id.travellingALone:
                         break;
+                        
+                    case R.id.nav_suspectRegistration:
+                        startActivity(new Intent(Detail_Forms.this, SuspectRegistrationActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
