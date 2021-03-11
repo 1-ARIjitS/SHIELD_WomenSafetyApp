@@ -123,7 +123,7 @@
             android:background="@drawable/text_fields"
             android:ems="10"
             android:hint="unique verification code"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
@@ -136,13 +136,13 @@
             android:background="@drawable/text_fields"
             android:ems="10"
             android:hint="confirm unique verification code"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#191818" />
 
         <EditText
-            android:id="@+id/registratin_pass"
+            android:id="@+id/registration_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -175,7 +175,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/button_view"
-            android:text="continue"
+            android:text="create an account"
             android:textColor="#FFFFFF" />
 
         <Button

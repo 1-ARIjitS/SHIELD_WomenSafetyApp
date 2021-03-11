@@ -1,6 +1,6 @@
 package com.example.womensafety;
 
-public class User {
+public class users {
 
     public String mFull_name;
     public String mAge;
@@ -10,7 +10,15 @@ public class User {
     public String mPassword;
     public String mUVC;
 
-    public User() {
+
+    public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC) {
+        this.mFull_name = mFull_name;
+        this.mAge = mAge;
+        this.mEmail_id = mEmail_id;
+        this.mMobile_number = mMobile_number;
+        this.mAddress = mAddress;
+        this.mPassword = mPassword;
+        this.mUVC = mUVC;
     }
 
     public String getFull_name() {

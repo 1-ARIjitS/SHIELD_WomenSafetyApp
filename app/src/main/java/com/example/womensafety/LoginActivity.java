@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                 mUser=username.getText().toString();
 
                 mPass=password.getText().toString();
-/*
                 if (mUser.isEmpty() && mPass.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Invalid,Blank Field", Toast.LENGTH_SHORT).show();
                 } else if (mUser.isEmpty()) {
@@ -59,23 +58,19 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (mPass.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Invalid,please enter a Password", Toast.LENGTH_SHORT).show();
                 }
-                else
-                {*/
-                    auth.signInWithEmailAndPassword(mUser,mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                else {
+                    auth.signInWithEmailAndPassword(mUser, mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful())
-                            {
-                                startActivity(new Intent(LoginActivity.this,AdminActivity.class));
-                                Toast.makeText(LoginActivity.this,"Successfully logged in",Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(LoginActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
+                }
             }
         });
 
