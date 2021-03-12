@@ -39,6 +39,10 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.travellingALone:
                         startActivity(new Intent(AdminActivity.this, Detail_Forms.class));
                         break;
+                      
+                    case R.id.nav_suspectRegistration:
+                        startActivity(new Intent(AdminActivity.this, SuspectRegistrationActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

@@ -2,14 +2,13 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/registration_background"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-    tools:context=".Detail_Forms"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:id="@+id/drawerLayout"
+    tools:context=".Detail_Forms">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -23,15 +22,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#3700B3">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:subtitleTextColor="#fff"
-                    app:titleTextColor="#fff" />
+                    app:titleTextColor="#fff"/>
 
             </LinearLayout>
 
@@ -47,13 +46,11 @@
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_margin="10dp"
                     android:text="@string/vehicle_number"
-                    android:textAllCaps="true"
-                    android:textColor="#00BCD4"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -61,13 +58,11 @@
                 <EditText
                     android:id="@+id/vehicleNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
                     android:hint="Enter your vehicle number"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:textColor="#009688"
-                    android:textColorHint="#3A3838"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,16 +71,14 @@
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/vehicle_image"
-                    android:textAllCaps="true"
-                    android:textColor="#00BCD4"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/vehicleNumber" />
@@ -99,7 +92,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/button_view"
+                    android:background="#009688"
                     android:text="@string/select_vehicle_image"
                     android:textAllCaps="false"
                     android:textColor="#fff"
@@ -122,16 +115,13 @@
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/text_fields"
-                    android:hint="Enter expected time of arrival"
-                    android:padding="10dp"
+                    android:text="@string/destination_arrival_time"
                     android:textColor="#000"
-                    android:textColorHint="#3A3838"
                     android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@+id/vehicleImage"
                     tools:layout_editor_absoluteX="10dp" />
@@ -145,7 +135,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/button_view"
+                    android:background="#009688"
                     android:text="@string/time_picker"
                     android:textAllCaps="false"
                     android:textColor="#fff"
@@ -178,9 +168,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000"
-        app:menu="@menu/menu">
+        app:itemTextColor="#000">
 
     </com.google.android.material.navigation.NavigationView>
 
