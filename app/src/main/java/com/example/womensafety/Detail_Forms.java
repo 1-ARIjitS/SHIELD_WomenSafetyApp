@@ -2,10 +2,14 @@ package com.example.womensafety;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -17,10 +21,13 @@ import android.widget.TimePicker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -43,13 +50,38 @@ public class Detail_Forms extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail__forms);
 
+        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(
+                        getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
+                    ActivityCompat.requestPermissions(
+                            Detail_Forms.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            REQUEST_CODE_LOCATION_PERMISSION
+                    );
+                }
+                else{
+                    startLocationService();
+                }
+            }
+        });
+
+        findViewById(R.id.reachedSafelyButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopLocationService();
+            }
+        });
 
         Access_DisplayTime = findViewById(R.id.timePicker);
         timeTextView = findViewById(R.id.timeTextView);
@@ -105,6 +137,10 @@ public class Detail_Forms extends AppCompatActivity {
 
                     case R.id.travellingALone:
                         break;
+
+                    case R.id.nav_suspectRegistration:
+                        startActivity(new Intent(Detail_Forms.this, SuspectRegistrationActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -112,6 +148,56 @@ public class Detail_Forms extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                startLocationService();
+            }
+            else{
+                Toast.makeText(this,"Permission denied",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private boolean isLocationServiceRunning(){
+        ActivityManager activityManager =
+                (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        if(activityManager != null){
+            for(ActivityManager.RunningServiceInfo service:
+            activityManager.getRunningServices(Integer.MAX_VALUE)){
+                if(LocationService.class.getName().equals(service.service.getClassName())){
+                    if(service.foreground){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
+    private void startLocationService(){
+        if(!isLocationServiceRunning()){
+            Intent intent = new Intent(getApplicationContext(), LocationService.class);
+            intent.setAction(LocationConstants.ACTION_START_LOCATION_SERVICE);
+            startService(intent);
+            Toast.makeText(this,"Tracking Starts",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void stopLocationService(){
+        if(isLocationServiceRunning()){
+            Intent intent = new Intent(getApplicationContext(), LocationService.class);
+            intent.setAction(LocationConstants.ACTION_STOP_LOCATION_SERVICE);
+            startService(intent);
+            Toast.makeText(this,"Tracking Stops",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -139,7 +225,7 @@ public class Detail_Forms extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.travelling_along_button, R.string.travelling_along_button);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         actionBarDrawerToggle.syncState();
