@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -89,7 +89,7 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="#009688"
@@ -111,6 +111,56 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/vehicleImageSelector" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:text="Traveling From"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/travelingFrom" />
+
+                <EditText
+                    android:id="@+id/travelingFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:hint="Enter traveling from"
+                    android:textColor="#009688"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:text="Traveling To"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/travelingTo" />
+
+                <EditText
+                    android:id="@+id/travelingTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:hint="Enter traveling to"
+                    android:textColor="#009688"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -156,6 +206,110 @@
                     android:textColor="#E91E63"
                     android:textSize="18sp"
                     android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/startButton"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:background="#E91E63"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:fontFamily="serif"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:text="Start"
+                        android:textAllCaps="false"/>
+                    <Button
+                        android:id="@+id/reachedSafelyButton"
+                        android:layout_weight="1"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:background="#00403A"
+                        android:textStyle="bold"
+                        android:fontFamily="serif"
+                        android:layout_margin="15dp"
+                        android:textSize="18sp"
+                        android:textColor="#fff"
+                        android:textAllCaps="false"
+                        android:text="Reached Safely" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Latitude:"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/tv_latitude"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="monospace"
+                            android:textColor="#000000"
+                            android:textSize="15sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Longitude:"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="#000000"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/tv_longitude"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:textColor="#000000"
+                            android:fontFamily="monospace"
+                            android:textSize="15sp"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
