@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {

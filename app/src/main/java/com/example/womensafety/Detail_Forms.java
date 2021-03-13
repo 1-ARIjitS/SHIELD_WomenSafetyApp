@@ -35,6 +35,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.example.womensafety.Activities.AdminActivity;
+import com.example.womensafety.Activities.SuspectRegistrationActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;

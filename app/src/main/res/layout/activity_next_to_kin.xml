@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/registration_background"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.NextToKinActivity">
+
+    <TextView
+        android:id="@+id/kin_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bangers"
+        android:gravity="center"
+        android:text="next to kin"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/kin_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_view"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Note - add contact nameand number of your next to kin (i.e. the persin who you think is closest to you and can help in emergency situations. e.g. father,brother or any relative) Remember,an emergency SMS alert will be sent to the below registered number when you click on the Emergency Switch"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/kin_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/text_fields"
+        android:ems="10"
+        android:hint="Name of next to kin"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/kin_ccp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_fields"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:id="@+id/kin_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="Contact Number"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/kin_add_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_view"
+        android:backgroundTint="#03A9F4"
+        android:text="add next to kin"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
+</ScrollView>

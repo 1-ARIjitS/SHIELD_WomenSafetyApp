@@ -3,8 +3,8 @@
     package="com.example.womensafety">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -13,25 +13,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SuspectRegistrationActivity"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AdminActivity" />
+        <activity android:name=".Activities.NextToKinActivity"></activity>
+        <activity android:name=".Activities.SuspectRegistrationActivity" />
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.AdminActivity" />
         <activity android:name=".Detail_Forms" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:label="LogIn"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <service android:name=".LocationService"
+
+        <service
+            android:name=".LocationService"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

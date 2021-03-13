@@ -4,7 +4,7 @@
         <item>Female</item>
         <item>Male</item>
     </string-array>
-    
+
     <!-- Travelling Button -->
     <string name="travelling_along_button">Travelling Alone</string>
 

@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.R;
+import com.example.womensafety.Models.suspect_registered;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

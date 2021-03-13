@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.Models;
 
 public class suspect_registered {
     String name,description,identity,mobile_num;

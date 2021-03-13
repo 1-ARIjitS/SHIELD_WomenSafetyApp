@@ -8,7 +8,7 @@
     android:minWidth="20dp"
     tools:openDrawer="start"
     android:id="@+id/drawerLayout"
-    tools:context=".AdminActivity">
+    tools:context=".Activities.AdminActivity">
 
     <ScrollView
         android:layout_width="wrap_content"
