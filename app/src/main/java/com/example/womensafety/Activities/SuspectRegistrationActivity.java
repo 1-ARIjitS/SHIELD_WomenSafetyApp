@@ -94,6 +94,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                 String s_mobile_num=suspect_mobile.getText().toString();
 
                 suspect_registered sus=new suspect_registered(s_name,s_description,s_identity,s_mobile_num);
+
                 reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
                 Toast.makeText(getApplicationContext(),"suspect registration successful",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SuspectRegistrationActivity.this,AdminActivity.class));

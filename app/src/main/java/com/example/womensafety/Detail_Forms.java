@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 
 import com.example.womensafety.Activities.AdminActivity;
+import com.example.womensafety.Activities.NextToKinActivity;
 import com.example.womensafety.Activities.SuspectRegistrationActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -155,6 +156,9 @@ public class Detail_Forms extends AppCompatActivity {
 
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(Detail_Forms.this, SuspectRegistrationActivity.class));
+                        break;
+                    case R.id.nav_nextToKin:
+                        startActivity(new Intent(Detail_Forms.this, NextToKinActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
