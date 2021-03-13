@@ -1,15 +1,24 @@
 package com.example.womensafety.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
 import com.example.womensafety.Models.kin_registered;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,6 +34,10 @@ public class NextToKinActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
 
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +50,32 @@ public class NextToKinActivity extends AppCompatActivity {
         kin_name = findViewById(R.id.kin_name);
         kin_phone = findViewById(R.id.kin_mobile);
         kin_add = findViewById(R.id.kin_add_button);
+
+        setUpToolbar();
+        navigationView = findViewById(R.id.navigationMenu);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.nav_home:
+                        startActivity(new Intent(NextToKinActivity.this, AdminActivity.class));
+                        break;
+
+                    case R.id.travellingALone:
+                        startActivity(new Intent(NextToKinActivity.this, Detail_Forms.class));
+                        break;
+
+                    case R.id.nav_suspectRegistration:
+                        startActivity(new Intent(NextToKinActivity.this, SuspectRegistrationActivity.class));
+                        break;
+                    case R.id.nav_nextToKin:
+                        break;
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
 
         kin_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,9 +98,28 @@ public class NextToKinActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(NextToKinActivity.this, "you have already added 5 next to kin contacts to your profile", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(NextToKinActivity.this,AdminActivity.class));
                 }
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+    public void setUpToolbar() {
+        drawerLayout = findViewById(R.id.drawerLayout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.syncState();
     }
 }

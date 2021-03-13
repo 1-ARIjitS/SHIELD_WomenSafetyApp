@@ -74,6 +74,9 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
 
                     case R.id.nav_suspectRegistration:
                         break;
+                    case R.id.nav_nextToKin:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, NextToKinActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
