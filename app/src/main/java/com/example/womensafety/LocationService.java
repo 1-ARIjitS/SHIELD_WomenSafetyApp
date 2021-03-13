@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Looper;
@@ -22,8 +23,18 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 
+
 public class LocationService extends Service {
 
+    Intent intent;
+    public static String str_receiver = "com.example.womensafety.receiver";
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        intent = new Intent(str_receiver);
+    }
 
     private LocationCallback locationCallback = new LocationCallback() {
         @Override
@@ -33,7 +44,9 @@ public class LocationService extends Service {
                 //current Location
                 double latitude = locationResult.getLastLocation().getLatitude();
                 double longitude = locationResult.getLastLocation().getLongitude();
+                Detail_Forms fd = new Detail_Forms();
                 Log.d("LOCATION_UPDATE", latitude + ", " + longitude);
+                fn_update(locationResult.getLastLocation());
             }
         }
     };
@@ -59,7 +72,7 @@ public class LocationService extends Service {
                 channelId
         );
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setContentTitle("Location Service");
+        builder.setContentTitle("Location Tracking Service");
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         builder.setContentText("Running");
         builder.setContentIntent(pendingIntent);
@@ -70,7 +83,7 @@ public class LocationService extends Service {
             if (notificationManager != null && notificationManager.getNotificationChannel(channelId) == null) {
                 NotificationChannel notificationChannel = new NotificationChannel(
                         channelId,
-                        "Location Service",
+                        "Location Tracking Service",
                         NotificationManager.IMPORTANCE_HIGH
                 );
                 notificationChannel.setDescription("This channel is used by location service");
@@ -79,8 +92,8 @@ public class LocationService extends Service {
         }
 
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(4000);              //set the interval in which you want to get location
-        locationRequest.setFastestInterval(2020);       //if a location is available sooner you can get it early
+        locationRequest.setInterval(10000);              //set the interval in which you want to get location
+        locationRequest.setFastestInterval(4000);       //if a location is available sooner you can get it early
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -121,4 +134,12 @@ public class LocationService extends Service {
         }
         return super.onStartCommand(intent, flags, startId);
     }
+
+    private void fn_update(Location location){
+
+        intent.putExtra("latitude",location.getLatitude()+"");
+        intent.putExtra("longitude",location.getLongitude()+"");
+        sendBroadcast(intent);
+    }
+
 }

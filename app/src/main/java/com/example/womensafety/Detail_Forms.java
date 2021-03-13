@@ -3,13 +3,18 @@ package com.example.womensafety;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.TimePickerDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -50,14 +55,21 @@ public class Detail_Forms extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    TextView tv_latitude, tv_longitude;
+    Double latitude, longitude;
+
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
 
 
-
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail__forms);
+
+        tv_latitude = findViewById(R.id.tv_latitude);
+        tv_longitude = findViewById(R.id.tv_longitude);
+
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +97,7 @@ public class Detail_Forms extends AppCompatActivity {
 
         Access_DisplayTime = findViewById(R.id.timePicker);
         timeTextView = findViewById(R.id.timeTextView);
+
 
         Access_DisplayTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +162,31 @@ public class Detail_Forms extends AppCompatActivity {
 
     }
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            latitude = Double.valueOf(intent.getStringExtra("latitude"));
+            longitude = Double.valueOf(intent.getStringExtra("longitude"));
+
+
+            tv_latitude.setText(latitude+"");
+            tv_longitude.setText(longitude+"");
+        }
+    };
+
     @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(broadcastReceiver, new IntentFilter(LocationService.str_receiver));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
+    }
+
+        @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0){
