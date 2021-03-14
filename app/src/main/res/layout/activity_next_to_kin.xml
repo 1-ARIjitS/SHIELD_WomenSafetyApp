@@ -18,8 +18,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".Activities.NextToKinActivity">
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#3700B3">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:subtitleTextColor="#fff"
+                    app:titleTextColor="#fff"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/kin_heading"
