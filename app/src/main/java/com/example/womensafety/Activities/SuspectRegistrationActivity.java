@@ -30,12 +30,12 @@ import com.google.android.material.navigation.NavigationView;
 
 public class SuspectRegistrationActivity extends AppCompatActivity {
 
-    EditText suspect_name,suspect_description,suspect_mobile,suspect_identity;
+    EditText suspect_name, suspect_description, suspect_mobile, suspect_identity;
     Button suspect_register;
     FirebaseAuth auth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -45,18 +45,18 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suspect_registration);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        rootNode=FirebaseDatabase.getInstance();
-        reference=rootNode.getReference("suspects_registered");
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("suspects_registered");
 
-        suspect_name=findViewById(R.id.suspect_name);
-        suspect_description=findViewById(R.id.suspect_description);
-        suspect_mobile=findViewById(R.id.suspect_phone_number);
-        suspect_identity=findViewById(R.id.suspect_specific_identity);
-        suspect_register=findViewById(R.id.button);
-        
-        
+        suspect_name = findViewById(R.id.suspect_name);
+        suspect_description = findViewById(R.id.suspect_description);
+        suspect_mobile = findViewById(R.id.suspect_phone_number);
+        suspect_identity = findViewById(R.id.suspect_specific_identity);
+        suspect_register = findViewById(R.id.button);
+
+
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -77,32 +77,42 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(SuspectRegistrationActivity.this, NextToKinActivity.class));
                         break;
+                    case R.id.nav_aboutUs:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, AboutUs.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-        
+
 
         suspect_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String s_name=suspect_name.getText().toString();
-                String s_description=suspect_description.getText().toString();
-                String s_identity=suspect_identity.getText().toString();
-                String s_mobile_num=suspect_mobile.getText().toString();
+                String s_name = suspect_name.getText().toString();
+                String s_description = suspect_description.getText().toString();
+                String s_identity = suspect_identity.getText().toString();
+                String s_mobile_num = suspect_mobile.getText().toString();
 
-                suspect_registered sus=new suspect_registered(s_name,s_description,s_identity,s_mobile_num);
-
-                reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
-                Toast.makeText(getApplicationContext(),"suspect registration successful",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SuspectRegistrationActivity.this,AdminActivity.class));
+                suspect_registered sus = new suspect_registered(s_name, s_description, s_identity, s_mobile_num);
+                if (s_name.isEmpty() && s_mobile_num.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
+                } else if (s_name.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "INVALID,please enter the name of the suspect", Toast.LENGTH_SHORT).show();
+                } else if (s_mobile_num.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "INVALID,please enter the mobile number of the suspect", Toast.LENGTH_SHORT).show();
+                } else {
+                    reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
+                    Toast.makeText(getApplicationContext(), "suspect registration successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SuspectRegistrationActivity.this, AdminActivity.class));
+                }
             }
         });
 
     }
-    
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -111,6 +121,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -120,5 +131,5 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         actionBarDrawerToggle.syncState();
     }
-    
+
 }
