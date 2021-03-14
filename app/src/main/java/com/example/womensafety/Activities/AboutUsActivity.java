@@ -40,7 +40,7 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_suspect_registration);
+        setContentView(R.layout.activity_about_us);
 
         linked_in=findViewById(R.id.linkedin);
         instagram=findViewById(R.id.instagram);
@@ -141,8 +141,7 @@ public class AboutUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_EMAIL, email_1.getText().toString());
+                intent.setData(Uri.parse("mailto:"+email_1.getText().toString())); // only email apps should handle this
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -153,8 +152,7 @@ public class AboutUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_EMAIL, email_2.getText().toString());
+                intent.setData(Uri.parse("mailto:"+email_2.getText().toString())); // only email apps should handle this
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
