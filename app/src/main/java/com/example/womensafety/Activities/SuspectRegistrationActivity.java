@@ -80,7 +80,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_aboutUs:
-                        startActivity(new Intent(SuspectRegistrationActivity.this, AboutUs.class));
+                        startActivity(new Intent(SuspectRegistrationActivity.this, AboutUsActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

@@ -51,7 +51,7 @@ public class AdminActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_aboutUs:
-                        startActivity(new Intent(AdminActivity.this, AboutUs.class));
+                        startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

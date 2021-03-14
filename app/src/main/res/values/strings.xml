@@ -15,5 +15,6 @@
     <string name="select_vehicle_image">Select Vehicle Image</string>
     <string name="select_estimated_arrival_time">Estimated destination arrival time</string>
     <string name="time_picker">Pick Time</string>
+    <string name="this_applicaton_is_developed_amp_powered_by_cybertron_software_s_if_you_have_any_query_issue_or_inquiry_related_to_this_application_please_feel_free_to_contact_us_on_the_following_links"><![CDATA[This applicaton is developed & powered by Cybertron Software\'s. If you have any query,issue or inquiry related to this application please feel free to Contact Us on the following Links :-]]></string>
 
 </resources>

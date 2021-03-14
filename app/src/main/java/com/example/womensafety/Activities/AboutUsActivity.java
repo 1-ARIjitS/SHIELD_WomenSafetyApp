@@ -17,18 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.womensafety.Detail_Forms;
-import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Objects;
-
-public class AboutUs extends AppCompatActivity {
+public class AboutUsActivity extends AppCompatActivity {
 
     ImageView linked_in;
     ImageView instagram;
@@ -53,6 +47,10 @@ public class AboutUs extends AppCompatActivity {
         facebook=findViewById(R.id.facebook);
 
         website=findViewById(R.id.website);
+        mobile_num=findViewById(R.id.about_us_phone);
+        email_1=findViewById(R.id.email_link1);
+        email_2=findViewById(R.id.email_link2);
+
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -62,19 +60,19 @@ public class AboutUs extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.nav_home:
-                        startActivity(new Intent(AboutUs.this, AdminActivity.class));
+                        startActivity(new Intent(AboutUsActivity.this, AdminActivity.class));
                         break;
 
                     case R.id.travellingALone:
-                        startActivity(new Intent(AboutUs.this, Detail_Forms.class));
+                        startActivity(new Intent(AboutUsActivity.this, Detail_Forms.class));
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        startActivity(new Intent(AboutUs.this, SuspectRegistrationActivity.class));
+                        startActivity(new Intent(AboutUsActivity.this, SuspectRegistrationActivity.class));
                         break;
 
                     case R.id.nav_nextToKin:
-                        startActivity(new Intent(AboutUs.this, NextToKinActivity.class));
+                        startActivity(new Intent(AboutUsActivity.this, NextToKinActivity.class));
                         break;
 
                     case R.id.nav_aboutUs:
@@ -131,7 +129,7 @@ public class AboutUs extends AppCompatActivity {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:7774050060"));
 
-                if (ActivityCompat.checkSelfPermission(AboutUs.this,
+                if (ActivityCompat.checkSelfPermission(AboutUsActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
