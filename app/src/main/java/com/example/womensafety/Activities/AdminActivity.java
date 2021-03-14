@@ -45,9 +45,11 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(AdminActivity.this, SuspectRegistrationActivity.class));
                         break;
+
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(AdminActivity.this, NextToKinActivity.class));
                         break;
+
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(AdminActivity.this, AboutUs.class));
                         break;
