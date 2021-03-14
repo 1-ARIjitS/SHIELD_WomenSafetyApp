@@ -16,6 +16,7 @@ import android.os.Bundle;
 import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -23,10 +24,14 @@ public class AdminActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        auth=FirebaseAuth.getInstance();
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -53,6 +58,13 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;
+
+                    case R.id.nav_logout:
+                        auth.signOut();
+                        startActivity(new Intent(AdminActivity.this, LoginActivity.class));
+                        finish();
+                        break;
+
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

@@ -76,6 +76,12 @@ public class NextToKinActivity extends AppCompatActivity {
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(NextToKinActivity.this, AboutUsActivity.class));
                         break;
+
+                    case R.id.nav_logout:
+                        auth.signOut();
+                        startActivity(new Intent(NextToKinActivity.this, LoginActivity.class));
+                        finish();
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

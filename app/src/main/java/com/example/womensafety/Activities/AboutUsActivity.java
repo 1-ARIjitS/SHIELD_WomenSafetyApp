@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AboutUsActivity extends AppCompatActivity {
 
@@ -33,6 +34,8 @@ public class AboutUsActivity extends AppCompatActivity {
     TextView email_2;
     TextView website;
 
+    FirebaseAuth auth;
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -41,6 +44,8 @@ public class AboutUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
+
+        auth=FirebaseAuth.getInstance();
 
         linked_in=findViewById(R.id.linkedin);
         instagram=findViewById(R.id.instagram);
@@ -76,6 +81,12 @@ public class AboutUsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_aboutUs:
+                        break;
+
+                    case R.id.nav_logout:
+                        auth.signOut();
+                        startActivity(new Intent(AboutUsActivity.this, LoginActivity.class));
+                        finish();
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

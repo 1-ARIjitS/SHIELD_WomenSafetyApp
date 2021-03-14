@@ -82,6 +82,12 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(SuspectRegistrationActivity.this, AboutUsActivity.class));
                         break;
+
+                    case R.id.nav_logout:
+                        auth.signOut();
+                        startActivity(new Intent(SuspectRegistrationActivity.this, LoginActivity.class));
+                        finish();
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
