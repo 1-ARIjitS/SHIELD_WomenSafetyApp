@@ -45,16 +45,16 @@ public class AboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        linked_in=findViewById(R.id.linkedin);
-        instagram=findViewById(R.id.instagram);
-        facebook=findViewById(R.id.facebook);
+        linked_in = findViewById(R.id.linkedin);
+        instagram = findViewById(R.id.instagram);
+        facebook = findViewById(R.id.facebook);
 
-        website=findViewById(R.id.website);
-        mobile_num=findViewById(R.id.about_us_phone);
-        email_1=findViewById(R.id.email_link1);
-        email_2=findViewById(R.id.email_link2);
+        website = findViewById(R.id.website);
+        mobile_num = findViewById(R.id.about_us_phone);
+        email_1 = findViewById(R.id.email_link1);
+        email_2 = findViewById(R.id.email_link2);
 
 
         setUpToolbar();
@@ -95,12 +95,11 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
 
-
         linked_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Url="https://www.linkedin.com/company/cybertronsoftwares/";
-                Intent intent=new Intent(Intent.ACTION_VIEW);
+                String Url = "https://www.linkedin.com/company/cybertronsoftwares/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(Url));
                 startActivity(intent);
             }
@@ -108,8 +107,8 @@ public class AboutUsActivity extends AppCompatActivity {
         instagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Url="https://www.instagram.com/cybertronsoftwares/";
-                Intent intent=new Intent(Intent.ACTION_VIEW);
+                String Url = "https://www.instagram.com/cybertronsoftwares/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(Url));
                 startActivity(intent);
             }
@@ -117,8 +116,8 @@ public class AboutUsActivity extends AppCompatActivity {
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Url="https://m.facebook.com/cybertronsoftware/?ti=as";
-                Intent intent=new Intent(Intent.ACTION_VIEW);
+                String Url = "https://m.facebook.com/cybertronsoftware/?ti=as";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(Url));
                 startActivity(intent);
             }
@@ -127,8 +126,8 @@ public class AboutUsActivity extends AppCompatActivity {
         website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Url="https://www.cybertronsoftwares.com/";
-                Intent intent=new Intent(Intent.ACTION_VIEW);
+                String Url = "https://www.cybertronsoftwares.com/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(Url));
                 startActivity(intent);
             }
@@ -152,7 +151,7 @@ public class AboutUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:"+email_1.getText().toString())); // only email apps should handle this
+                intent.setData(Uri.parse("mailto:" + email_1.getText().toString())); // only email apps should handle this
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -163,7 +162,7 @@ public class AboutUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:"+email_2.getText().toString())); // only email apps should handle this
+                intent.setData(Uri.parse("mailto:" + email_2.getText().toString())); // only email apps should handle this
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -171,7 +170,9 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
 
-    }@Override
+    }
+
+    @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -179,6 +180,7 @@ public class AboutUsActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
