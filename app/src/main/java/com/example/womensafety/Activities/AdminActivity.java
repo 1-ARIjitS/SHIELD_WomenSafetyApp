@@ -31,7 +31,7 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -46,7 +46,7 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.travellingALone:
                         startActivity(new Intent(AdminActivity.this, Detail_Forms.class));
                         break;
-                      
+
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(AdminActivity.this, SuspectRegistrationActivity.class));
                         break;
@@ -80,6 +80,7 @@ public class AdminActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
