@@ -109,7 +109,7 @@ public class NextToKinActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(NextToKinActivity.this, "you have already added 5 next to kin contacts to your profile", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(NextToKinActivity.this,AdminActivity.class));
+                    startActivity(new Intent(NextToKinActivity.this, AdminActivity.class));
                 }
 
             }
@@ -124,6 +124,7 @@ public class NextToKinActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
