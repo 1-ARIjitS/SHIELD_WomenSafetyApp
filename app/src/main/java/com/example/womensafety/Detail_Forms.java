@@ -14,11 +14,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,9 +41,15 @@ import android.widget.Toast;
 import com.example.womensafety.Activities.AdminActivity;
 import com.example.womensafety.Activities.NextToKinActivity;
 import com.example.womensafety.Activities.SuspectRegistrationActivity;
+import com.example.womensafety.Activities.TravelLog;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class Detail_Forms extends AppCompatActivity {
 
@@ -49,10 +58,10 @@ public class Detail_Forms extends AppCompatActivity {
     String format;
     Calendar calender;
     TimePickerDialog timePickerDialog;
+
     Button VehicleImageSelector;
     public static final int GET_FROM_GALLERY = 3;
     ImageView imageView;
-    TextView timeTextView;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -60,8 +69,16 @@ public class Detail_Forms extends AppCompatActivity {
 
     TextView tv_latitude, tv_longitude;
     Double latitude, longitude;
+    EditText et_vehicleNumber, et_travellingTo, et_travellingFrom;
+    TextView tv_estimatedTime;
 
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
+
+    Intent intent;
+
+    //Travel Log passing values
+    String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
+    Uri vehicleImageUri;
 
 
     @SuppressLint("SetTextI18n")
@@ -72,11 +89,26 @@ public class Detail_Forms extends AppCompatActivity {
 
         tv_latitude = findViewById(R.id.tv_latitude);
         tv_longitude = findViewById(R.id.tv_longitude);
+        tv_estimatedTime = findViewById(R.id.estimatedTime);
+
+        et_vehicleNumber = findViewById(R.id.vehicleNumber);
+        et_travellingFrom = findViewById(R.id.travelingFrom);
+        et_travellingTo = findViewById(R.id.travelingTo);
+
+        vehicleNumber = et_vehicleNumber.getText().toString();
+        travellingFrom = et_travellingFrom.getText().toString();
+        travellingTo = et_travellingTo.getText().toString();
 
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                timeStarted = getCurrentTime();
+
+                calender = Calendar.getInstance();
+                date = DateFormat.getDateInstance(DateFormat.FULL).format(calender.getTime());
+
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -95,11 +127,16 @@ public class Detail_Forms extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopLocationService();
+                timeReached = getCurrentTime();
+                address = getLocation();
+                vehicleNumber = et_vehicleNumber.getText().toString();
+                travellingFrom = et_travellingFrom.getText().toString();
+                travellingTo = et_travellingTo.getText().toString();
+                fn_reachedSafely();
             }
         });
 
         Access_DisplayTime = findViewById(R.id.timePicker);
-        timeTextView = findViewById(R.id.timeTextView);
 
 
         Access_DisplayTime.setOnClickListener(new View.OnClickListener() {
@@ -123,8 +160,9 @@ public class Detail_Forms extends AppCompatActivity {
                         } else {
                             format = "AM";
                         }
-                        timeTextView.setVisibility(View.VISIBLE);
-                        timeTextView.setText("Estimated time: " + hourOfDay + ":" + minute + " " + format);
+                        tv_estimatedTime.setVisibility(View.VISIBLE);
+                        tv_estimatedTime.setText("Estimated time: " + hourOfDay + ":" + minute + " " + format);
+                        estimatedTime = hourOfDay + ":" + minute + " " + format;
                     }
                 }, CalenderHour, CalenderMinute, false );
                 timePickerDialog.show();
@@ -160,6 +198,9 @@ public class Detail_Forms extends AppCompatActivity {
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(Detail_Forms.this, NextToKinActivity.class));
                         break;
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(Detail_Forms.this, TravelLog.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -179,6 +220,21 @@ public class Detail_Forms extends AppCompatActivity {
             tv_longitude.setText(longitude+"");
         }
     };
+
+    private void fn_reachedSafely(){
+
+        intent = new Intent(Detail_Forms.this, TravelLog.class);
+        intent.putExtra("vehicleNumber", vehicleNumber+"");
+        intent.putExtra("travellingFrom", travellingFrom+"");
+        intent.putExtra("travellingTo", travellingTo+"");
+        intent.putExtra("date", date+"");
+        intent.putExtra("timeStarted", timeStarted+"");
+        intent.putExtra("timeReached", timeReached+"");
+        intent.putExtra("address", address+"");
+        intent.putExtra("vehicleImageUri", vehicleImageUri);
+        intent.putExtra("estimatedTime", estimatedTime+"");
+        startActivity(intent);
+    }
 
     @Override
     protected void onResume() {
@@ -251,6 +307,7 @@ public class Detail_Forms extends AppCompatActivity {
             imageView = findViewById(R.id.vehicleImage);
             imageView.setVisibility(View.VISIBLE);
             imageView.setImageURI(data.getData());
+            vehicleImageUri = data.getData();
         }
     }
 
@@ -272,6 +329,23 @@ public class Detail_Forms extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         actionBarDrawerToggle.syncState();
+    }
+
+    private String getCurrentTime(){
+        return new SimpleDateFormat("hh:mm", Locale.getDefault()).format(new Date());
+    }
+
+    private String getLocation(){
+
+        try{
+            Geocoder geocoder = new Geocoder(Detail_Forms.this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            String address = addresses.get(0).getAddressLine(0);
+            return address;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
