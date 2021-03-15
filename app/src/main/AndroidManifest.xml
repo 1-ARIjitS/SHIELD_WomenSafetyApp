@@ -15,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.AboutUsActivity"></activity>
+        <activity android:name=".Activities.TravelLogContent"></activity>
+        <activity android:name=".Activities.TravelLog" />
         <activity android:name=".Activities.NextToKinActivity" />
         <activity android:name=".Activities.SuspectRegistrationActivity" />
         <activity android:name=".Activities.RegisterActivity" />
