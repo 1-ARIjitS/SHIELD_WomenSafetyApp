@@ -28,38 +28,37 @@ public class LoginActivity extends AppCompatActivity {
 
     Button login;
 
-    String mUser,mPass;
+    String mUser, mPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        create_an_account_button=(Button)findViewById(R.id.login_create_a_new_account);
+        create_an_account_button = (Button) findViewById(R.id.login_create_a_new_account);
 
-        username=(EditText)findViewById(R.id.login_username);
+        username = (EditText) findViewById(R.id.login_username);
 
-        password=(EditText)findViewById(R.id.login_password);
+        password = (EditText) findViewById(R.id.login_password);
 
-        login=(Button)findViewById(R.id.login_button);
+        login = (Button) findViewById(R.id.login_button);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mUser=username.getText().toString();
+                mUser = username.getText().toString();
 
-                mPass=password.getText().toString();
+                mPass = password.getText().toString();
                 if (mUser.isEmpty() && mPass.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Invalid,Blank Field", Toast.LENGTH_SHORT).show();
                 } else if (mUser.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Invalid,please enter an Email Id", Toast.LENGTH_SHORT).show();
                 } else if (mPass.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Invalid,please enter a Password", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     auth.signInWithEmailAndPassword(mUser, mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
