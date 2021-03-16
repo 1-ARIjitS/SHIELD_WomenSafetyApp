@@ -52,7 +52,7 @@ public class AdminActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_nextToKin:
-                        startActivity(new Intent(AdminActivity.this, NextToKinActivity.class));
+                        startActivity(new Intent(AdminActivity.this, NextTokinListActivity.class));
                         break;
 
                     case R.id.nav_aboutUs:

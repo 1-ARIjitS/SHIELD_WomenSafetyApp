@@ -77,7 +77,7 @@ public class AboutUsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_nextToKin:
-                        startActivity(new Intent(AboutUsActivity.this, NextToKinActivity.class));
+                        startActivity(new Intent(AboutUsActivity.this, NextTokinListActivity.class));
                         break;
 
                     case R.id.nav_aboutUs:

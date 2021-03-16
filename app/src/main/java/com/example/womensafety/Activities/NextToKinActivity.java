@@ -102,14 +102,19 @@ public class NextToKinActivity extends AppCompatActivity {
                         Toast.makeText(NextToKinActivity.this, "INVALID,please enter the name of next to kin", Toast.LENGTH_SHORT).show();
                     } else if (k_phone.isEmpty()) {
                         Toast.makeText(NextToKinActivity.this, "INVALID,please enter contact details of next to kin", Toast.LENGTH_SHORT).show();
+                    }else if (k_phone.length()<10) {
+                        Toast.makeText(NextToKinActivity.this, "INVALID,mobile number entered is too short", Toast.LENGTH_SHORT).show();
+                    }else if (k_phone.length()>10) {
+                        Toast.makeText(NextToKinActivity.this, "INVALID,mobile number entered is too long", Toast.LENGTH_SHORT).show();
                     } else {
                         reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(kin);
                         Toast.makeText(NextToKinActivity.this, "next to kin successfully added", Toast.LENGTH_SHORT).show();
                         c = c + 1;
+                        startActivity(new Intent(NextToKinActivity.this, NextTokinListActivity.class));
                     }
                 } else {
                     Toast.makeText(NextToKinActivity.this, "you have already added 5 next to kin contacts to your profile", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(NextToKinActivity.this, AdminActivity.class));
+                    startActivity(new Intent(NextToKinActivity.this, NextTokinListActivity.class));
                 }
 
             }

@@ -9,6 +9,9 @@ public class kin_registered {
         this.mobile_number = mobile_number;
     }
 
+    public kin_registered() {
+    }
+
     public String getName() {
         return name;
     }
