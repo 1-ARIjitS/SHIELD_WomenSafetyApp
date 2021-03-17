@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class NextTokinListActivity extends AppCompatActivity {
 
@@ -52,8 +53,10 @@ public class NextTokinListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_tokin_list);
 
+        auth=FirebaseAuth.getInstance();
+
         database=FirebaseDatabase.getInstance();
-        reference=database.getReference("Next To kin");
+        reference=database.getReference("Next To kin").child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
 
         next_to_kin_list=(ListView) findViewById(R.id.next_to_kin_list);
         add_button=findViewById(R.id.add_next_to_kin_button);

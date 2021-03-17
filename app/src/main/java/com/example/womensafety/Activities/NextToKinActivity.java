@@ -45,7 +45,7 @@ public class NextToKinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_next_to_kin);
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference("Next To kin");
+        reference = firebaseDatabase.getReference("Next To kin").child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
 
         kin_name = findViewById(R.id.kin_name);
         kin_phone = findViewById(R.id.kin_mobile);
@@ -107,7 +107,7 @@ public class NextToKinActivity extends AppCompatActivity {
                     }else if (k_phone.length()>10) {
                         Toast.makeText(NextToKinActivity.this, "INVALID,mobile number entered is too long", Toast.LENGTH_SHORT).show();
                     } else {
-                        reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(kin);
+                        reference.child(k_phone).setValue(kin);
                         Toast.makeText(NextToKinActivity.this, "next to kin successfully added", Toast.LENGTH_SHORT).show();
                         c = c + 1;
                         startActivity(new Intent(NextToKinActivity.this, NextTokinListActivity.class));
