@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.NextTokinListActivity"></activity>
+        <activity android:name=".Activities.NextTokinListActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".Activities.AboutUsActivity" />
         <activity android:name=".Activities.NextToKinActivity" />
         <activity android:name=".Activities.SuspectRegistrationActivity" />
