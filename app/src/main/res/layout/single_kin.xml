@@ -17,20 +17,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/kin_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
                 android:fontFamily="casual"
+                android:padding="10dp"
                 android:textColor="#3F51B5"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 tools:text="name" />
 
             <TextView
@@ -38,9 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
+                android:padding="10dp"
                 android:textColor="#3F51B5"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 tools:text="mobile number" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

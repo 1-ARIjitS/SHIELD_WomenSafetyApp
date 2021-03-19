@@ -29,6 +29,7 @@
                 android:fontFamily="casual"
                 android:padding="10dp"
                 android:text="name"
+                android:textColor="#673AB7"
                 android:textSize="24sp" />
 
             <TextView
@@ -36,11 +37,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="30dp"
+                android:padding="10dp"
                 android:text="description"
+                android:textColor="#673AB7"
                 android:textSize="24sp" />
 
             <TextView
@@ -50,6 +49,7 @@
                 android:fontFamily="casual"
                 android:padding="10dp"
                 android:text="mobile number"
+                android:textColor="#673AB7"
                 android:textSize="24sp" />
 
             <TextView
@@ -59,6 +59,7 @@
                 android:fontFamily="casual"
                 android:padding="10dp"
                 android:text="identity"
+                android:textColor="#673AB7"
                 android:textSize="24sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
