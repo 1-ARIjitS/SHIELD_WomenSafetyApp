@@ -77,7 +77,7 @@ public class NextTokinListActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        startActivity(new Intent(NextTokinListActivity.this, SuspectRegistrationActivity.class));
+                        startActivity(new Intent(NextTokinListActivity.this, SuspectListActivity.class));
                         break;
 
                     case R.id.nav_nextToKin:
