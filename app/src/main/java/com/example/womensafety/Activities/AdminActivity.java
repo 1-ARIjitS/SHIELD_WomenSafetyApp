@@ -40,13 +40,13 @@ public class AdminActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        posts=(RecyclerView)findViewById(R.id.post_recycler);
-        fab=(FloatingActionButton)findViewById(R.id.fab_button);
+        posts = (RecyclerView) findViewById(R.id.post_recycler);
+        fab = (FloatingActionButton) findViewById(R.id.fab_button);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this,AddingPostActivity.class));
+                startActivity(new Intent(AdminActivity.this, AddingPostActivity.class));
             }
         });
 
