@@ -35,10 +35,15 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.example.womensafety.Activities.AboutUsActivity;
 import com.example.womensafety.Activities.AdminActivity;
+import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.NextToKinActivity;
+import com.example.womensafety.Activities.NextTokinListActivity;
+import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Activities.SuspectRegistrationActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
@@ -53,6 +58,8 @@ public class Detail_Forms extends AppCompatActivity {
     public static final int GET_FROM_GALLERY = 3;
     ImageView imageView;
     TextView timeTextView;
+
+    FirebaseAuth auth;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -72,6 +79,8 @@ public class Detail_Forms extends AppCompatActivity {
 
         tv_latitude = findViewById(R.id.tv_latitude);
         tv_longitude = findViewById(R.id.tv_longitude);
+
+        auth=FirebaseAuth.getInstance();
 
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
@@ -155,10 +164,20 @@ public class Detail_Forms extends AppCompatActivity {
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        startActivity(new Intent(Detail_Forms.this, SuspectRegistrationActivity.class));
+                        startActivity(new Intent(Detail_Forms.this, SuspectListActivity.class));
                         break;
                     case R.id.nav_nextToKin:
-                        startActivity(new Intent(Detail_Forms.this, NextToKinActivity.class));
+                        startActivity(new Intent(Detail_Forms.this, NextTokinListActivity.class));
+                        break;
+
+                    case R.id.nav_aboutUs:
+                        startActivity(new Intent(Detail_Forms.this, AboutUsActivity.class));
+                        break;
+
+                    case R.id.nav_logout:
+                        auth.signOut();
+                        startActivity(new Intent(Detail_Forms.this, LoginActivity.class));
+                        finish();
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

@@ -10,6 +10,9 @@ public class suspect_registered {
         this.mobile_num = mobile_num;
     }
 
+    public suspect_registered() {
+    }
+
     public suspect_registered(String name, String mobile_num) {
         this.name = name;
         this.mobile_num = mobile_num;

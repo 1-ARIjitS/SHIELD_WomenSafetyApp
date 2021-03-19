@@ -37,9 +37,14 @@ public class kinAdapter extends ArrayAdapter {
         TextView name=(TextView)listItemView.findViewById(R.id.kin_name);
         TextView mobile_number=(TextView)listItemView.findViewById(R.id.kin_phone);
 
-        name.setText(currentKin.getName());
-        mobile_number.setText(currentKin.getMobile_number());
+        String kin_name="Name:- ";
+        String kin_mobile_number="Mobile Number :-";
 
+        kin_name+=currentKin.getName();
+        kin_mobile_number+=currentKin.getMobile_number();
+
+        name.setText(kin_name);
+        mobile_number.setText(kin_mobile_number);
 
         return listItemView;
     }

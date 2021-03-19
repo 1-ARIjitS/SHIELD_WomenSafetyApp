@@ -105,16 +105,21 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                 String s_mobile_num = suspect_mobile.getText().toString();
 
                 suspect_registered sus = new suspect_registered(s_name, s_description, s_identity, s_mobile_num);
-                if (s_name.isEmpty() && s_mobile_num.isEmpty()) {
+                if (s_name.isEmpty() && s_description.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
                 } else if (s_name.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter the name of the suspect", Toast.LENGTH_SHORT).show();
-                } else if (s_mobile_num.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "INVALID,please enter the mobile number of the suspect", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (s_description.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "INVALID,please enter a valid description of the suspect", Toast.LENGTH_SHORT).show();
+                }else if (s_mobile_num.length()<10) {
+                    Toast.makeText(getApplicationContext(), "INVALID,mobile number is too short ", Toast.LENGTH_SHORT).show();
+                }else if (s_mobile_num.length()>10) {
+                    Toast.makeText(getApplicationContext(), "INVALID,mobile number is too long", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
                     Toast.makeText(getApplicationContext(), "suspect registration successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SuspectRegistrationActivity.this, AdminActivity.class));
+                    startActivity(new Intent(SuspectRegistrationActivity.this, SuspectListActivity.class));
                 }
             }
         });
