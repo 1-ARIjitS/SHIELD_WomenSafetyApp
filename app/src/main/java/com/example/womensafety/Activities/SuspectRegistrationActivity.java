@@ -111,12 +111,11 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter the name of the suspect", Toast.LENGTH_SHORT).show();
                 } else if (s_description.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter a valid description of the suspect", Toast.LENGTH_SHORT).show();
-                }else if (s_mobile_num.length()<10) {
+                } else if (s_mobile_num.length() < 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too short ", Toast.LENGTH_SHORT).show();
-                }else if (s_mobile_num.length()>10) {
+                } else if (s_mobile_num.length() > 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too long", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
                     Toast.makeText(getApplicationContext(), "suspect registration successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SuspectRegistrationActivity.this, SuspectListActivity.class));
