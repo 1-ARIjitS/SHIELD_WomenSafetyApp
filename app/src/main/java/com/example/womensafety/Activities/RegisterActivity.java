@@ -54,45 +54,45 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        rootNode=FirebaseDatabase.getInstance();
+        rootNode = FirebaseDatabase.getInstance();
 
-        reference=rootNode.getReference("registered_users");
+        reference = rootNode.getReference("registered_users");
 
-        full_name=findViewById(R.id.registration_full_name);
+        full_name = findViewById(R.id.registration_full_name);
 
-        email_id=findViewById(R.id.registration_email);
+        email_id = findViewById(R.id.registration_email);
 
-        age=findViewById(R.id.registration_age);
+        age = findViewById(R.id.registration_age);
 
-        mobile_number=findViewById(R.id.registration_phone_number);
+        mobile_number = findViewById(R.id.registration_phone_number);
 
-        address=findViewById(R.id.registration_address);
+        address = findViewById(R.id.registration_address);
 
-        unique=findViewById(R.id.registration_uvc);
-        confirm_unique=findViewById(R.id.registration_confirm_uvc);
+        unique = findViewById(R.id.registration_uvc);
+        confirm_unique = findViewById(R.id.registration_confirm_uvc);
 
-        password=findViewById(R.id.registration_pass);
-        confirm_password=findViewById(R.id.registration_confirm_pass);
+        password = findViewById(R.id.registration_pass);
+        confirm_password = findViewById(R.id.registration_confirm_pass);
 
-        already_button=findViewById(R.id.registration_already_an_user);
+        already_button = findViewById(R.id.registration_already_an_user);
 
-        continue_button=findViewById(R.id.registration_verify_button);
+        continue_button = findViewById(R.id.registration_verify_button);
 
         continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String mFull_name=full_name.getText().toString();
-                String mAge=age.getText().toString();
-                String mEmail_id=email_id.getText().toString();
-                String mMobile_number=mobile_number.getText().toString();
-                String mAddress=address.getText().toString();
-                String mPassword=password.getText().toString();
-                String mUVC=unique.getText().toString();
+                String mFull_name = full_name.getText().toString();
+                String mAge = age.getText().toString();
+                String mEmail_id = email_id.getText().toString();
+                String mMobile_number = mobile_number.getText().toString();
+                String mAddress = address.getText().toString();
+                String mPassword = password.getText().toString();
+                String mUVC = unique.getText().toString();
 
-                final users users=new users(mFull_name,mAge,mEmail_id,mMobile_number,mAddress,mPassword,mUVC);
+                final users users = new users(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC);
 
                 if (mFull_name.isEmpty() && mAge.isEmpty() && mEmail_id.isEmpty() && mMobile_number.isEmpty() && mAddress.isEmpty() && mPassword.isEmpty() && mUVC.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
@@ -109,8 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                   reference.child(auth.getCurrentUser().getUid()).setValue(users);
-                                   startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                reference.child(auth.getCurrentUser().getUid()).setValue(users);
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             } else {
                                 Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
         already_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
     }
