@@ -18,30 +18,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class kinAdapter extends ArrayAdapter {
-    public kinAdapter(@NonNull Activity context, int resource, @NonNull ArrayList<kin_registered>kin) {
+    public kinAdapter(@NonNull Activity context, int resource, @NonNull ArrayList<kin_registered> kin) {
         super(context, 0, kin);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listItemView=convertView;
+        View listItemView = convertView;
 
-        if(listItemView==null)
-        {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.single_kin, parent,false);
+        if (listItemView == null) {
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.single_kin, parent, false);
         }
 
         kin_registered currentKin = (kin_registered) getItem(position);
 
-        TextView name=(TextView)listItemView.findViewById(R.id.kin_name);
-        TextView mobile_number=(TextView)listItemView.findViewById(R.id.kin_phone);
+        TextView name = (TextView) listItemView.findViewById(R.id.kin_name);
+        TextView mobile_number = (TextView) listItemView.findViewById(R.id.kin_phone);
 
-        String kin_name="Name:- ";
-        String kin_mobile_number="Mobile Number :-";
+        String kin_name = "Name:- ";
+        String kin_mobile_number = "Mobile Number :-";
 
-        kin_name+=currentKin.getName();
-        kin_mobile_number+=currentKin.getMobile_number();
+        kin_name += currentKin.getName();
+        kin_mobile_number += currentKin.getMobile_number();
 
         name.setText(kin_name);
         mobile_number.setText(kin_mobile_number);
