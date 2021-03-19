@@ -53,13 +53,13 @@ public class NextTokinListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_tokin_list);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("Next To kin").child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Next To kin").child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
 
-        next_to_kin_list=(ListView) findViewById(R.id.next_to_kin_list);
-        add_button=findViewById(R.id.add_next_to_kin_button);
+        next_to_kin_list = (ListView) findViewById(R.id.next_to_kin_list);
+        add_button = findViewById(R.id.add_next_to_kin_button);
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -101,23 +101,22 @@ public class NextTokinListActivity extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NextTokinListActivity.this,NextToKinActivity.class));
+                startActivity(new Intent(NextTokinListActivity.this, NextToKinActivity.class));
             }
         });
 
-        final ArrayList<kin_registered>kin=new ArrayList<kin_registered>();
+        final ArrayList<kin_registered> kin = new ArrayList<kin_registered>();
 
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot kinSnap:snapshot.getChildren())
-                {
-                    kin_registered kinRegistered= kinSnap.getValue(kin_registered.class);
+                for (DataSnapshot kinSnap : snapshot.getChildren()) {
+                    kin_registered kinRegistered = kinSnap.getValue(kin_registered.class);
                     kin.add(kinRegistered);
                 }
 
-                kinAdapter adapter=new kinAdapter(NextTokinListActivity.this,0,kin);
+                kinAdapter adapter = new kinAdapter(NextTokinListActivity.this, 0, kin);
 
                 next_to_kin_list.setAdapter(adapter);
             }
@@ -128,6 +127,7 @@ public class NextTokinListActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
