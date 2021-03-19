@@ -49,14 +49,14 @@ public class SuspectListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suspect_list);
 
-        auth=FirebaseAuth.getInstance();
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("suspects_registered");
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("suspects_registered");
 
-        sus_list=findViewById(R.id.sus_list);
-        add_button=findViewById(R.id.sus_reg_button);
+        sus_list = findViewById(R.id.sus_list);
+        add_button = findViewById(R.id.sus_reg_button);
 
-        final ArrayList<suspect_registered>sus=new ArrayList<>();
+        final ArrayList<suspect_registered> sus = new ArrayList<>();
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -98,22 +98,21 @@ public class SuspectListActivity extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SuspectListActivity.this,SuspectRegistrationActivity.class));
+                startActivity(new Intent(SuspectListActivity.this, SuspectRegistrationActivity.class));
             }
         });
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot susSnap:snapshot.getChildren())
-                {
-                    suspect_registered suspectRegistered= susSnap.getValue(suspect_registered.class);
+                for (DataSnapshot susSnap : snapshot.getChildren()) {
+                    suspect_registered suspectRegistered = susSnap.getValue(suspect_registered.class);
                     sus.add(suspectRegistered);
                 }
 
-                 suspectAdapter adapter=new suspectAdapter(SuspectListActivity.this,0,sus);
+                suspectAdapter adapter = new suspectAdapter(SuspectListActivity.this, 0, sus);
 
-                 sus_list.setAdapter(adapter);
+                sus_list.setAdapter(adapter);
             }
 
             @Override
@@ -124,6 +123,7 @@ public class SuspectListActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
