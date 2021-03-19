@@ -7,14 +7,19 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MenuItem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,6 +30,8 @@ public class AdminActivity extends AppCompatActivity {
     NavigationView navigationView;
 
     FirebaseAuth auth;
+    RecyclerView posts;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,16 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         auth = FirebaseAuth.getInstance();
+
+        posts=(RecyclerView)findViewById(R.id.post_recycler);
+        fab=(FloatingActionButton)findViewById(R.id.fab_button);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminActivity.this,AddingPostActivity.class));
+            }
+        });
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -70,6 +87,13 @@ public class AdminActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //recycler view operations starting here
+
+        posts.setHasFixedSize(true);
+        posts.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
     }
 
     @Override

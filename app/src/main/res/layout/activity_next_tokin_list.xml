@@ -42,13 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="600dp" />
 
-        <Button
-            android:id="@+id/add_next_to_kin_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_view"
-            android:text="add new next to kin"
-            android:textColor="#FFFFFF" />
+            <Button
+                android:id="@+id/add_next_to_kin_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_view"
+                android:text="add new next to kin"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 
