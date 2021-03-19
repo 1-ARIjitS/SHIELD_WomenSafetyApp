@@ -28,43 +28,36 @@ public class suspectAdapter extends ArrayAdapter {
     @Override
 
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listItemView=convertView;
+        View listItemView = convertView;
 
-        if(listItemView==null)
-        {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.single_sus, parent,false);
+        if (listItemView == null) {
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.single_sus, parent, false);
         }
 
         suspect_registered currentSus = (suspect_registered) getItem(position);
 
-        TextView name=listItemView.findViewById(R.id.each_sus_name);
-        TextView mobile_num=listItemView.findViewById(R.id.each_sus_mobile_number);
-        TextView description=listItemView.findViewById(R.id.each_sus_description);
-        TextView identity=listItemView.findViewById(R.id.each_sus_identity);
+        TextView name = listItemView.findViewById(R.id.each_sus_name);
+        TextView mobile_num = listItemView.findViewById(R.id.each_sus_mobile_number);
+        TextView description = listItemView.findViewById(R.id.each_sus_description);
+        TextView identity = listItemView.findViewById(R.id.each_sus_identity);
 
-        String sus_name="Name :- ";
-        String sus_mobile="Mobile Number :- ";
-        String sus_description="Description :- ";
-        String sus_identity="Identity :- ";
+        String sus_name = "Name :- ";
+        String sus_mobile = "Mobile Number :- ";
+        String sus_description = "Description :- ";
+        String sus_identity = "Identity :- ";
 
-        sus_name+=currentSus.getName();
-        sus_description+=currentSus.getDescription();
+        sus_name += currentSus.getName();
+        sus_description += currentSus.getDescription();
 
-        if(currentSus.getMobile_num().isEmpty())
-        {
-            sus_mobile+="UNKNOWN";
+        if (currentSus.getMobile_num().isEmpty()) {
+            sus_mobile += "UNKNOWN";
+        } else {
+            sus_mobile += currentSus.getMobile_num();
         }
-        else
-        {
-            sus_mobile+=currentSus.getMobile_num();
-        }
-        if(currentSus.getIdentity().isEmpty())
-        {
-            sus_identity+="UNKNOWN";
-        }
-        else
-        {
-            sus_identity+=currentSus.getIdentity();
+        if (currentSus.getIdentity().isEmpty()) {
+            sus_identity += "UNKNOWN";
+        } else {
+            sus_identity += currentSus.getIdentity();
         }
 
         name.setText(sus_name);
