@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:minWidth="20dp"
+    tools:openDrawer=""
+    android:id="@+id/drawerLayout"
+    tools:context=".Activities.TravelLogContent"
+    android:background="@drawable/registration_background">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#3700B3">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subtitleTextColor="#fff"
+            app:titleTextColor="#fff"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/disp_vehicleImage"
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_margin="8dp"
+            android:layout_height="120dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Date:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+            <TextView
+                android:id="@+id/disp_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text=""
+                android:layout_weight="0.8"
+                android:textSize="18sp"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Vehicle No.:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_vehicleNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:layout_weight="0.8"
+            android:textSize="18sp"
+            android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="from:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_travellingFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_weight="0.8"
+            android:textColor="#fff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="to:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_travellingTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_weight="0.8"
+            android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Started time:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_startedTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_weight="0.8"
+            android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Expected time:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_expectedTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_weight="0.8"
+            android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Reached time:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_reachedTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_weight="0.8"
+            android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Geo location:- "
+                android:textSize="18sp"
+                android:textColor="#fff"
+                android:layout_weight="1.2"/>
+
+        <TextView
+            android:id="@+id/disp_lastLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=""
+            android:layout_weight="0.8"
+            android:textSize="18sp"
+            android:textColor="#fff" />
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/menu"
+        app:headerLayout="@layout/header"
+        app:itemTextColor="#000">
+
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
