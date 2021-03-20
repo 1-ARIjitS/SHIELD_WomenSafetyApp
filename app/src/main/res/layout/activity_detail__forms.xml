@@ -195,7 +195,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <TextView
-                    android:id="@+id/timeTextView"
+                    android:id="@+id/estimatedTime"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
