@@ -7,47 +7,51 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.womensafety.R;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class TravelLog extends AppCompatActivity {
-
+public class TravelLogContent extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    LinearLayout mTravelLogEvent;
+    TextView textDate, textVehicleNumber, textTravellingFrom, textTravellingTo, textTimeStarted, textTimeExpected, textTimeReached, textAddress;
 
-    String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
-    TextView tv_date, tv_travelFrom, tv_travelTo;
+    ImageView vehicleImage;
+
     Uri vehicleImageUri;
 
-
-    Intent intent;
+    String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_travel_log);
+        setContentView(R.layout.activity_travel_log_content);
 
-        Intent intentGet = getIntent();
-        Bundle bundle = intentGet.getExtras();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
+        textDate = findViewById(R.id.disp_date);
+        textVehicleNumber = findViewById(R.id.disp_vehicleNumber);
+        textTravellingFrom = findViewById(R.id.disp_travellingFrom);
+        textTravellingTo = findViewById(R.id.disp_travellingTo);
+        textTimeStarted = findViewById(R.id.disp_startedTime);
+        textTimeExpected = findViewById(R.id.disp_expectedTime);
+        textTimeReached = findViewById(R.id.disp_reachedTime);
+        textAddress = findViewById(R.id.disp_lastLocation);
 
-        tv_date = findViewById(R.id.tv_date);
-        tv_travelFrom = findViewById(R.id.tv_travelFrom);
-        tv_travelTo = findViewById(R.id.tv_travelTo);
-
+        vehicleImage = findViewById(R.id.disp_vehicleImage);
 
         if(bundle != null){
             address = (String) bundle.get("address");
@@ -58,31 +62,18 @@ public class TravelLog extends AppCompatActivity {
             vehicleNumber = (String) bundle.get("vehicleNumber");
             travellingFrom = (String) bundle.get("travellingFrom");
             travellingTo = (String) bundle.get("travellingTo");
-            vehicleImageUri = (Uri) bundle.get("vehicleImageUri");
+            vehicleImageUri = (Uri) bundle.get("vehicleImageUri") ;
+
+            textDate.setText(date + "");
+            textVehicleNumber.setText(vehicleNumber + "");
+            textTimeStarted.setText(timeStarted + "");
+            textTimeReached.setText(timeReached + "");
+            textTimeExpected.setText(estimatedTime + "");
+            textAddress.setText(address + "");
+            textTravellingFrom.setText(travellingFrom + "");
+            textTravellingTo.setText(travellingTo + "");
+            vehicleImage.setImageURI(vehicleImageUri);
         }
-
-        mTravelLogEvent = findViewById(R.id.travelLogEvent);
-        mTravelLogEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent = new Intent(TravelLog.this, TravelLogContent.class);
-                intent.putExtra("vehicleNumber", vehicleNumber+"");
-                intent.putExtra("travellingFrom", travellingFrom+"");
-                intent.putExtra("travellingTo", travellingTo+"");
-                intent.putExtra("date", date+"");
-                intent.putExtra("timeStarted", timeStarted+"");
-                intent.putExtra("timeReached", timeReached+"");
-                intent.putExtra("address", address+"");
-                intent.putExtra("vehicleImageUri", vehicleImageUri);
-                intent.putExtra("estimatedTime", estimatedTime+"");
-                startActivity(intent);
-
-            }
-        });
-
-        tv_date.setText(date);
-        tv_travelTo.setText("to: "+travellingTo+"");
-        tv_travelFrom.setText("from: "+travellingFrom+"");
 
 
         setUpToolbar();
@@ -93,36 +84,30 @@ public class TravelLog extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.nav_travelLog:
+                        startActivity(new Intent(TravelLogContent.this, TravelLog.class));
                         break;
 
                     case R.id.nav_home:
-                        startActivity(new Intent(TravelLog.this, AdminActivity.class));
+                        startActivity(new Intent(TravelLogContent.this, AdminActivity.class));
                         break;
 
                     case R.id.travellingALone:
-                        startActivity(new Intent(TravelLog.this, Detail_Forms.class));
+                        startActivity(new Intent(TravelLogContent.this, Detail_Forms.class));
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        startActivity(new Intent(TravelLog.this, SuspectRegistrationActivity.class));
+                        startActivity(new Intent(TravelLogContent.this, SuspectRegistrationActivity.class));
                         break;
                     case R.id.nav_nextToKin:
-                        startActivity(new Intent(TravelLog.this, NextToKinActivity.class));
+                        startActivity(new Intent(TravelLogContent.this, NextToKinActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-
     }
 
-    public void openLogDialog(){
-        TravelLogDialog travelLogDialog = new TravelLogDialog();
-        travelLogDialog.show(getSupportFragmentManager(), "Travel Log Dialog");
-    }
-
-    @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -139,6 +124,4 @@ public class TravelLog extends AppCompatActivity {
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         actionBarDrawerToggle.syncState();
     }
-
-
 }

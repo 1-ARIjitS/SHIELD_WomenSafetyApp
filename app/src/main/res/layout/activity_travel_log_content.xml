@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-    tools:openDrawer=""
+    tools:openDrawer="start"
     android:id="@+id/drawerLayout"
     tools:context=".Activities.TravelLogContent"
     android:background="@drawable/registration_background">
