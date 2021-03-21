@@ -23,6 +23,7 @@
         <activity
             android:name=".Activities.NextTokinListActivity"
             android:screenOrientation="portrait" />
+         <activity android:name=".Activities.ManageAccount"></activity>
         <activity android:name=".Activities.AboutUsActivity" />
         <activity android:name=".Activities.NextToKinActivity" />
         <activity android:name=".Activities.SuspectRegistrationActivity" />
