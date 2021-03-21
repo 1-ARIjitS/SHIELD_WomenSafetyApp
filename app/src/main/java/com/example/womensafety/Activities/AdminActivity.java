@@ -1,5 +1,6 @@
 package com.example.womensafety.Activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
@@ -10,18 +11,33 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DownloadManager;
 import android.view.MenuItem;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.example.womensafety.Adapters.postAdapter;
 import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -30,8 +46,16 @@ public class AdminActivity extends AppCompatActivity {
     NavigationView navigationView;
 
     FirebaseAuth auth;
-    RecyclerView posts;
+    FirebaseFirestore firestore;
+    RecyclerView post_rec;
     FloatingActionButton fab;
+
+    List<posts> mList;
+    postAdapter adapter;
+
+    public Query query;
+
+    public ListenerRegistration listenerRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +63,10 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         auth = FirebaseAuth.getInstance();
+        firestore=FirebaseFirestore.getInstance();
 
-        posts = (RecyclerView) findViewById(R.id.post_recycler);
+        post_rec = (RecyclerView) findViewById(R.id.post_recycler);
         fab = (FloatingActionButton) findViewById(R.id.fab_button);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, AddingPostActivity.class));
-            }
-        });
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -90,9 +108,61 @@ public class AdminActivity extends AppCompatActivity {
 
         //recycler view operations starting here
 
-        posts.setHasFixedSize(true);
-        posts.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mList= new ArrayList<posts>();
 
+        adapter=new postAdapter(AdminActivity.this,mList);
+
+        post_rec.setHasFixedSize(true);
+        post_rec.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        post_rec.setAdapter(adapter);
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminActivity.this, AddingPostActivity.class));
+            }
+        });
+
+        if(auth.getCurrentUser()!=null)
+        {
+
+            post_rec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+
+                    Boolean isBottom;
+                    isBottom=!post_rec.canScrollVertically(1);
+                    if(isBottom)
+                        Toast.makeText(AdminActivity.this,"no more posts to show",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+            query=firestore.collection("Posts").orderBy("time", Query.Direction.DESCENDING);
+
+            listenerRegistration=query.addSnapshotListener(AdminActivity.this, new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                     for(DocumentChange doc:value.getDocumentChanges())
+                     {
+                         if(doc.getType()==DocumentChange.Type.ADDED)
+                         {
+                             posts posts= doc.getDocument().toObject(posts.class);
+                             mList.add(posts);
+                             adapter.notifyDataSetChanged();
+                         }else
+                         {
+                             adapter.notifyDataSetChanged();
+                         }
+                     }
+
+                     listenerRegistration.remove();
+                }
+            });
+        }
 
     }
 

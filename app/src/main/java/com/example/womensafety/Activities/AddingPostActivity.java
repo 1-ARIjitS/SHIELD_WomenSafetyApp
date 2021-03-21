@@ -64,7 +64,7 @@ public class AddingPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
-                        .setAspectRatio(3, 2)
+                        .setAspectRatio(6, 4)
                         .setMinCropResultSize(512, 512)
                         .start(AddingPostActivity.this);
             }
