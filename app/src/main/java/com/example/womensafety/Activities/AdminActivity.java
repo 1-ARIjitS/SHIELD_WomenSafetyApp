@@ -152,11 +152,8 @@ public class AdminActivity extends AppCompatActivity {
                          {
                              posts posts= doc.getDocument().toObject(posts.class);
                              mList.add(posts);
-                             adapter.notifyDataSetChanged();
-                         }else
-                         {
-                             adapter.notifyDataSetChanged();
                          }
+                         adapter.notifyDataSetChanged();
                      }
 
                      listenerRegistration.remove();
