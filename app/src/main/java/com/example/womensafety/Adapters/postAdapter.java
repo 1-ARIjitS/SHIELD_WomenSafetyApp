@@ -77,7 +77,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String user = snapshot.child(uid).child("full_name").getValue().toString();
+                String user = Objects.requireNonNull(snapshot.child(uid).child("full_name").getValue()).toString();
                 holder.setUsername(user);
             }
 
