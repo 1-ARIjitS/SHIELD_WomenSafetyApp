@@ -142,23 +142,20 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         //set like counts
 
-        firestore.collection("Posts/"+postId+"/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestore.collection("Posts/" + postId + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(error==null)
-                {
+                if (error == null) {
                     assert value != null;
-                    if(!value.isEmpty())
-                    {
-                        int c=value.size();
+                    if (!value.isEmpty()) {
+                        int c = value.size();
                         holder.setPostLikes(c);
-                    }else{
-                         holder.setPostLikes(0);
+                    } else {
+                        holder.setPostLikes(0);
                     }
                 }
             }
         });
-
 
 
         holder.share_text.setOnClickListener(new View.OnClickListener() {
@@ -213,12 +210,12 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         public void setPostLikes(int count) {
             postLikes = mView.findViewById(R.id.like_feature);
-            String l="";
-            if(count>1)
-                l+=" Likes";
+            String l = "";
+            if (count > 1)
+                l += " Likes";
             else
-                l+=" Like";
-            postLikes.setText(count+l);
+                l += " Like";
+            postLikes.setText(count + l);
         }
 
         public void setPostPic(String imageUrl) {
