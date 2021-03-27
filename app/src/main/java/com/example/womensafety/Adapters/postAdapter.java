@@ -213,7 +213,12 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         public void setPostLikes(int count) {
             postLikes = mView.findViewById(R.id.like_feature);
-            postLikes.setText(count+" Likes");
+            String l="";
+            if(count>1)
+                l+=" Likes";
+            else
+                l+=" Like";
+            postLikes.setText(count+l);
         }
 
         public void setPostPic(String imageUrl) {
