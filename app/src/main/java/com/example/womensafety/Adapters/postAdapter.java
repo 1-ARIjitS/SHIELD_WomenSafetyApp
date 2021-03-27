@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -140,6 +140,26 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             }
         });
 
+        //set like counts
+
+        firestore.collection("Posts/"+postId+"/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error==null)
+                {
+                    assert value != null;
+                    if(!value.isEmpty())
+                    {
+                        int c=value.size();
+                        holder.setPostLikes(c);
+                    }else{
+                         holder.setPostLikes(0);
+                    }
+                }
+            }
+        });
+
+
 
         holder.share_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,8 +213,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         public void setPostLikes(int count) {
             postLikes = mView.findViewById(R.id.like_feature);
-            String like = count + " LIKES";
-            username.setText(like);
+            postLikes.setText(count+" Likes");
         }
 
         public void setPostPic(String imageUrl) {
