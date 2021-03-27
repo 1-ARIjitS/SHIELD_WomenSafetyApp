@@ -62,6 +62,60 @@
                 android:textSize="17sp"
                 tools:text="caption" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:src="@drawable/ic_baseline_favorite_border_24"
+                    android:id="@+id/likes_image_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/like_feature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:text="0 Likes"
+                    android:textColor="#131313"
+                    android:textAllCaps="true"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/comment_feature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_comment_24"
+                    android:layout_gravity="center"
+                    android:drawablePadding="5dp"
+                    android:textSize="18dp"
+                    android:text="comment"
+                    android:textColor="#131313"
+                    android:textAllCaps="true"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/share_feature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_share_24"
+                    android:layout_gravity="center"
+                    android:drawablePadding="5dp"
+                    android:textSize="18dp"
+                    android:text="share"
+                    android:textColor="#131313"
+                    android:textAllCaps="true"
+                    android:padding="2dp"/>
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

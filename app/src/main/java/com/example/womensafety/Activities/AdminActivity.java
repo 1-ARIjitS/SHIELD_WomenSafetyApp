@@ -150,7 +150,8 @@ public class AdminActivity extends AppCompatActivity {
                      {
                          if(doc.getType()==DocumentChange.Type.ADDED)
                          {
-                             posts posts= doc.getDocument().toObject(posts.class);
+                             String postId=doc.getDocument().getId();
+                             posts posts= doc.getDocument().toObject(posts.class).withId(postId);
                              mList.add(posts);
                          }
                          adapter.notifyDataSetChanged();

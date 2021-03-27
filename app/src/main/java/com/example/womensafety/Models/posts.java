@@ -2,7 +2,7 @@ package com.example.womensafety.Models;
 
 import java.util.Date;
 
-public class posts {
+public class posts extends PostId{
 
     public String image,user,caption;
 

@@ -1,6 +1,8 @@
 package com.example.womensafety.Adapters;
 
 import android.app.Activity;
+
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.womensafety.Activities.CommentActivity;
 import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,10 +28,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.OutputStream;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder> {
@@ -38,6 +50,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
     public FirebaseFirestore firestore;
     public Activity context;
+
 
     public postAdapter(Activity context, List<posts> mList) {
         this.mList = mList;
@@ -54,16 +67,16 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final postViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final postViewHolder holder, final int position) {
 
-        posts posts = mList.get(position);
+        final posts posts = mList.get(position);
 
         auth = FirebaseAuth.getInstance();
-
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("registered_users");
-
         firestore = FirebaseFirestore.getInstance();
+
+
         holder.setPostPic(posts.getImage());
 
         holder.setCaption(posts.getCaption());
@@ -87,7 +100,70 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             }
         });
 
+        //like_button
+
+        final String postId = posts.PostId;
+        final String currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+
+        holder.likePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (!task.getResult().exists()) {
+                            Map<String, Object> likesMap = new HashMap<>();
+                            likesMap.put("timestamp", FieldValue.serverTimestamp());
+                            firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).set(likesMap);
+                        } else {
+                            firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).delete();
+                        }
+                    }
+                });
+            }
+        });
+
+
+        //change color of like button
+
+        firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error == null) {
+                    if (value.exists()) {
+                        holder.likePic.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_favorite_24));
+                    } else {
+                        holder.likePic.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_favorite_border_24));
+                    }
+                }
+
+            }
+        });
+
+
+        holder.share_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String caption = posts.getCaption();
+                String post_image = posts.getImage();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "check this post :-\n\n" + post_image + "\n\n" + caption);
+                context.startActivity(Intent.createChooser(intent, "Share Post"));
+            }
+
+        });
+
+
+        holder.comment_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, CommentActivity.class));
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -96,9 +172,9 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
     public class postViewHolder extends RecyclerView.ViewHolder {
 
-        TextView username, date, caption;
+        TextView username, date, caption, postLikes, share_text, comment_text;
 
-        ImageView imageView;
+        ImageView imageView, likePic;
 
         View mView;
 
@@ -106,6 +182,19 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             super(itemView);
 
             mView = itemView;
+
+            likePic = (ImageView) mView.findViewById(R.id.likes_image_button);
+
+            share_text = (TextView) mView.findViewById(R.id.share_feature);
+
+            comment_text = (TextView) mView.findViewById(R.id.comment_feature);
+
+        }
+
+        public void setPostLikes(int count) {
+            postLikes = mView.findViewById(R.id.like_feature);
+            String like = count + " LIKES";
+            username.setText(like);
         }
 
         public void setPostPic(String imageUrl) {
