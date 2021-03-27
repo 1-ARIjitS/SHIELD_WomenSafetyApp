@@ -176,7 +176,9 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
         holder.comment_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, CommentActivity.class));
+                Intent intent=new Intent(context, CommentActivity.class);
+                intent.putExtra("postid",postId);
+                context.startActivity(intent);
             }
         });
 
