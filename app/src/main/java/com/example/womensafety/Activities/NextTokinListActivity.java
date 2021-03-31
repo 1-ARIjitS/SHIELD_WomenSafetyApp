@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.womensafety.Adapters.kinAdapter;
 import com.example.womensafety.Detail_Forms;
@@ -44,6 +45,9 @@ public class NextTokinListActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
 
+    View hView;
+    TextView Username;
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -63,6 +67,10 @@ public class NextTokinListActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
+        hView=navigationView.getHeaderView(0);
+        Username=hView.findViewById(R.id.header_username);
+        String user=getIntent().getStringExtra("use");
+        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -86,6 +94,10 @@ public class NextTokinListActivity extends AppCompatActivity {
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(NextTokinListActivity.this, AboutUsActivity.class));
                         break;
+
+/*                    case R.id.nav_travelLog:
+                        startActivity(new Intent(NextTokinListActivity.this, TravelLog.class));
+                        break;*/
 
                     case R.id.nav_logout:
                         auth.signOut();

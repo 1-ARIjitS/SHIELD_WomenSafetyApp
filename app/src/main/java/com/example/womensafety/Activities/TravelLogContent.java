@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,10 @@ public class TravelLogContent extends AppCompatActivity {
     TextView textDate, textVehicleNumber, textTravellingFrom, textTravellingTo, textTimeStarted, textTimeExpected, textTimeReached, textAddress;
 
     ImageView vehicleImage;
+
+    View hView;
+    TextView Username;
+
 
     Uri vehicleImageUri;
 
@@ -78,6 +83,10 @@ public class TravelLogContent extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
+        hView=navigationView.getHeaderView(0);
+        Username=hView.findViewById(R.id.header_username);
+        String user=getIntent().getStringExtra("use");
+        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

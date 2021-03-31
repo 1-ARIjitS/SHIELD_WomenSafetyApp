@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.womensafety.Detail_Forms;
@@ -36,6 +37,9 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
+    View hView;
+    TextView Username;
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -59,6 +63,10 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
+        hView=navigationView.getHeaderView(0);
+        Username=hView.findViewById(R.id.header_username);
+        String user=getIntent().getStringExtra("use");
+        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -82,6 +90,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(SuspectRegistrationActivity.this, AboutUsActivity.class));
                         break;
+
 
                     case R.id.nav_logout:
                         auth.signOut();

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.womensafety.Adapters.kinAdapter;
 import com.example.womensafety.Adapters.suspectAdapter;
@@ -29,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class SuspectListActivity extends AppCompatActivity {
@@ -39,6 +42,9 @@ public class SuspectListActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    View hView;
+    TextView Username;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -60,6 +66,10 @@ public class SuspectListActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
+        hView=navigationView.getHeaderView(0);
+        Username=hView.findViewById(R.id.header_username);
+        String user=getIntent().getStringExtra("use");
+        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -83,6 +93,12 @@ public class SuspectListActivity extends AppCompatActivity {
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(SuspectListActivity.this, AboutUsActivity.class));
                         break;
+
+/*
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(SuspectListActivity.this, TravelLog.class));
+                        break;
+*/
 
                     case R.id.nav_logout:
                         auth.signOut();

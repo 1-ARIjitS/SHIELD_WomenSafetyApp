@@ -202,7 +202,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000"
+        app:itemTextColor="#161717"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>
