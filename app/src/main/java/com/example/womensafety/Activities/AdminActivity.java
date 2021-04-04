@@ -130,11 +130,18 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(intent3);
                         break;
 
+
+
                     case R.id.nav_aboutUs:
                         Intent intent4=new Intent(AdminActivity.this, AboutUsActivity.class);
                         intent4.putExtra("use",user);
                         startActivity(intent4);
                         break;
+                    case R.id.nav_manageAccount:
+                        Intent intent5=new Intent(AdminActivity.this, ManageActivity.class);
+                        intent5.putExtra("use",user);
+                        startActivity(intent5);
+                        break;     
 
                     case R.id.nav_logout:
                         auth.signOut();

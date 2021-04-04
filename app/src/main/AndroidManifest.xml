@@ -16,14 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CommentActivity"></activity>
-        <activity
-            android:name=".Activities.SuspectListActivity"
-             />
+        <activity android:name=".Activities.ManageActivity"></activity>
+        <activity android:name=".Activities.CommentActivity" />
+        <activity android:name=".Activities.SuspectListActivity" />
         <activity android:name=".Activities.AddingPostActivity" />
-        <activity
-            android:name=".Activities.NextTokinListActivity"
-             />
+        <activity android:name=".Activities.NextTokinListActivity" />
         <activity android:name=".Activities.AboutUsActivity" />
         <activity android:name=".Activities.NextToKinActivity" />
         <activity android:name=".Activities.SuspectRegistrationActivity" />
