@@ -59,6 +59,7 @@
                     android:drawableLeft="@drawable/user"
                     android:drawablePadding="10dp"
                     android:ems="10"
+                    android:textColor="@color/textColor"
                     android:hint="Username / Email"
                     android:inputType="textPersonName"
                     android:padding="10dp" />
@@ -73,6 +74,7 @@
                     android:drawablePadding="10dp"
                     android:ems="10"
                     android:hint="password"
+                    android:textColor="@color/textColor"
                     android:inputType="textPassword"
                     android:padding="10dp" />
 

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,12 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DownloadManager;
+import android.content.SharedPreferences;
 import android.view.MenuItem;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +59,9 @@ public class AdminActivity extends AppCompatActivity {
     View hView;
     TextView Username;
 
+    SwitchCompat dark_mode_switch;
+    SharedPreferences sharedPreferences=null;
+
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -73,6 +81,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
 
         auth = FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
@@ -111,28 +120,23 @@ public class AdminActivity extends AppCompatActivity {
 
                     case R.id.nav_home:
                         break;
-
                     case R.id.travellingALone:
-                        Intent intent1=new Intent(AdminActivity.this, Detail_Forms.class);
-                        intent1.putExtra("use",user);
+                        Intent intent1 = new Intent(AdminActivity.this, Detail_Forms.class);
                         startActivity(intent1);
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        Intent intent2=new Intent(AdminActivity.this, SuspectListActivity.class);
-                        intent2.putExtra("use",user);
+                        Intent intent2 = new Intent(AdminActivity.this, SuspectListActivity.class);
                         startActivity(intent2);
                         break;
 
                     case R.id.nav_nextToKin:
-                        Intent intent3=new Intent(AdminActivity.this, NextTokinListActivity.class);
-                        intent3.putExtra("use",user);
+                        Intent intent3 = new Intent(AdminActivity.this, NextTokinListActivity.class);
                         startActivity(intent3);
                         break;
 
                     case R.id.nav_aboutUs:
-                        Intent intent4=new Intent(AdminActivity.this, AboutUsActivity.class);
-                        intent4.putExtra("use",user);
+                        Intent intent4 = new Intent(AdminActivity.this, AboutUsActivity.class);
                         startActivity(intent4);
                         break;
 
@@ -142,13 +146,40 @@ public class AdminActivity extends AppCompatActivity {
                         finish();
                         break;
 
-/*                    case R.id.nav_travelLog:
-                        Intent intent5=new Intent(AdminActivity.this, TravelLogContent.class);
-                        intent5.putExtra("use",user);
-                        startActivity(intent5);
-                        break;*/
+                    case R.id.nav_switch:
+                        item.setActionView(R.layout.dark_mode_switch);
+                        dark_mode_switch=item.getActionView().findViewById(R.id.dark_mode_btn);
+                        sharedPreferences=getSharedPreferences("night",0);
+                        boolean bool=sharedPreferences.getBoolean("night_mode",true);
+                        if(bool)
+                        {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            dark_mode_switch.setChecked(true);
+                        }
+                        dark_mode_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if(isChecked)
+                                {
+                                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                                    dark_mode_switch.setChecked(true);
+                                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                                    editor.putBoolean("night_mode",true);
+                                    editor.apply();
+                                }else
+                                {
+                                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                                    dark_mode_switch.setChecked(false);
+                                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                                    editor.putBoolean("night_mode",false);
+                                    editor.apply();
+                                }
+                            }
+                        });
+                        break;
 
                 }
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -210,6 +241,7 @@ public class AdminActivity extends AppCompatActivity {
             });
         }
 
+
     }
 
     @Override
@@ -220,7 +252,6 @@ public class AdminActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);

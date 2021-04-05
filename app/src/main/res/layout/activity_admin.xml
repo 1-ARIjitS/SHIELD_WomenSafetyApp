@@ -44,13 +44,15 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="#4CAF50"
             android:clickable="true"
@@ -69,9 +71,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:itemTextColor="#000"
-        app:menu="@menu/menu">
-
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/menu"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

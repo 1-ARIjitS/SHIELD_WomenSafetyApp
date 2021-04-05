@@ -33,6 +33,7 @@
                 android:paddingLeft="10dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                android:textColor="@color/textColor"
                 tools:text="Username" />
 
             <TextView
@@ -43,6 +44,7 @@
                 android:paddingLeft="10dp"
                 android:textSize="18sp"
                 android:textStyle="normal|italic"
+                android:textColor="@color/textColor"
                 tools:text="date and time" />
 
             <ImageView
@@ -58,7 +60,7 @@
                 android:fontFamily="serif"
                 android:paddingLeft="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="#151414"
+                android:textColor="@color/textColor"
                 android:textSize="17sp"
                 tools:text="caption" />
 
@@ -66,8 +68,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="10dp">
-
+                android:padding="5dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
                 <ImageView
                     android:src="@drawable/ic_baseline_favorite_border_24"
                     android:id="@+id/likes_image_button"
@@ -77,43 +83,40 @@
 
                 <TextView
                     android:id="@+id/like_feature"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:textSize="18dp"
-                    android:text="0 Likes"
-                    android:textColor="#131313"
+                    android:text="0 Like"
+                    android:gravity="center"
                     android:textAllCaps="true"
+                    android:textColor="@color/textColor"
                     android:padding="2dp"/>
-
+            </LinearLayout>
                 <TextView
                     android:id="@+id/comment_feature"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_baseline_comment_24"
-                    android:layout_gravity="center"
-                    android:drawablePadding="5dp"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:text="comment"
-                    android:textColor="#131313"
+                    android:gravity="center"
                     android:textAllCaps="true"
-                    android:padding="2dp"/>
+                    android:textColor="@color/textColor"
+                    android:padding="2dp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_comment_24" />
 
                 <TextView
                     android:id="@+id/share_feature"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_baseline_share_24"
-                    android:layout_gravity="center"
-                    android:drawablePadding="5dp"
                     android:textSize="18dp"
                     android:text="share"
-                    android:textColor="#131313"
+                    android:gravity="center"
                     android:textAllCaps="true"
-                    android:padding="2dp"/>
+                    android:textColor="@color/textColor"
+                    android:padding="2dp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_share_24" />
             </LinearLayout>
 
         </LinearLayout>
