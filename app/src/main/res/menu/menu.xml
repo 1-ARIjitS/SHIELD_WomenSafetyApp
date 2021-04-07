@@ -105,15 +105,14 @@
             android:icon="@drawable/login_logout">
         </item>
     </group>
-    <group
+<!--    <group
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_switch"
             android:title="@string/text"
-            android:icon="@drawable/nights_stay"
-            app:actionLayout="@layout/dark_mode_switch">
+            android:icon="@drawable/nights_stay">
         </item>
-    </group>
+    </group>-->
 
 
 </menu>

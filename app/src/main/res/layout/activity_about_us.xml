@@ -22,15 +22,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#3700B3"
+                android:background="@color/colorPrimary"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#fff"
-                    app:titleTextColor="#fff" />
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -56,7 +56,7 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/this_applicaton_is_developed_amp_powered_by_cybertron_software_s_if_you_have_any_query_issue_or_inquiry_related_to_this_application_please_feel_free_to_contact_us_on_the_following_links"
-                    android:textColor="#151414"
+                    android:textColor="@color/textColor"
                     android:textSize="20sp" />
 
                 <TextView
@@ -91,7 +91,7 @@
                         android:layout_gravity="center"
                         android:paddingLeft="20dp"
                         android:text="7774050060"
-                        android:textColor="#3F51B5"
+                        android:textColor="#0091EA"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -123,7 +123,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:text="cybertronsoftwares@gmail.com"
-                            android:textColor="#3F51B5"
+                            android:textColor="#0091EA"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -132,7 +132,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="info@cybertronsoftwares.com"
-                            android:textColor="#3F51B5"
+                            android:textColor="#0091EA"
                             android:textSize="18sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -158,7 +158,7 @@
                         android:layout_gravity="center"
                         android:paddingLeft="20dp"
                         android:text="cybertronsoftwares.com"
-                        android:textColor="#3F51B5"
+                        android:textColor="#0091EA"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -202,7 +202,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#161717"
+        app:itemTextColor="@color/textColor"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>

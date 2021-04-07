@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:textColor="#FF5722"
+                android:textColor="#08BEDA"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:text="username" />
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:textColor="#3F51B5"
+                android:textColor="@color/textColor"
                 android:textSize="18sp"
                 tools:text="comment" />
         </LinearLayout>

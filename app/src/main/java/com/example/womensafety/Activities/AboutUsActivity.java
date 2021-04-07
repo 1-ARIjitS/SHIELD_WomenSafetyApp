@@ -22,13 +22,6 @@ import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class AboutUsActivity extends AppCompatActivity {
 
@@ -42,27 +35,22 @@ public class AboutUsActivity extends AppCompatActivity {
     TextView website;
 
     FirebaseAuth auth;
-    FirebaseDatabase database;
-    DatabaseReference reference;
 
-    View hView;
-
-    TextView Username;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    String user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
-        auth = FirebaseAuth.getInstance();
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("registered_users");
+       auth = FirebaseAuth.getInstance();
+/*        database=FirebaseDatabase.getInstance();
+        reference=database.getReference("registered_users");*/
 
         linked_in = findViewById(R.id.linkedin);
         instagram = findViewById(R.id.instagram);
@@ -76,22 +64,6 @@ public class AboutUsActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-/*        hView=navigationView.getHeaderView(0);
-
-        final String cud= Objects.requireNonNull(auth.getCurrentUser()).getUid();
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
-                Username.setText(user);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,10 +87,6 @@ public class AboutUsActivity extends AppCompatActivity {
 
                     case R.id.nav_aboutUs:
                         break;
-
-/*                    case R.id.nav_travelLog:
-                        startActivity(new Intent(AboutUsActivity.this, TravelLogContent.class));
-                        break;*/
 
                     case R.id.nav_logout:
                         auth.signOut();

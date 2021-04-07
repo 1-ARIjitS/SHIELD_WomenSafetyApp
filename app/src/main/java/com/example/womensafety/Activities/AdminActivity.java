@@ -121,23 +121,19 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         break;
                     case R.id.travellingALone:
-                        Intent intent1 = new Intent(AdminActivity.this, Detail_Forms.class);
-                        startActivity(intent1);
+                        startActivity( new Intent(AdminActivity.this, Detail_Forms.class));
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        Intent intent2 = new Intent(AdminActivity.this, SuspectListActivity.class);
-                        startActivity(intent2);
+                        startActivity(new Intent(AdminActivity.this, SuspectListActivity.class));
                         break;
 
                     case R.id.nav_nextToKin:
-                        Intent intent3 = new Intent(AdminActivity.this, NextTokinListActivity.class);
-                        startActivity(intent3);
+                        startActivity(new Intent(AdminActivity.this, NextTokinListActivity.class));
                         break;
 
                     case R.id.nav_aboutUs:
-                        Intent intent4 = new Intent(AdminActivity.this, AboutUsActivity.class);
-                        startActivity(intent4);
+                        startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;
 
                     case R.id.nav_logout:
@@ -145,45 +141,45 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, LoginActivity.class));
                         finish();
                         break;
-
-                    case R.id.nav_switch:
-                        item.setActionView(R.layout.dark_mode_switch);
-                        dark_mode_switch=item.getActionView().findViewById(R.id.dark_mode_btn);
-                        sharedPreferences=getSharedPreferences("night",0);
-                        boolean bool=sharedPreferences.getBoolean("night_mode",true);
-                        if(bool)
-                        {
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                            dark_mode_switch.setChecked(true);
-                        }
-                        dark_mode_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if(isChecked)
-                                {
-                                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                                    dark_mode_switch.setChecked(true);
-                                    SharedPreferences.Editor editor= sharedPreferences.edit();
-                                    editor.putBoolean("night_mode",true);
-                                    editor.apply();
-                                }else
-                                {
-                                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                                    dark_mode_switch.setChecked(false);
-                                    SharedPreferences.Editor editor= sharedPreferences.edit();
-                                    editor.putBoolean("night_mode",false);
-                                    editor.apply();
-                                }
-                            }
-                        });
-                        break;
-
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
+
+
+        //switch compat operations and shared preferences night mode temp storage for applying dark mode
+
+        dark_mode_switch=findViewById(R.id.dark_mode_switch);
+        sharedPreferences=getSharedPreferences("night",0);
+        boolean bool=sharedPreferences.getBoolean("night_mode",true);
+        if(bool)
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            dark_mode_switch.setChecked(true);
+        }
+        dark_mode_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    dark_mode_switch.setChecked(true);
+                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                    editor.putBoolean("night_mode",true);
+                    editor.apply();
+                }else
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    dark_mode_switch.setChecked(false);
+                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                    editor.putBoolean("night_mode",false);
+                    editor.apply();
+                }
+            }
+        });
+
 
         //recycler view operations starting here
 

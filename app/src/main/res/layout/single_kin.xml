@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:padding="10dp"
-                android:textColor="#3F51B5"
+                android:textColor="@color/textColor"
                 android:textSize="24sp"
                 tools:text="name" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:padding="10dp"
-                android:textColor="#3F51B5"
+                android:textColor="@color/textColor"
                 android:textSize="24sp"
                 tools:text="mobile number" />
         </LinearLayout>
