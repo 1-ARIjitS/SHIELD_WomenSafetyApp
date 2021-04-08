@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SuspectListActivity extends AppCompatActivity {
 
@@ -66,10 +67,10 @@ public class SuspectListActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
+/*        hView=navigationView.getHeaderView(0);
         Username=hView.findViewById(R.id.header_username);
         String user=getIntent().getStringExtra("use");
-        Username.setText(user);
+        Username.setText(user);*/
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -121,9 +122,11 @@ public class SuspectListActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot susSnap : snapshot.getChildren()) {
-                    suspect_registered suspectRegistered = susSnap.getValue(suspect_registered.class);
-                    sus.add(suspectRegistered);
+                for (DataSnapshot susDesSnap : snapshot.getChildren()) {
+                    for (DataSnapshot susSnap : susDesSnap.getChildren()) {
+                        suspect_registered suspectRegistered = susSnap.getValue(suspect_registered.class);
+                        sus.add(suspectRegistered);
+                    }
                 }
 
                 suspectAdapter adapter = new suspectAdapter(SuspectListActivity.this, 0, sus);

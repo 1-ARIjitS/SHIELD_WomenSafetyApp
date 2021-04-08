@@ -62,11 +62,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
 
 
         setUpToolbar();
-        navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);
+        navigationView=findViewById(R.id.navigationMenu);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -120,12 +116,12 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter the name of the suspect", Toast.LENGTH_SHORT).show();
                 } else if (s_description.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter a valid description of the suspect", Toast.LENGTH_SHORT).show();
-                } else if (s_mobile_num.length() < 10) {
+                }if (s_mobile_num.length()>0 && s_mobile_num.length() < 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too short ", Toast.LENGTH_SHORT).show();
-                } else if (s_mobile_num.length() > 10) {
+                }if (s_mobile_num.length() > 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too long", Toast.LENGTH_SHORT).show();
                 } else {
-                    reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
+                    reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).child(s_description).setValue(sus);
                     Toast.makeText(getApplicationContext(), "suspect registration successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SuspectRegistrationActivity.this, SuspectListActivity.class));
                 }

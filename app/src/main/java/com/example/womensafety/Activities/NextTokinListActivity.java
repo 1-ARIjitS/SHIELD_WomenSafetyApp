@@ -145,7 +145,8 @@ public class NextTokinListActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            /*super.onBackPressed();*/
+            startActivity(new Intent(getApplicationContext(),AdminActivity.class));
         }
     }
 
