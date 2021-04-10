@@ -2,6 +2,7 @@ package com.example.womensafety.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -15,6 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.Models.kin_registered;
@@ -47,6 +53,8 @@ public class ManageActivity extends AppCompatActivity {
     TextView etAge;
     TextView etMobile;
     View hView;
+    Button btnChangePass;
+    Button btnChangeVerificationCode;
 
 
     @Override
@@ -70,6 +78,8 @@ public class ManageActivity extends AppCompatActivity {
         etEmail= (TextView)findViewById(R.id.etEmail);
         etAge= (TextView)findViewById(R.id.etAge);
         etMobile= (TextView)findViewById(R.id.etMobile);
+        btnChangePass=(Button)findViewById(R.id.btnChangePass);
+        btnChangeVerificationCode=(Button)findViewById(R.id.btnChangeVerificationCode);
 
         final String cud= Objects.requireNonNull(auth.getCurrentUser()).getUid();
         reference.addValueEventListener(new ValueEventListener() {
@@ -91,6 +101,48 @@ public class ManageActivity extends AppCompatActivity {
 
             }
         });
+        btnChangePass.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(ManageActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.custom_dialog,null);
+                final EditText txtOld = (EditText)mView.findViewById(R.id.txt_old);
+                final EditText txtNew = (EditText)mView.findViewById(R.id.txt_new);
+                final EditText txtNew2 = (EditText)mView.findViewById(R.id.txt_new2);
+                Button btn_cancel = (Button)mView.findViewById(R.id.btn_cancel);
+                Button btn_change = (Button)mView.findViewById(R.id.btn_change);
+                alert.setView(mView);
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.setCanceledOnTouchOutside(false);
+                btn_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //alertDialog.dismiss();
+                    }
+                });
+                btn_change.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String old=txtOld.getText().toString();
+                        String newPass =txtNew.getText().toString();
+                        String confirmPass=txtNew2.getText().toString();
+                        if(newPass.equals(confirmPass)){
+                            reference.child(cud).child("mPassword").setValue(newPass);
+                            alertDialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"New Password do not match",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+                alertDialog.show();
+            }
+
+
+        });
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
