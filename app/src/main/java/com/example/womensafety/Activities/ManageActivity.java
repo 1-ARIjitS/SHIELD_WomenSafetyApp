@@ -128,6 +128,7 @@ public class ManageActivity extends AppCompatActivity {
                         String confirmPass=txtNew2.getText().toString();
                         if(newPass.equals(confirmPass)){
                             reference.child(cud).child("mPassword").setValue(newPass);
+                            Toast.makeText(getApplicationContext(),"Password changed Successfully",Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
                         }
                         else {
