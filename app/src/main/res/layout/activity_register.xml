@@ -96,8 +96,8 @@
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#191818" />
-        </LinearLayout>
 
+        </LinearLayout>
         <EditText
             android:id="@+id/registration_address"
             android:layout_width="match_parent"

@@ -92,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String mPassword = password.getText().toString();
                 String mUVC = unique.getText().toString();
 
-                final users users = new users(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC);
+                //final users users = new users(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC);
 
                 if (mFull_name.isEmpty() && mAge.isEmpty() && mEmail_id.isEmpty() && mMobile_number.isEmpty() && mAddress.isEmpty() && mPassword.isEmpty() && mUVC.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
@@ -104,7 +104,13 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "INVALID,password does not match confirm password", Toast.LENGTH_SHORT).show();
                 } else if (mUVC.length() != confirm_unique.getText().toString().length()) {
                     Toast.makeText(RegisterActivity.this, "INVALID,unique verification password does not match confirm unique verification password", Toast.LENGTH_SHORT).show();
-                } else {
+                }else {
+                    Intent intent = new Intent(RegisterActivity.this, OtpVerification.class);
+                    intent.putExtra("mobile", mMobile_number);
+                    startActivity(intent);
+
+                }
+                /*else {
                     auth.createUserWithEmailAndPassword(mEmail_id, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -116,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
-                }
+                }*/
             }
         });
 
