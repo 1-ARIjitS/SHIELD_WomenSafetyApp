@@ -95,6 +95,10 @@ public class NextTokinListActivity extends AppCompatActivity {
                         startActivity(new Intent(NextTokinListActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(NextTokinListActivity.this, SettingsActivity.class));
+                        break;
+
 /*                    case R.id.nav_travelLog:
                         startActivity(new Intent(NextTokinListActivity.this, TravelLog.class));
                         break;*/

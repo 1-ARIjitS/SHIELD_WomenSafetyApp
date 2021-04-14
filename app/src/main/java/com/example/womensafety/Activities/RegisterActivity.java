@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
@@ -109,10 +111,11 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                reference.child(auth.getCurrentUser().getUid()).setValue(users);
+                                reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(users);
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                Toast.makeText(getApplicationContext(),"Account Successfully Created",Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -13,16 +13,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.DownloadManager;
-import android.content.SharedPreferences;
+
 import android.view.MenuItem;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,13 +30,14 @@ import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
+
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -60,7 +59,6 @@ public class AdminActivity extends AppCompatActivity {
     TextView Username;
 
     SwitchCompat dark_mode_switch;
-    SharedPreferences sharedPreferences=null;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -136,6 +134,10 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(AdminActivity.this, SettingsActivity.class));
+                        break;
+
                     case R.id.nav_logout:
                         auth.signOut();
                         startActivity(new Intent(AdminActivity.this, LoginActivity.class));
@@ -149,39 +151,12 @@ public class AdminActivity extends AppCompatActivity {
         });
 
 
-        //switch compat operations and shared preferences night mode temp storage for applying dark mode
-
-        dark_mode_switch=findViewById(R.id.dark_mode_switch);
-        sharedPreferences=getSharedPreferences("night",0);
-        boolean bool=sharedPreferences.getBoolean("night_mode",true);
-        if(bool)
-        {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            dark_mode_switch.setChecked(true);
-        }
-        dark_mode_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    dark_mode_switch.setChecked(true);
-                    SharedPreferences.Editor editor= sharedPreferences.edit();
-                    editor.putBoolean("night_mode",true);
-                    editor.apply();
-                }else
-                {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    dark_mode_switch.setChecked(false);
-                    SharedPreferences.Editor editor= sharedPreferences.edit();
-                    editor.putBoolean("night_mode",false);
-                    editor.apply();
-                }
-            }
-        });
 
 
         //recycler view operations starting here
+
+
+
 
         mList= new ArrayList<posts>();
 
@@ -208,7 +183,7 @@ public class AdminActivity extends AppCompatActivity {
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
 
-                    Boolean isBottom;
+                    boolean isBottom;
                     isBottom=!post_rec.canScrollVertically(1);
                     if(isBottom)
                         Toast.makeText(AdminActivity.this,"no more posts to show",Toast.LENGTH_SHORT).show();
@@ -221,7 +196,8 @@ public class AdminActivity extends AppCompatActivity {
             listenerRegistration=query.addSnapshotListener(AdminActivity.this, new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                     for(DocumentChange doc:value.getDocumentChanges())
+                    assert value != null;
+                    for(DocumentChange doc:value.getDocumentChanges())
                      {
                          if(doc.getType()==DocumentChange.Type.ADDED)
                          {
@@ -239,6 +215,7 @@ public class AdminActivity extends AppCompatActivity {
 
 
     }
+
 
     @Override
     public void onBackPressed() {

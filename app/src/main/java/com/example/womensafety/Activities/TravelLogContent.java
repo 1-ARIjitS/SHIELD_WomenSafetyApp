@@ -107,6 +107,11 @@ public class TravelLogContent extends AppCompatActivity {
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(TravelLogContent.this, SuspectRegistrationActivity.class));
                         break;
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(TravelLogContent.this, SettingsActivity.class));
+                        break;
+
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(TravelLogContent.this, NextToKinActivity.class));
                         break;

@@ -95,6 +95,10 @@ public class SuspectListActivity extends AppCompatActivity {
                         startActivity(new Intent(SuspectListActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(SuspectListActivity.this, SettingsActivity.class));
+                        break;
+
 /*
                     case R.id.nav_travelLog:
                         startActivity(new Intent(SuspectListActivity.this, TravelLog.class));

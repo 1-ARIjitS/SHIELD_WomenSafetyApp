@@ -10,6 +10,9 @@ public class users {
     public String mPassword;
     public String mUVC;
 
+    public users() {
+    }
+
 
     public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC) {
         this.mFull_name = mFull_name;

@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="#00C853"
             android:clickable="true"
             android:focusable="true"
             android:tint="#FFFFFF"
@@ -72,23 +72,6 @@
         app:headerLayout="@layout/header"
         app:itemTextColor="@color/textColor"
         app:menu="@menu/menu">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
-            android:background="#0CE47B"
-            android:padding="18dp">
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/dark_mode_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text"
-                android:drawablePadding="30dp"
-                android:drawableStart="@drawable/nights_stay"/>
-        </LinearLayout>
-
 
     </com.google.android.material.navigation.NavigationView>
 

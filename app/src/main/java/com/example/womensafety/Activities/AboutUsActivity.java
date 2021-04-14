@@ -85,6 +85,10 @@ public class AboutUsActivity extends AppCompatActivity {
                         startActivity(new Intent(AboutUsActivity.this, NextTokinListActivity.class));
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(AboutUsActivity.this, SettingsActivity.class));
+                        break;
+
                     case R.id.nav_aboutUs:
                         break;
 
@@ -138,19 +142,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         });
 
-        mobile_num.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:7774050060"));
-
-                if (ActivityCompat.checkSelfPermission(AboutUsActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent);
-            }
-        });
 
         email_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +173,8 @@ public class AboutUsActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+          startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+           /* super.onBackPressed();*/
         }
     }
 

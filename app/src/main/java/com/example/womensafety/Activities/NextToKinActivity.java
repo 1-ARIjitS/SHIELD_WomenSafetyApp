@@ -80,6 +80,10 @@ public class NextToKinActivity extends AppCompatActivity {
                     case R.id.nav_nextToKin:
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(NextToKinActivity.this, SettingsActivity.class));
+                        break;
+
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(NextToKinActivity.this, AboutUsActivity.class));
                         break;
