@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        tools:context=".Activities.LoginActivity">
+        tools:context=".Activities.OtpVerification">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login_card_view"
@@ -41,17 +41,17 @@
                     app:srcCompat="@drawable/login_image" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/txtOtpMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:text="Please enter your registered username and password to login"
-                    android:textSize="18sp" />
+                    android:text="Please enter the OTP"
+                    android:textSize="19sp" />
 
                 <EditText
-                    android:id="@+id/login_username"
+                    android:id="@+id/etOtp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -59,42 +59,29 @@
                     android:drawableLeft="@drawable/user"
                     android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Username / Email"
+                    android:hint="OTP"
                     android:inputType="textPersonName"
                     android:padding="10dp" />
 
-                <EditText
-                    android:id="@+id/login_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:drawableLeft="@drawable/password"
-                    android:drawablePadding="10dp"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="10dp" />
-
                 <Button
-                    android:id="@+id/login_button"
+                    android:id="@+id/verify_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/button_view"
                     android:backgroundTint="#4CAF50"
-                    android:text="login"
+                    android:text="Verify and Sign up"
                     android:textColor="#FFFFFF" />
 
                 <Button
-                    android:id="@+id/login_create_a_new_account"
+                    android:id="@+id/edit_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:background="@drawable/button_view"
                     android:backgroundTint="#3F51B5"
-                    android:text="create a new account"
+                    android:text="Edit Mobile Number"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>

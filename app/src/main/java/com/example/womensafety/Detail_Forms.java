@@ -38,6 +38,7 @@ import android.widget.Toast;
 import com.example.womensafety.Activities.AboutUsActivity;
 import com.example.womensafety.Activities.AdminActivity;
 import com.example.womensafety.Activities.LoginActivity;
+import com.example.womensafety.Activities.ManageActivity;
 import com.example.womensafety.Activities.NextToKinActivity;
 import com.example.womensafety.Activities.NextTokinListActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
@@ -167,6 +168,10 @@ public class Detail_Forms extends AppCompatActivity {
                         break;
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(Detail_Forms.this, NextTokinListActivity.class));
+                        break;
+
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(Detail_Forms.this, ManageActivity.class));
                         break;
 
                     case R.id.nav_aboutUs:

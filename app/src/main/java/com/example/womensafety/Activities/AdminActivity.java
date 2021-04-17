@@ -130,6 +130,8 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, NextTokinListActivity.class));
                         break;
 
+
+
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;
@@ -137,6 +139,11 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_settings:
                         startActivity(new Intent(AdminActivity.this, SettingsActivity.class));
                         break;
+                    case R.id.nav_manageAccount:
+                        Intent intent5=new Intent(AdminActivity.this, ManageActivity.class);
+                        intent5.putExtra("use",user);
+                        startActivity(intent5);
+                        break;     
 
                     case R.id.nav_logout:
                         auth.signOut();
