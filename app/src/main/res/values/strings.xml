@@ -24,4 +24,6 @@
     <string name="change_password">Change Password</string>
     <string name="change_verification_code">Change Verification Code</string>
 
+    <string name="web_client_id">xxxxxxxx..place your web client id here</string>
+
 </resources>

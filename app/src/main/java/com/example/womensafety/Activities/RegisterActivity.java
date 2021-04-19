@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,50 +81,53 @@ public class RegisterActivity extends AppCompatActivity {
 
         continue_button = findViewById(R.id.registration_verify_button);
 
-        continue_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        continue_button.setOnClickListener(v -> {
 
-                String mFull_name = full_name.getText().toString();
-                String mAge = age.getText().toString();
-                String mEmail_id = email_id.getText().toString();
-                String mMobile_number = mobile_number.getText().toString();
-                String mAddress = address.getText().toString();
-                String mPassword = password.getText().toString();
-                String mUVC = unique.getText().toString();
+            String mFull_name = full_name.getText().toString();
+            String mAge = age.getText().toString();
+            String mEmail_id = email_id.getText().toString();
+            String mMobile_number = mobile_number.getText().toString();
+            String mAddress = address.getText().toString();
+            String mPassword = password.getText().toString();
+            String mUVC = unique.getText().toString();
 
-                //final users users = new users(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC);
+            final users users = new users(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC);
 
-                if (mFull_name.isEmpty() && mAge.isEmpty() && mEmail_id.isEmpty() && mMobile_number.isEmpty() && mAddress.isEmpty() && mPassword.isEmpty() && mUVC.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
-                } else if (mMobile_number.length() < 10) {
-                    Toast.makeText(RegisterActivity.this, "INVALID,mobile number entered is too short", Toast.LENGTH_SHORT).show();
-                } else if (mMobile_number.length() > 10) {
-                    Toast.makeText(RegisterActivity.this, "INVALID,mobile number entered is too long", Toast.LENGTH_SHORT).show();
-                } else if (mPassword.length() != confirm_password.getText().toString().length()) {
-                    Toast.makeText(RegisterActivity.this, "INVALID,password does not match confirm password", Toast.LENGTH_SHORT).show();
-                } else if (mUVC.length() != confirm_unique.getText().toString().length()) {
-                    Toast.makeText(RegisterActivity.this, "INVALID,unique verification password does not match confirm unique verification password", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent = new Intent(RegisterActivity.this, OtpVerification.class);
-                    intent.putExtra("mobile", mMobile_number);
-                    startActivity(intent);
+            if (mFull_name.isEmpty() && mAge.isEmpty() && mEmail_id.isEmpty() && mMobile_number.isEmpty() && mAddress.isEmpty() && mPassword.isEmpty() && mUVC.isEmpty()) {
+                Toast.makeText(RegisterActivity.this, "INVALID,Blank Field", Toast.LENGTH_SHORT).show();
+            } else if (mMobile_number.length() < 10) {
+                Toast.makeText(RegisterActivity.this, "INVALID,mobile number entered is too short", Toast.LENGTH_SHORT).show();
+            } else if (mMobile_number.length() > 10) {
+                Toast.makeText(RegisterActivity.this, "INVALID,mobile number entered is too long", Toast.LENGTH_SHORT).show();
+            } else if (mPassword.length() != confirm_password.getText().toString().length()) {
+                Toast.makeText(RegisterActivity.this, "INVALID,password does not match confirm password", Toast.LENGTH_SHORT).show();
+            } else if (mUVC.length() != confirm_unique.getText().toString().length()) {
+                Toast.makeText(RegisterActivity.this, "INVALID,unique verification password does not match confirm unique verification password", Toast.LENGTH_SHORT).show();
+            }else {
+                Intent intent = new Intent(RegisterActivity.this, OtpVerification.class);
+                intent.putExtra("mobile", mMobile_number);
+                intent.putExtra("mEmail_id", mEmail_id);
+                intent.putExtra("mPassword", mPassword);
+                intent.putExtra("mFull_name", mFull_name);
+                intent.putExtra("mAge", mAge);
+                intent.putExtra("mAddress", mAddress);
+                intent.putExtra("mUVC", mUVC);
+                startActivity(intent);
 
-                }
-                /*else {
-                    auth.createUserWithEmailAndPassword(mEmail_id, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                reference.child(auth.getCurrentUser().getUid()).setValue(users);
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                            } else {
-                                Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }*/
             }
+            /*else {
+                auth.createUserWithEmailAndPassword(mEmail_id, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            reference.child(auth.getCurrentUser().getUid()).setValue(users);
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        } else {
+                            Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }*/
         });
 
         already_button.setOnClickListener(new View.OnClickListener() {

@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         tools:context=".Activities.OtpVerification">
 
@@ -60,7 +60,7 @@
                     android:drawablePadding="10dp"
                     android:ems="10"
                     android:hint="OTP"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:padding="10dp" />
 
                 <Button
