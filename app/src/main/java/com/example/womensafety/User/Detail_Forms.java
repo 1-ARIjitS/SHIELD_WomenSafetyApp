@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -39,10 +37,10 @@ import com.example.womensafety.Activities.AboutUsActivity;
 import com.example.womensafety.Activities.AdminActivity;
 import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.ManageActivity;
-import com.example.womensafety.Activities.NextToKinActivity;
 import com.example.womensafety.Activities.NextTokinListActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
-import com.example.womensafety.Activities.SuspectRegistrationActivity;
+import com.example.womensafety.User.LocationConstants;
+import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 

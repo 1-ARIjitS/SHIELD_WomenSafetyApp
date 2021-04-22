@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.User;
 
 class LocationConstants {
 

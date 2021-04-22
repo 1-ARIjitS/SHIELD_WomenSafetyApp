@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.User;
 
 import android.Manifest;
 import android.app.NotificationChannel;
@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
+import com.example.womensafety.User.LocationConstants;
+import com.example.womensafety.R;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationCallback;

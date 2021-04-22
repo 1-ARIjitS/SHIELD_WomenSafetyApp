@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -20,12 +19,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.womensafety.Adapters.postAdapter;
-import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -130,8 +128,6 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, NextTokinListActivity.class));
                         break;
 
-
-
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;
@@ -140,9 +136,7 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, SettingsActivity.class));
                         break;
                     case R.id.nav_manageAccount:
-                        Intent intent5=new Intent(AdminActivity.this, ManageActivity.class);
-                        intent5.putExtra("use",user);
-                        startActivity(intent5);
+                        startActivity(new Intent(AdminActivity.this, ManageActivity.class));
                         break;     
 
                     case R.id.nav_logout:

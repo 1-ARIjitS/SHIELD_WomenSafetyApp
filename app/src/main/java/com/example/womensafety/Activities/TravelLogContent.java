@@ -17,8 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.womensafety.Detail_Forms;
-import com.example.womensafety.R;
+import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
 
 public class TravelLogContent extends AppCompatActivity {

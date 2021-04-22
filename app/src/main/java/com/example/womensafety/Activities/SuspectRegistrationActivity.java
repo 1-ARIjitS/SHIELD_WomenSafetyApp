@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.example.womensafety.Models.suspect_registered;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,6 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ValueEventListener;
 
 public class SuspectRegistrationActivity extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference userReference;
 
     View hView;
     TextView Username;
@@ -44,15 +48,22 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    String currentUserId;
+    String phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suspect_registration);
 
         auth = FirebaseAuth.getInstance();
+        currentUserId=auth.getCurrentUser().getUid();
+
+
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("suspects_registered");
+        userReference=rootNode.getReference("registered_users");
 
         suspect_name = findViewById(R.id.suspect_name);
         suspect_description = findViewById(R.id.suspect_description);
@@ -103,6 +114,18 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                phone=snapshot.child(currentUserId).child("mobile_number").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         suspect_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +148,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                 }if (s_mobile_num.length() > 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too long", Toast.LENGTH_SHORT).show();
                 } else {
-                    reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).child(s_description).setValue(sus);
+                    reference.child(phone).child(s_description).setValue(sus);
                     Toast.makeText(getApplicationContext(), "suspect registration successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SuspectRegistrationActivity.this, SuspectListActivity.class));
                 }

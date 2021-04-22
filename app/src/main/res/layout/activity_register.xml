@@ -98,6 +98,17 @@
                 android:textColorHint="#191818" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/registration_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_view"
+            android:text="verify mobile number"
+            android:textColor="#FFFFFF" />
+
         <EditText
             android:id="@+id/registration_address"
             android:layout_width="match_parent"

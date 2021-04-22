@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/superadmin_home"
+            android:title="Home"
+            android:icon="@drawable/home_work">
+
+        </item>
+
+    </group>
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/superadmin_manage_admin"
+            android:title="Manage Admin"
+            android:icon="@drawable/twotone_admin">
+
+        </item>
+
+    </group>
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/superadmin_manage_users"
+            android:title="Users"
+            android:icon="@drawable/user_super">
+
+        </item>
+
+    </group>
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/superadmin_manage_account"
+            android:title="Manage Account"
+            android:icon="@drawable/manage_account">
+
+        </item>
+
+    </group>
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Log out"
+            android:icon="@drawable/login_logout">
+        </item>
+    </group>
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@drawable/settings">
+        </item>
+    </group>
+
+</menu>

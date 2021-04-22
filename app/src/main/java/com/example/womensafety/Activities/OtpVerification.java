@@ -18,6 +18,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
@@ -38,19 +39,26 @@ public class OtpVerification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_otp_verification);
         findViews();
 
         StartFirebaseLogin();
         Intent intent = getIntent();
         String phoneNumber = intent.getStringExtra("mobile");
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+        auth=FirebaseAuth.getInstance();
+
+        /*PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,                     // Phone number to verify
                 60,                           // Timeout duration
                 TimeUnit.SECONDS,                // Unit of timeout
                 OtpVerification.this,        // Activity (for callback binding)
-                mCallback);
+                mCallback);*/
+        PhoneAuthOptions.newBuilder(auth)
+                .setPhoneNumber(phoneNumber)
+                .setTimeout(60L,TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(mCallback);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,18 +67,18 @@ public class OtpVerification extends AppCompatActivity {
 
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
 
-                SigninWithPhone(credential);
+                SignInWithPhone(credential);
             }
         });
     }
 
-    private void SigninWithPhone(PhoneAuthCredential credential) {
+    private void SignInWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(OtpVerification.this,LoginActivity.class));
+                            startActivity(new Intent(OtpVerification.this,RegisterActivity.class));
                             finish();
                         } else {
                             Toast.makeText(OtpVerification.this,"Incorrect OTP",Toast.LENGTH_SHORT).show();
@@ -91,7 +99,7 @@ public class OtpVerification extends AppCompatActivity {
         mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
-            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            public void onVerificationCompleted( PhoneAuthCredential phoneAuthCredential) {
                 Toast.makeText(OtpVerification.this,"verification completed",Toast.LENGTH_SHORT).show();
             }
 
@@ -101,7 +109,7 @@ public class OtpVerification extends AppCompatActivity {
             }
 
             @Override
-            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            public void onCodeSent(String s,  PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 verificationCode = s;
                 Toast.makeText(OtpVerification.this,"Code sent",Toast.LENGTH_SHORT).show();
@@ -109,5 +117,8 @@ public class OtpVerification extends AppCompatActivity {
         };
     }
 
-
+    @Override
+    public void onBackPressed() {
+        ;
+    }
 }

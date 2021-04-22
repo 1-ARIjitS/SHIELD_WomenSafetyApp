@@ -1,4 +1,4 @@
-package com.example.womensafety.Activities;
+package com.example.womensafety.SuperAdmin.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -9,16 +9,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Adapters.suspectAdapter;
-import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
+import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,107 +29,113 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SuspectListActivity extends AppCompatActivity {
+public class UserDetailsActivity extends AppCompatActivity {
 
-    ListView sus_list;
-    Button add_button;
+    ListView userSusList;
+    TextView susUser;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    View hView;
-    TextView Username;
 
-    FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+    public String name;
+    public String mob_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_suspect_list);
+        setContentView(R.layout.activity_user_details);
 
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference("suspects_registered");
+        database=FirebaseDatabase.getInstance();
 
-        sus_list = findViewById(R.id.sus_list);
-        add_button = findViewById(R.id.sus_reg_button);
 
-        final ArrayList<suspect_registered> sus = new ArrayList<>();
+        name=getIntent().getStringExtra("username");
+        mob_num=getIntent().getStringExtra("mob");
+        reference=database.getReference("suspects_registered").child(mob_num);
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-/*        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);*/
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
-                    case R.id.nav_home:
-                        startActivity(new Intent(SuspectListActivity.this, AdminActivity.class));
+                    case R.id.superadmin_home:
+                        startActivity(new Intent(UserDetailsActivity.this, SuperAdminDashboardActivity.class));
+                        break;
+                    case R.id.superadmin_manage_account:
+                        startActivity( new Intent(UserDetailsActivity.this, Detail_Forms.class));
                         break;
 
-                    case R.id.travellingALone:
-                        startActivity(new Intent(SuspectListActivity.this, Detail_Forms.class));
+                    case R.id.superadmin_manage_admin:
+                        startActivity(new Intent(UserDetailsActivity.this, SuspectListActivity.class));
                         break;
 
-                    case R.id.nav_suspectRegistration:
+                    case R.id.superadmin_manage_users:
                         break;
 
-                    case R.id.nav_nextToKin:
-                        startActivity(new Intent(SuspectListActivity.this, NextTokinListActivity.class));
-                        break;
-
-                    case R.id.nav_aboutUs:
-                        startActivity(new Intent(SuspectListActivity.this, AboutUsActivity.class));
-                        break;
-
-                    case R.id.nav_settings:
-                        startActivity(new Intent(SuspectListActivity.this, SettingsActivity.class));
-                        break;
-
-/*
-                    case R.id.nav_travelLog:
-                        startActivity(new Intent(SuspectListActivity.this, TravelLog.class));
-                        break;
-*/
-
-                    case R.id.nav_logout:
-                        auth.signOut();
-                        startActivity(new Intent(SuspectListActivity.this, LoginActivity.class));
-                        finish();
-                        break;
                 }
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
 
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SuspectListActivity.this, SuspectRegistrationActivity.class));
-            }
-        });
+        //database referencing work
+
+        /*reference=database.getReference("registered_users");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot susDesSnap : snapshot.getChildren()) {
-                    for (DataSnapshot susSnap : susDesSnap.getChildren()) {
-                        suspect_registered suspectRegistered = susSnap.getValue(suspect_registered.class);
-                        sus.add(suspectRegistered);
+                for (DataSnapshot use : snapshot.getChildren())
+                {
+                    if(use.child("full_name").getValue().toString().equals(username))
+                    {
+                        userId= use.getKey();
+                        Log.d("uid", userId );
+                        Log.d("username",use.child("full_name").getValue().toString() );
+                        Log.d("userId",use.getKey());
                     }
                 }
 
-                suspectAdapter adapter = new suspectAdapter(SuspectListActivity.this, 0, sus);
+            }
 
-                sus_list.setAdapter(adapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+        //changing the text view for the users accordingly
+
+        susUser=(TextView)findViewById(R.id.sus_user_name);
+
+        susUser.setText("Suspects Registered By "+name);
+
+        //List View operations starting from here
+
+        userSusList=(ListView)findViewById(R.id.users_suspect_list);
+
+        final ArrayList<suspect_registered> sus=new ArrayList<suspect_registered>();
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot susSnap : snapshot.getChildren())
+                {
+                    suspect_registered suspectRegistered=susSnap.getValue(suspect_registered.class);
+                    sus.add(suspectRegistered);
+                }
+
+                suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,0,sus);
+
+                userSusList.setAdapter(adapter);
             }
 
             @Override
@@ -137,6 +143,9 @@ public class SuspectListActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
 
     }
@@ -149,7 +158,6 @@ public class SuspectListActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);

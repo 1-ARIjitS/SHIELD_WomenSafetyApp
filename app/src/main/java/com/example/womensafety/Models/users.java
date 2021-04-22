@@ -13,6 +13,13 @@ public class users {
     public users() {
     }
 
+    public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress) {
+        this.mFull_name = mFull_name;
+        this.mAge = mAge;
+        this.mEmail_id = mEmail_id;
+        this.mMobile_number = mMobile_number;
+        this.mAddress = mAddress;
+    }
 
     public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC) {
         this.mFull_name = mFull_name;
