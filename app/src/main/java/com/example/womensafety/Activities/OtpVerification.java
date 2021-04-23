@@ -23,6 +23,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class OtpVerification extends AppCompatActivity {
@@ -114,7 +115,7 @@ public class OtpVerification extends AppCompatActivity {
                                         reference.child(auth.getCurrentUser().getUid()).setValue(users);
                                         startActivity(new Intent(OtpVerification.this, LoginActivity.class));
                                     } else {
-                                        Toast.makeText(OtpVerification.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(OtpVerification.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -140,7 +141,6 @@ public class OtpVerification extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(OtpVerification.this,"verification compscleted",Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(OtpVerification.this, AdminActivity.class));
 
 

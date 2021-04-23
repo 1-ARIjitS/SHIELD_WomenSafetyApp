@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String mUser, mPass;
     private static final String TAG = "LoginActivity";
-    private static final int RC_SIGN_IN = 10;
+    private static final int RC_SIGN_IN = 11;
     GoogleSignInClient googleSignInClient;
     private FirebaseAuth firebaseAuth;
 
@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 // for the requestIdToken, this is in the values.xml file that
-                // is generated from your google-services.json
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
@@ -123,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
             showToastMessage("Currently Logged in: " + currentUser.getEmail());
+
         }
     }
     public void signInToGoogle() {
@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (true) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase
@@ -156,8 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getEmail());
-                            showToastMessage("Firebase Authentication Succeeded ");
                             launchMainActivity(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -172,8 +170,9 @@ public class LoginActivity extends AppCompatActivity {
     private void launchMainActivity(FirebaseUser user) {
         if (user != null) {
             //LoginActivity.startActivity(this, user.getDisplayName());
-            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             intent.putExtra("user", user.getDisplayName());
+            intent.putExtra("email", user.getEmail());
             startActivity(intent);
         }
     }

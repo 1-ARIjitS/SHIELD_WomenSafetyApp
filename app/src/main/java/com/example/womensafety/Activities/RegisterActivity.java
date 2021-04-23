@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
@@ -48,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button already_button;
 
     CountryCodePicker ccp;
+    String mFull_name;
+    String mEmail_id;
 
 
     @Override
@@ -80,16 +84,28 @@ public class RegisterActivity extends AppCompatActivity {
         already_button = findViewById(R.id.registration_already_an_user);
 
         continue_button = findViewById(R.id.registration_verify_button);
+        try {
+            Intent intent = getIntent();
+            mFull_name=intent.getStringExtra("user");;
+            mEmail_id=intent.getStringExtra("email");;
+            full_name.setText(mFull_name);
+            email_id.setText(mEmail_id);
+            //to make email not editable
+            //email_id.setFocusable(false);
+        }catch (Exception e){
+
+        }
 
         continue_button.setOnClickListener(v -> {
 
-            String mFull_name = full_name.getText().toString();
+            mFull_name = full_name.getText().toString();
             String mAge = age.getText().toString();
-            String mEmail_id = email_id.getText().toString();
+            mEmail_id = email_id.getText().toString();
             String mMobile_number = mobile_number.getText().toString();
             String mAddress = address.getText().toString();
             String mPassword = password.getText().toString();
             String mUVC = unique.getText().toString();
+
 
             final users users = new users(mFull_name, mAge, mEmail_id, mMobile_number, mAddress, mPassword, mUVC);
 
