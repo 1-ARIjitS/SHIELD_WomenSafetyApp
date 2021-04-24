@@ -9,15 +9,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.womensafety.Activities.SuspectListActivity;
-import com.example.womensafety.Adapters.suspectAdapter;
-import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Adapters.ManageAdminAdapter;
+import com.example.womensafety.SuperAdmin.Models.Admins;
 import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,33 +29,29 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UserDetailsActivity extends AppCompatActivity {
-
-    ListView userSusList;
-    TextView susUser;
+public class ManageAdminActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    Button add_button;
+
+    ListView manage_admin_list;
+
+    FirebaseAuth auth;
 
     FirebaseDatabase database;
     DatabaseReference reference;
 
-    public String name;
-    public String mob_num;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_details);
+        setContentView(R.layout.activity_manage_admin);
 
+        auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
-
-
-        name=getIntent().getStringExtra("username");
-        mob_num=getIntent().getStringExtra("mob");
-        reference=database.getReference("suspects_registered").child(mob_num);
+        reference=database.getReference("registered_admins");
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -66,17 +62,16 @@ public class UserDetailsActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.superadmin_home:
-                        startActivity(new Intent(UserDetailsActivity.this, SuperAdminDashboardActivity.class));
-                        break;
+                        startActivity( new Intent(ManageAdminActivity.this, SuperAdminDashboardActivity.class));
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(UserDetailsActivity.this, ManageAdminActivity.class));
+                        startActivity( new Intent(ManageAdminActivity.this, Detail_Forms.class));
                         break;
 
                     case R.id.superadmin_manage_admin:
-                        startActivity(new Intent(UserDetailsActivity.this, SuspectListActivity.class));
                         break;
 
                     case R.id.superadmin_manage_users:
+                        startActivity(new Intent(ManageAdminActivity.this, SuperAdminUsersActivity.class));
                         break;
 
                 }
@@ -86,56 +81,34 @@ public class UserDetailsActivity extends AppCompatActivity {
             }
         });
 
-        //database referencing work
+        add_button=(Button)findViewById(R.id.add_admin_button);
 
-        /*reference=database.getReference("registered_users");
-
-        reference.addValueEventListener(new ValueEventListener() {
+        add_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot use : snapshot.getChildren())
-                {
-                    if(use.child("full_name").getValue().toString().equals(username))
-                    {
-                        userId= use.getKey();
-                        Log.d("uid", userId );
-                        Log.d("username",use.child("full_name").getValue().toString() );
-                        Log.d("userId",use.getKey());
-                    }
-                }
-
+            public void onClick(View v) {
+                startActivity(new Intent(ManageAdminActivity.this,RegisterAdminActivity.class));
             }
+        });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });*/
-        //changing the text view for the users accordingly
 
-        susUser=(TextView)findViewById(R.id.sus_user_name);
+        manage_admin_list=(ListView)findViewById(R.id.manage_admins_list);
 
-        susUser.setText("Suspects Registered By "+name);
+        final ArrayList<Admins> adminsArrayList=new ArrayList<>();
 
-        //List View operations starting from here
-
-        userSusList=(ListView)findViewById(R.id.users_suspect_list);
-
-        final ArrayList<suspect_registered> sus=new ArrayList<suspect_registered>();
 
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot susSnap : snapshot.getChildren())
+                for(DataSnapshot adminSnap : snapshot.getChildren())
                 {
-                    suspect_registered suspectRegistered=susSnap.getValue(suspect_registered.class);
-                    sus.add(suspectRegistered);
+                    Admins admins=adminSnap.getValue(Admins.class);
+                    adminsArrayList.add(admins);
                 }
+                ManageAdminAdapter adapter=new ManageAdminAdapter(ManageAdminActivity.this,0,adminsArrayList);
 
-                suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,0,sus);
-
-                userSusList.setAdapter(adapter);
+                manage_admin_list.setAdapter(adapter);
             }
 
             @Override
@@ -147,9 +120,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
 
 
-
     }
-
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

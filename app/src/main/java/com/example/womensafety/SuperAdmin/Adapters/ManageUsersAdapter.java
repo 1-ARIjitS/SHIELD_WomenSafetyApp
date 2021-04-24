@@ -43,7 +43,7 @@ public class ManageUsersAdapter extends ArrayAdapter {
         String name="Name :- ";
         String age="Age :- ";
         String address="Address :- ";
-        String phone="Mobile Numebr :- ";
+        String phone="Mobile Number :- ";
         String emailId="Email-Id :- ";
 
         name+=currentUser.getFull_name();
