@@ -29,6 +29,7 @@ import com.example.womensafety.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -117,19 +118,15 @@ public class ManageActivity extends AppCompatActivity {
             }
         });
         //String phone=Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
-        mobile="+91"+mobile;
-        Toast.makeText(ManageActivity.this,mobile,Toast.LENGTH_LONG).show();
+        //mobile="+91"+mobile;
+
+        String phone="+918318836646";
+        Toast.makeText(ManageActivity.this,phone,Toast.LENGTH_LONG).show();
         btnChangePass.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
 
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        mobile,                     // Phone number to verify
-                        60,                           // Timeout duration
-                        TimeUnit.SECONDS,                // Unit of timeout
-                        ManageActivity.this,        // Activity (for callback binding)
-                        mCallback);
 
                 final AlertDialog.Builder alert1 = new AlertDialog.Builder(ManageActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.verify_otp,null);
@@ -152,13 +149,21 @@ public class ManageActivity extends AppCompatActivity {
                         if(otp.isEmpty()){
                             Toast.makeText(ManageActivity.this,"OPT can not be empty!",Toast.LENGTH_SHORT).show();
                         }else {
+                            Toast.makeText(ManageActivity.this,"OPT Filled!",Toast.LENGTH_SHORT).show();
                             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationOtp, otp);
-
                             SigninWithPhone(credential);
                             //linkAccount();
                         }
 
                     }});
+                alertDialog.show();
+                StartFirebaseLogin();
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        phone,                     // Phone number to verify
+                        60,                           // Timeout duration
+                        TimeUnit.SECONDS,                // Unit of timeout
+                        ManageActivity.this,        // Activity (for callback binding)
+                        mCallback);
             }
 
 
@@ -325,6 +330,31 @@ public class ManageActivity extends AppCompatActivity {
     }
 
 
+    private void StartFirebaseLogin() {
+
+        auth = FirebaseAuth.getInstance();
+        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                //startActivity(new Intent(OtpVerification.this, AdminActivity.class));
+
+
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                Toast.makeText(ManageActivity.this,"verification failed",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verificationOtp = s;
+                Toast.makeText(ManageActivity.this,"Code sent",Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
 
     @Override
     public void onBackPressed() {
