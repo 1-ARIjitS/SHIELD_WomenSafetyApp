@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/appname"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="cursive"
+        android:fontFamily="@font/aguafina_script"
         android:gravity="center"
         android:text="Welcome To Shield"
         android:textColor="#FFFFFF"
-        android:textSize="50sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

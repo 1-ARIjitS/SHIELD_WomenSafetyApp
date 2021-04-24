@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
@@ -7,14 +8,12 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-    tools:context=".SuperAdmin.Activities.SuperAdminUsersActivity"
+    tools:context=".SuperAdmin.Activities.SuperAdminSettingsActivity"
     tools:openDrawer="start">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/registration_background">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -35,44 +34,57 @@
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/total_users_card"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="#00C853"
-            app:cardCornerRadius="10dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
             <TextView
-                android:id="@+id/total_users"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00C853"
-                android:fontFamily="@font/abel"
-                android:gravity="center"
-                android:paddingLeft="10dp"
+                android:padding="5dp"
+                android:text="App Theme"
                 android:textColor="@color/textColor"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                tools:text="TextView" />
-        </androidx.cardview.widget.CardView>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-        <ListView
-            android:id="@+id/users_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:drawSelectorOnTop="true"
-            app:layout_constraintTop_toBottomOf="@+id/total_users_card" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="casual"
+                    android:textStyle="bold"
+                    android:text="@string/text"
+                    android:textSize="20sp" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/dark_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:src="@drawable/nights_stay" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:padding="5dp"
+                android:text="Legal"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -85,6 +97,4 @@
         app:menu="@menu/super_menu">
 
     </com.google.android.material.navigation.NavigationView>
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

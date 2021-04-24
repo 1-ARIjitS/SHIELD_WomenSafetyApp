@@ -9,14 +9,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.womensafety.Activities.SuspectListActivity;
+import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Models.users;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Adapters.ManageUsersAdapter;
@@ -30,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class SuperAdminUsersActivity extends AppCompatActivity {
 
@@ -49,12 +47,16 @@ public class SuperAdminUsersActivity extends AppCompatActivity {
     public String mobile;
     public String name;
 
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_admin_users);
 
         total_users=(TextView)findViewById(R.id.total_users);
+
+        auth=FirebaseAuth.getInstance();
 
 
         database=FirebaseDatabase.getInstance();
@@ -80,6 +82,15 @@ public class SuperAdminUsersActivity extends AppCompatActivity {
                         break;
 
                     case R.id.superadmin_manage_users:
+                        break;
+
+                    case R.id.superadmin_settings:
+                        startActivity(new Intent(SuperAdminUsersActivity.this, SuperAdminSettingsActivity.class));
+                        break;
+                    case R.id.superadmin_logout:
+                        auth.signOut();
+                        startActivity(new Intent(SuperAdminUsersActivity.this, SelectUserActivity.class));
+                        finish();
                         break;
 
                 }

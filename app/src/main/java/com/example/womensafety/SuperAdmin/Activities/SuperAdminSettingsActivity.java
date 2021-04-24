@@ -3,6 +3,7 @@ package com.example.womensafety.SuperAdmin.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,14 +11,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.womensafety.Activities.SelectUserActivity;
+import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.R;
-import com.example.womensafety.User.Detail_Forms;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SuperAdminDashboardActivity extends AppCompatActivity {
+public class SuperAdminSettingsActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -25,33 +28,18 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
 
+
+    FloatingActionButton dark_switch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_super_admin_dashboard);
+        setContentView(R.layout.activity_super_admin_settings);
 
         auth=FirebaseAuth.getInstance();
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-
-        /*hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-
-        final String cud= Objects.requireNonNull(auth.getCurrentUser()).getUid();
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
-                Username.setText(user);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -59,34 +47,51 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.superadmin_home:
+                        startActivity(new Intent(SuperAdminSettingsActivity.this, SuperAdminDashboardActivity.class));
                         break;
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(SuperAdminDashboardActivity.this, Detail_Forms.class));
+                        startActivity( new Intent(SuperAdminSettingsActivity.this, SuspectListActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:
-                        startActivity(new Intent(SuperAdminDashboardActivity.this, ManageAdminActivity.class));
+                        startActivity(new Intent(SuperAdminSettingsActivity.this, ManageAdminActivity.class));
                         break;
 
                     case R.id.superadmin_manage_users:
-                        startActivity(new Intent(SuperAdminDashboardActivity.this, SuperAdminUsersActivity.class));
+                        startActivity(new Intent(SuperAdminSettingsActivity.this, SuperAdminUsersActivity.class));
                         break;
 
                     case R.id.superadmin_settings:
-                        startActivity(new Intent(SuperAdminDashboardActivity.this, SuperAdminSettingsActivity.class));
                         break;
                     case R.id.superadmin_logout:
                         auth.signOut();
-                        startActivity(new Intent(SuperAdminDashboardActivity.this, SelectUserActivity.class));
+                        startActivity(new Intent(SuperAdminSettingsActivity.this, SelectUserActivity.class));
                         finish();
                         break;
-
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
+
+
+        dark_switch=(FloatingActionButton) findViewById(R.id.dark_action);
+
+        dark_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                else
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+            }
+        });
+
     }
 
     @Override

@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.womensafety.Activities.SuspectListActivity;
+import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Adapters.ManageAdminAdapter;
 import com.example.womensafety.SuperAdmin.Models.Admins;
@@ -73,7 +73,14 @@ public class ManageAdminActivity extends AppCompatActivity {
                     case R.id.superadmin_manage_users:
                         startActivity(new Intent(ManageAdminActivity.this, SuperAdminUsersActivity.class));
                         break;
-
+                    case R.id.superadmin_settings:
+                        startActivity(new Intent(ManageAdminActivity.this, SuperAdminSettingsActivity.class));
+                        break;
+                    case R.id.superadmin_logout:
+                        auth.signOut();
+                        startActivity(new Intent(ManageAdminActivity.this, SelectUserActivity.class));
+                        finish();
+                        break;
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -116,10 +123,6 @@ public class ManageAdminActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
     @Override
     public void onBackPressed() {

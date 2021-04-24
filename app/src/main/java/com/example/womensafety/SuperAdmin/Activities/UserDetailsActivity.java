@@ -9,16 +9,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Adapters.suspectAdapter;
 import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
-import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +44,8 @@ public class UserDetailsActivity extends AppCompatActivity {
     public String name;
     public String mob_num;
 
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         database=FirebaseDatabase.getInstance();
 
+        auth=FirebaseAuth.getInstance();
 
         name=getIntent().getStringExtra("username");
         mob_num=getIntent().getStringExtra("mob");
@@ -69,14 +71,23 @@ public class UserDetailsActivity extends AppCompatActivity {
                         startActivity(new Intent(UserDetailsActivity.this, SuperAdminDashboardActivity.class));
                         break;
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(UserDetailsActivity.this, ManageAdminActivity.class));
+                        startActivity( new Intent(UserDetailsActivity.this, SuspectListActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:
-                        startActivity(new Intent(UserDetailsActivity.this, SuspectListActivity.class));
+                        startActivity(new Intent(UserDetailsActivity.this, ManageAdminActivity.class));
                         break;
 
                     case R.id.superadmin_manage_users:
+                        break;
+
+                    case R.id.superadmin_settings:
+                        startActivity(new Intent(UserDetailsActivity.this, SuperAdminSettingsActivity.class));
+                        break;
+                    case R.id.superadmin_logout:
+                        auth.signOut();
+                        startActivity(new Intent(UserDetailsActivity.this, SelectUserActivity.class));
+                        finish();
                         break;
 
                 }
