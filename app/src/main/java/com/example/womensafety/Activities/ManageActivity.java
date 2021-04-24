@@ -212,8 +212,6 @@ public class ManageActivity extends AppCompatActivity {
                 });
                 alertDialog.show();
             }
-
-
         });
 
 

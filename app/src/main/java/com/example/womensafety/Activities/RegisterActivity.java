@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         already_button = findViewById(R.id.registration_already_an_user);
 
         continue_button = findViewById(R.id.registration_verify_button);
-        try {
+        /*try {
             Intent intent = getIntent();
             mFull_name=intent.getStringExtra("user");;
             mEmail_id=intent.getStringExtra("email");;
@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
             //email_id.setFocusable(false);
         }catch (Exception e){
 
-        }
+        }*/
 
         continue_button.setOnClickListener(v -> {
 

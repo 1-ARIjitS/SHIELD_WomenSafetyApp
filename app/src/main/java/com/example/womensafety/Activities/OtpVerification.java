@@ -16,8 +16,11 @@ import com.example.womensafety.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class OtpVerification extends AppCompatActivity {
     String phoneNumber;
     Button btnSignIn;
+    Button editMobile;
     private static final String TAG = "OTPVerification";
     EditText etOTP;
     String mEmail_id;
@@ -70,6 +74,8 @@ public class OtpVerification extends AppCompatActivity {
         mUVC = intent.getStringExtra("mPassword");
 
 
+
+
         users = new users(mFull_name, mAge, mEmail_id, phoneNumber, mAddress, mPassword, mUVC);
         //users = intent.getStringExtra("user");
         //phoneNumber="+919336079804";
@@ -94,11 +100,19 @@ public class OtpVerification extends AppCompatActivity {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
 
                     SigninWithPhone(credential);
+                    //linkAccount();
                 }
 
 
             }
         });
+        editMobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(OtpVerification.this, RegisterActivity.class));
+            }
+        });
+
     }
 
     private void SigninWithPhone(PhoneAuthCredential credential) {
@@ -113,7 +127,7 @@ public class OtpVerification extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         reference.child(auth.getCurrentUser().getUid()).setValue(users);
-                                        startActivity(new Intent(OtpVerification.this, LoginActivity.class));
+                                        startActivity(new Intent(OtpVerification.this, AdminActivity.class));
                                     } else {
                                         Toast.makeText(OtpVerification.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -128,10 +142,12 @@ public class OtpVerification extends AppCompatActivity {
                 });
     }
 
+
     private void findViews() {
         btnSignIn=findViewById(R.id.verify_button);
 
         etOTP=findViewById(R.id.etOtp);
+        editMobile=findViewById(R.id.edit_mobile);
     }
 
     private void StartFirebaseLogin() {
