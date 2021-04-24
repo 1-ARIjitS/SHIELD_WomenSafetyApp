@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:padding="15dp">
     <EditText
+        android:id="@+id/txt_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Enter Otp sent to Register mobile"
+        android:textSize="20sp" />
+    <EditText
         android:id="@+id/txt_old"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

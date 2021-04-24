@@ -29,8 +29,11 @@ import com.example.womensafety.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class ManageActivity extends AppCompatActivity {
 
@@ -61,7 +65,10 @@ public class ManageActivity extends AppCompatActivity {
     Button btnChangeVerificationCode;
     String password;
     String verificationCode;
-
+    String verificationOtp;
+    String mobile;
+    //String phone;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +101,7 @@ public class ManageActivity extends AppCompatActivity {
                 String name= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
                 String email= Objects.requireNonNull(snapshot.child(cud).child("mEmail_id").getValue()).toString();
                 String age= Objects.requireNonNull(snapshot.child(cud).child("mAge").getValue()).toString();
-                String mobile= Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
+                mobile= Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
                 password= Objects.requireNonNull(snapshot.child(cud).child("mPassword").getValue()).toString();
                 verificationCode= Objects.requireNonNull(snapshot.child(cud).child("mUVC").getValue()).toString();
                 etUserName.setText(name);
@@ -109,18 +116,28 @@ public class ManageActivity extends AppCompatActivity {
 
             }
         });
+        //String phone=Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
+        mobile="+91"+mobile;
+        Toast.makeText(ManageActivity.this,mobile,Toast.LENGTH_LONG).show();
         btnChangePass.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(ManageActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.custom_dialog,null);
-                final EditText txtOld = (EditText)mView.findViewById(R.id.txt_old);
-                final EditText txtNew = (EditText)mView.findViewById(R.id.txt_new);
-                final EditText txtNew2 = (EditText)mView.findViewById(R.id.txt_new2);
+
+
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        mobile,                     // Phone number to verify
+                        60,                           // Timeout duration
+                        TimeUnit.SECONDS,                // Unit of timeout
+                        ManageActivity.this,        // Activity (for callback binding)
+                        mCallback);
+
+                final AlertDialog.Builder alert1 = new AlertDialog.Builder(ManageActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.verify_otp,null);
+                final EditText txtOtp = (EditText)mView.findViewById(R.id.txt_otp);
                 Button btn_cancel = (Button)mView.findViewById(R.id.btn_cancel);
-                Button btn_change = (Button)mView.findViewById(R.id.btn_change);
-                alert.setView(mView);
-                final AlertDialog alertDialog = alert.create();
+                Button btn_verify = (Button)mView.findViewById(R.id.btn_verify);
+                alert1.setView(mView);
+                final AlertDialog alertDialog = alert1.create();
                 alertDialog.setCanceledOnTouchOutside(false);
                 btn_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -128,42 +145,20 @@ public class ManageActivity extends AppCompatActivity {
                         alertDialog.dismiss();
                     }
                 });
-                btn_change.setOnClickListener(new View.OnClickListener() {
+                btn_verify.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String old=txtOld.getText().toString();
-                        final String newPass =txtNew.getText().toString();
-                        String confirmPass=txtNew2.getText().toString();
-
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        //if(TextUtils.isEmpty(old) && newPass!= null && confirmPass!= null){
-                        if(old.equals(password)){
-                            if(newPass.equals(confirmPass)) {
-                                user.updatePassword(newPass)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(getApplicationContext(), "Password changed Successfully", Toast.LENGTH_SHORT).show();
-                                                    reference.child(cud).child("mPassword").setValue(newPass);
-                                                    alertDialog.dismiss();
-
-                                                } else {
-                                                    Toast.makeText(getApplicationContext(), "Some error occurred! Please try after some time", Toast.LENGTH_SHORT).show();
-
-                                                }
-                                            }
-                                        });
-                            }else{
-                                Toast.makeText(getApplicationContext(), "New Password do not match", Toast.LENGTH_SHORT).show();
-                            }
+                        String otp = txtOtp.getText().toString();
+                        if(otp.isEmpty()){
+                            Toast.makeText(ManageActivity.this,"OPT can not be empty!",Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(getApplicationContext(), "Old Password is incorrect", Toast.LENGTH_SHORT).show();
+                            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationOtp, otp);
 
+                            SigninWithPhone(credential);
+                            //linkAccount();
                         }
-                    }
-                });
-                alertDialog.show();
+
+                    }});
             }
 
 
@@ -256,6 +251,80 @@ public class ManageActivity extends AppCompatActivity {
         });
 
     }
+
+    private void SigninWithPhone(PhoneAuthCredential credential) {
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            final String cud= Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                            Toast.makeText(ManageActivity.this,"Verification Successfully! Please Login",Toast.LENGTH_SHORT).show();
+
+
+                            final AlertDialog.Builder alert = new AlertDialog.Builder(ManageActivity.this);
+                            View mView = getLayoutInflater().inflate(R.layout.custom_dialog,null);
+                            final EditText txtOld = (EditText)mView.findViewById(R.id.txt_old);
+                            final EditText txtNew = (EditText)mView.findViewById(R.id.txt_new);
+                            final EditText txtNew2 = (EditText)mView.findViewById(R.id.txt_new2);
+                            Button btn_cancel = (Button)mView.findViewById(R.id.btn_cancel);
+                            Button btn_change = (Button)mView.findViewById(R.id.btn_change);
+                            alert.setView(mView);
+                            final AlertDialog alertDialog = alert.create();
+                            alertDialog.setCanceledOnTouchOutside(false);
+                            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    alertDialog.dismiss();
+                                }
+                            });
+                            btn_change.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String old=txtOld.getText().toString();
+                                    final String newPass =txtNew.getText().toString();
+                                    String confirmPass=txtNew2.getText().toString();
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    //if(TextUtils.isEmpty(old) && newPass!= null && confirmPass!= null){
+                                    if(old.equals(password)){
+                                        if(newPass.equals(confirmPass)) {
+                                            user.updatePassword(newPass)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Toast.makeText(getApplicationContext(), "Password changed Successfully", Toast.LENGTH_SHORT).show();
+                                                                reference.child(cud).child("mPassword").setValue(newPass);
+                                                                alertDialog.dismiss();
+
+                                                            } else {
+                                                                Toast.makeText(getApplicationContext(), "Some error occurred! Please try after some time", Toast.LENGTH_SHORT).show();
+
+                                                            }
+                                                        }
+                                                    });
+                                        }else{
+                                            Toast.makeText(getApplicationContext(), "New Password do not match", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }else {
+                                        Toast.makeText(getApplicationContext(), "Old Password is incorrect", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+                            });
+                            alertDialog.show();
+
+                            //startActivity(new Intent(OtpVerification.this,LoginActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(ManageActivity.this,"Incorrect OTP! Try again.",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
 
     @Override
     public void onBackPressed() {
