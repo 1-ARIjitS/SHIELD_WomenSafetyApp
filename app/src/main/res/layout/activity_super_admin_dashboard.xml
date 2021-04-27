@@ -35,7 +35,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/post_recycler"
+            android:id="@+id/super_admin_post_recycler"
             android:layout_width="0dp"
             android:background="@drawable/registration_background"
             android:layout_height="0dp"

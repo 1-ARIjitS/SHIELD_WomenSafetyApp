@@ -1,9 +1,13 @@
-package com.example.womensafety.Models;
+package com.example.womensafety.SuperAdmin.Models;
 
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class posts extends PostId  {
+public class SuperadminPosts implements Serializable {
 
+    @Exclude public String id;
     public String image,user,caption;
 
     public Date time;
@@ -38,5 +42,13 @@ public class posts extends PostId  {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

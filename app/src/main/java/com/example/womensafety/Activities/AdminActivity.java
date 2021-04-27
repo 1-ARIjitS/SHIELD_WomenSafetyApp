@@ -56,7 +56,7 @@ public class AdminActivity extends AppCompatActivity {
     View hView;
     TextView Username;
 
-    SwitchCompat dark_mode_switch;
+    /*SwitchCompat dark_mode_switch;*/
 
     FirebaseAuth auth;
     FirebaseDatabase database;

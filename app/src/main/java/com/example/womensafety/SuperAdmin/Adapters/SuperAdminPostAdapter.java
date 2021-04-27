@@ -1,24 +1,31 @@
-package com.example.womensafety.Adapters;
+package com.example.womensafety.SuperAdmin.Adapters;
 
 import android.app.Activity;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.womensafety.Activities.CommentActivity;
+import com.example.womensafety.Adapters.postAdapter;
 import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Activities.SuperAdminDashboardActivity;
+import com.example.womensafety.SuperAdmin.Activities.UpdatePostActivity;
+import com.example.womensafety.SuperAdmin.Models.SuperadminPosts;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,16 +41,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder> {
+public class SuperAdminPostAdapter extends RecyclerView.Adapter<SuperAdminPostAdapter.superadminPostViewHolder> {
 
-    public List<posts> mList;
+    public List<SuperadminPosts> mList;
     public FirebaseAuth auth;
     public FirebaseDatabase database;
     public DatabaseReference reference;
@@ -51,8 +57,9 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
     public FirebaseFirestore firestore;
     public Activity context;
 
+    public  String postId;
 
-    public postAdapter(Activity context, List<posts> mList) {
+    public SuperAdminPostAdapter(Activity context, List<SuperadminPosts> mList) {
         this.mList = mList;
         this.context = context;
     }
@@ -60,16 +67,16 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
     @NonNull
     @Override
-    public postViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.each_post, parent, false);
-        return new postViewHolder(v);
+    public superadminPostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.each_super_admin_post, parent, false);
+        return new superadminPostViewHolder(v);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final postViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final SuperAdminPostAdapter.superadminPostViewHolder holder, final int position) {
 
-        final posts posts = mList.get(position);
+        final SuperadminPosts current_posts = mList.get(position);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -77,15 +84,15 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
         firestore = FirebaseFirestore.getInstance();
 
 
-        holder.setPostPic(posts.getImage());
+        holder.setPostPic(current_posts.getImage());
 
-        holder.setCaption(posts.getCaption());
+        holder.setCaption(current_posts.getCaption());
 
-        long milliseconds = posts.getTime().getTime();
+        long milliseconds = current_posts.getTime().getTime();
         String date = DateFormat.format("dd/MM/yyyy", new Date(milliseconds)).toString();
         holder.setDate(date);
 
-        final String uid = posts.getUser();
+        final String uid = current_posts.getUser();
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -102,10 +109,10 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         //like_button
 
-        final String postId = posts.PostId;
-        final String currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        /*postId = current_posts.PostId;*/
+       /* final String currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();*/
 
-        holder.likePic.setOnClickListener(new View.OnClickListener() {
+ /*       holder.likePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -121,12 +128,11 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
                     }
                 });
             }
-        });
-
+        });*/
 
         //change color of like button
 
-        firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        /*firestore.collection("Posts/" + postId + "/Likes").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error == null) {
@@ -140,8 +146,10 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
             }
         });
-
+*/
         //set like counts
+
+        postId=current_posts.getId();
 
         firestore.collection("Posts/" + postId + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -160,7 +168,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         //share posts
 
-        holder.share_text.setOnClickListener(new View.OnClickListener() {
+      /*  holder.share_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String caption = posts.getCaption();
@@ -171,18 +179,52 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
                 context.startActivity(Intent.createChooser(intent, "Share Post"));
             }
 
-        });
+        });*/
 
         // comment posts going to the comment activity
 
-        holder.comment_text.setOnClickListener(new View.OnClickListener() {
+  /*      holder.comment_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, CommentActivity.class);
                 intent.putExtra("postid",postId);
                 context.startActivity(intent);
             }
-        });
+        });*/
+
+        /*holder.delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                builder.setTitle("ARE YOU SURE, YOU WANT TO DELETE THIS POST ?");
+                builder.setMessage("clicking on OK will delete this post permanently from the database and you will not be able to retrieve it");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        holder.deletePost();
+                    }
+                });
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog ad = builder.create();
+                ad.show();
+            }
+        });*/
+
+/*        holder.edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, UpdatePostActivity.class);
+                intent.putExtra("pots",postId);
+                Log.d("unique_post_id",postId);
+                context.startActivity(intent);
+            }
+        });*/
 
     }
 
@@ -192,15 +234,17 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
         return mList.size();
     }
 
-    public class postViewHolder extends RecyclerView.ViewHolder {
+    public class superadminPostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView username, date, caption, postLikes, share_text, comment_text;
+        TextView username, date, caption, postLikes, share_text, comment_text,edit_button;
 
         ImageView imageView, likePic;
 
+        /*Button delete_button,edit_button;*/
+
         View mView;
 
-        public postViewHolder(@NonNull View itemView) {
+        public superadminPostViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mView = itemView;
@@ -211,6 +255,9 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
             comment_text = (TextView) mView.findViewById(R.id.comment_feature);
 
+            edit_button=(TextView)mView.findViewById(R.id.edit_post);
+
+            itemView.setOnClickListener(this);
         }
 
         public void setPostLikes(int count) {
@@ -243,5 +290,13 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             date.setText(dn);
         }
 
+        @Override
+        public void onClick(View v) {
+            SuperadminPosts superadminPosts=mList.get(getAdapterPosition());
+            Intent intent=new Intent(context, UpdatePostActivity.class);
+            intent.putExtra("pots", superadminPosts);
+            /*Log.d("unique_post_id",postId);*/
+            context.startActivity(intent);
+        }
     }
 }
