@@ -74,22 +74,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:orientation="horizontal">
 
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/ccp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/text_fields"
-                android:layout_gravity="center" />
 
             <EditText
                 android:id="@+id/registration_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:background="@drawable/text_fields"
+                android:layout_margin="10dp"
                 android:ems="10"
                 android:hint="Mobile number"
                 android:inputType="phone"
@@ -98,6 +91,50 @@
                 android:textColorHint="#191818" />
 
         </LinearLayout>
+        <Button
+            android:id="@+id/pickCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick Country"
+            android:background="@drawable/text_fields"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/txtCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/pickStateButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Pick State"
+            android:background="@drawable/text_fields"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/txtState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"/>
+        <Button
+            android:id="@+id/pickCity"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Pick City"
+            android:background="@drawable/text_fields"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/txtCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"/>
         <EditText
             android:id="@+id/registration_address"
             android:layout_width="match_parent"

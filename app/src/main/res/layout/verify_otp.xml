@@ -4,26 +4,13 @@
     android:layout_height="match_parent"
     android:padding="15dp">
     <EditText
-        android:id="@+id/txt_old"
+        android:id="@+id/txt_otp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Enter your Current Password"
+        android:hint="Enter Otp sent to Register mobile"
         android:textSize="20sp" />
-    <EditText
-        android:id="@+id/txt_new"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="Enter your New Password"
-        android:textSize="20sp" />
-    <EditText
-        android:id="@+id/txt_new2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="Confirm your new Password"
-        android:textSize="20sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
-            android:text="Change"
+            android:text="Verify"
             android:textSize="18sp"
             android:layout_weight="1"
-            android:id="@+id/btn_change"/>
+            android:id="@+id/btn_verify"/>
     </LinearLayout>
 </LinearLayout>

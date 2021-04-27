@@ -16,11 +16,10 @@ import com.example.womensafety.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +41,10 @@ public class OtpVerification extends AppCompatActivity {
     String mAddress;
     String mUVC;
     String mAge;
-
+    String country_code;
+    String country;
+    String state;
+    String city;
     users users;
 
     FirebaseAuth auth;
@@ -65,19 +67,22 @@ public class OtpVerification extends AppCompatActivity {
         reference = rootNode.getReference("registered_users");
         StartFirebaseLogin();
         Intent intent = getIntent();
-        String phoneNumber = intent.getStringExtra("mobile");
+        phoneNumber = intent.getStringExtra("mobile");
         mEmail_id = intent.getStringExtra("mEmail_id");
         mPassword = intent.getStringExtra("mPassword");
         mFull_name = intent.getStringExtra("mFull_name");
         mAge = intent.getStringExtra("mAge");
         mAddress = intent.getStringExtra("mAddress");
         mUVC = intent.getStringExtra("mPassword");
+        country_code = intent.getStringExtra("countryCode");
+        country = intent.getStringExtra("country");
+        state = intent.getStringExtra("state");
+        city = intent.getStringExtra("city");
 
 
+        users = new users(mFull_name, mAge, mEmail_id, phoneNumber, mAddress, mPassword, mUVC,country,state,city);
 
-
-        users = new users(mFull_name, mAge, mEmail_id, phoneNumber, mAddress, mPassword, mUVC);
-        //users = intent.getStringExtra("user");
+        //users = new users(mFull_name, mAge, mEmail_id, phoneNumber, mAddress, mPassword, mUVC);
         //phoneNumber="+919336079804";
         phoneNumber="+91"+phoneNumber;
         Log.d(TAG, phoneNumber);
@@ -99,7 +104,7 @@ public class OtpVerification extends AppCompatActivity {
                 }else {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
 
-                    SigninWithPhone(credential);
+                    SignInWithPhone(credential);
                     //linkAccount();
                 }
 
@@ -115,13 +120,13 @@ public class OtpVerification extends AppCompatActivity {
 
     }
 
-    private void SigninWithPhone(PhoneAuthCredential credential) {
+    private void SignInWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(OtpVerification.this,"Verification Successfully! Please Login",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OtpVerification.this,"Verification Successfully!",Toast.LENGTH_SHORT).show();
                             auth.createUserWithEmailAndPassword(mEmail_id, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -136,6 +141,8 @@ public class OtpVerification extends AppCompatActivity {
                             //startActivity(new Intent(OtpVerification.this,LoginActivity.class));
                             finish();
                         } else {
+
+                            // Show a message and update the UI
                             Toast.makeText(OtpVerification.this,"Incorrect OTP! Try again.",Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -158,13 +165,21 @@ public class OtpVerification extends AppCompatActivity {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                 //startActivity(new Intent(OtpVerification.this, AdminActivity.class));
-
+                SignInWithPhone(phoneAuthCredential);
 
             }
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
-                Toast.makeText(OtpVerification.this,"verification failed",Toast.LENGTH_SHORT).show();
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                    Toast.makeText(OtpVerification.this,"Invalid Entries entered",Toast.LENGTH_SHORT).show();
+
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                    Toast.makeText(OtpVerification.this,"The SMS quota for the project has been exceeded",Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(OtpVerification.this,"Some error occurred, Please try after a while",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -175,6 +190,4 @@ public class OtpVerification extends AppCompatActivity {
             }
         };
     }
-
-
 }
