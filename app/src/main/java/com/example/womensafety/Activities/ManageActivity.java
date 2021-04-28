@@ -73,7 +73,6 @@ public class ManageActivity extends AppCompatActivity {
         Username=hView.findViewById(R.id.header_username);
         String user=getIntent().getStringExtra("use");
         Username.setText(user);
-
         etUserName= (TextView)findViewById(R.id.etUserName);
         etFullName = (TextView)findViewById(R.id.etFullName);
         etEmail= (TextView)findViewById(R.id.etEmail);
