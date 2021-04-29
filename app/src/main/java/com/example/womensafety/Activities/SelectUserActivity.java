@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Activities.SuperAdminDashboardActivity;
+import com.example.womensafety.SuperAdmin.Activities.SuperAdminHomepage;
 
 public class SelectUserActivity extends AppCompatActivity {
 
@@ -30,10 +31,17 @@ public class SelectUserActivity extends AppCompatActivity {
             }
         });
 
-        superadmin.setOnClickListener(new View.OnClickListener() {
+       /* superadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), SuperAdminDashboardActivity.class));
+            }
+        });*/
+
+        superadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SuperAdminHomepage.class));
             }
         });
     }
