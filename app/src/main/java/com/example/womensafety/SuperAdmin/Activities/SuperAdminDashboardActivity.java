@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.womensafety.Activities.AdminActivity;
+import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Adapters.postAdapter;
 import com.example.womensafety.Models.posts;
@@ -98,8 +99,13 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
+                    case R.id.superadmin_homepage:
+                        startActivity( new Intent(SuperAdminDashboardActivity.this, SuperAdminHomepage.class));
+                        break;
+
                     case R.id.superadmin_home:
                         break;
+
                     case R.id.superadmin_manage_account:
                         startActivity( new Intent(SuperAdminDashboardActivity.this, SelectUserActivity.class));
                         break;
@@ -108,16 +114,18 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
                         startActivity(new Intent(SuperAdminDashboardActivity.this, ManageAdminActivity.class));
                         break;
 
+                    case R.id.superadmin_manage_superadmin:
+                        break;
+
                     case R.id.superadmin_manage_users:
                         startActivity(new Intent(SuperAdminDashboardActivity.this, SuperAdminUsersActivity.class));
                         break;
-
                     case R.id.superadmin_settings:
                         startActivity(new Intent(SuperAdminDashboardActivity.this, SuperAdminSettingsActivity.class));
                         break;
                     case R.id.superadmin_logout:
                         auth.signOut();
-                        startActivity(new Intent(SuperAdminDashboardActivity.this, SelectUserActivity.class));
+                        startActivity(new Intent(SuperAdminDashboardActivity.this, LoginActivity.class));
                         finish();
                         break;
 

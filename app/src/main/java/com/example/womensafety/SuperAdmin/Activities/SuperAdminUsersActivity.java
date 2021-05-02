@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Models.users;
 import com.example.womensafety.R;
@@ -69,6 +70,9 @@ public class SuperAdminUsersActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.superadmin_homepage:
+                        startActivity(new Intent(SuperAdminUsersActivity.this, SuperAdminHomepage.class));
+                        break;
 
                     case R.id.superadmin_home:
                         startActivity(new Intent(SuperAdminUsersActivity.this, SuperAdminDashboardActivity.class));
@@ -84,15 +88,18 @@ public class SuperAdminUsersActivity extends AppCompatActivity {
                     case R.id.superadmin_manage_users:
                         break;
 
+                    case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(SuperAdminUsersActivity.this, ManageSuperAdminActivity.class));
+                        break;
+
                     case R.id.superadmin_settings:
                         startActivity(new Intent(SuperAdminUsersActivity.this, SuperAdminSettingsActivity.class));
                         break;
                     case R.id.superadmin_logout:
                         auth.signOut();
-                        startActivity(new Intent(SuperAdminUsersActivity.this, SelectUserActivity.class));
+                        startActivity(new Intent(SuperAdminUsersActivity.this, LoginActivity.class));
                         finish();
                         break;
-
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

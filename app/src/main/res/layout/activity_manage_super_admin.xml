@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-    tools:context=".SuperAdmin.Activities.ManageAdminActivity"
+    tools:context=".SuperAdmin.Activities.ManageSuperAdminActivity"
     tools:openDrawer="start">
 
 
@@ -50,8 +50,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aguafina_script"
                 android:gravity="center"
-                android:padding="10dp"
-                android:text="Manage Admins"
+                android:text="Manage SuperAdmins"
                 android:textColor="#FFFFFF"
                 android:textSize="55sp"
                 android:textStyle="bold"
@@ -60,11 +59,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ListView
-                android:id="@+id/manage_admins_list"
+                android:id="@+id/manage_superadmin_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/add_admin_button"
+                app:layout_constraintBottom_toTopOf="@+id/add_superadmin_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7">
@@ -72,7 +70,7 @@
             </ListView>
 
             <Button
-                android:id="@+id/add_admin_button"
+                android:id="@+id/add_superadmin_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"

@@ -85,10 +85,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:text="Total Registered Users"
                         android:textColor="#373434"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -96,17 +96,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/abel"
-                        android:padding="10dp"
-                        android:text="5054"
+                        android:padding="5dp"
+                        android:text="0"
                         android:textColor="#172A95"
-                        android:textSize="36sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="95dp"
                     android:layout_weight="1.5"
                     app:srcCompat="@drawable/programmer" />
             </LinearLayout>
@@ -143,9 +143,9 @@
                         android:background="@drawable/button_view"
                         android:backgroundTint="#079A44"
                         android:drawableTop="@drawable/rss"
-                        android:drawablePadding="10dp"
-                        android:paddingTop="30dp"
-                        android:paddingBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:selectAllOnFocus="false"
                         android:text="feeds"
                         android:textColor="#FFFFFF" />
@@ -159,9 +159,9 @@
                         android:background="@drawable/button_view"
                         android:backgroundTint="#1846C3"
                         android:drawableTop="@drawable/unaut"
-                        android:drawablePadding="10dp"
-                        android:paddingTop="30dp"
-                        android:paddingBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:selectAllOnFocus="false"
                         android:text="manage superadmin"
                         android:textColor="#FFFFFF" />
@@ -181,9 +181,9 @@
                         android:background="@drawable/button_view"
                         android:backgroundTint="#DF9705"
                         android:drawableTop="@drawable/team"
-                        android:drawablePadding="10dp"
-                        android:paddingTop="30dp"
-                        android:paddingBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:selectAllOnFocus="false"
                         android:text="users"
                         android:textColor="#FFFFFF" />
@@ -197,9 +197,9 @@
                         android:background="@drawable/button_view"
                         android:backgroundTint="#AA0E0E"
                         android:drawableTop="@drawable/administrator"
-                        android:drawablePadding="10dp"
-                        android:paddingTop="30dp"
-                        android:paddingBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:selectAllOnFocus="false"
                         android:text="manage admin"
                         android:textColor="#FFFFFF" />
@@ -219,9 +219,9 @@
                         android:background="@drawable/button_view"
                         android:backgroundTint="#7A0EAF"
                         android:drawableTop="@drawable/veri"
-                        android:drawablePadding="10dp"
-                        android:paddingTop="30dp"
-                        android:paddingBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:selectAllOnFocus="false"
                         android:text="manage account"
                         android:textColor="#FFFFFF" />
@@ -235,9 +235,9 @@
                         android:background="@drawable/button_view"
                         android:backgroundTint="#E1106E"
                         android:drawableTop="@drawable/google"
-                        android:drawablePadding="10dp"
-                        android:paddingTop="30dp"
-                        android:paddingBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:selectAllOnFocus="false"
                         android:text="settings"
                         android:textColor="#FFFFFF" />

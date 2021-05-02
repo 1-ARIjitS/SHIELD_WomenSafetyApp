@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Adapters.ManageAdminAdapter;
@@ -61,8 +62,13 @@ public class ManageAdminActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
+                    case R.id.superadmin_homepage:
+                        startActivity(new Intent(ManageAdminActivity.this, SuperAdminHomepage.class));
+                        break;
+
                     case R.id.superadmin_home:
-                        startActivity( new Intent(ManageAdminActivity.this, SuperAdminDashboardActivity.class));
+                        startActivity(new Intent(ManageAdminActivity.this, SuperAdminDashboardActivity.class));
+                        break;
                     case R.id.superadmin_manage_account:
                         startActivity( new Intent(ManageAdminActivity.this, SelectUserActivity.class));
                         break;
@@ -73,12 +79,17 @@ public class ManageAdminActivity extends AppCompatActivity {
                     case R.id.superadmin_manage_users:
                         startActivity(new Intent(ManageAdminActivity.this, SuperAdminUsersActivity.class));
                         break;
+
+                    case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(ManageAdminActivity.this, ManageSuperAdminActivity.class));
+                        break;
+
                     case R.id.superadmin_settings:
                         startActivity(new Intent(ManageAdminActivity.this, SuperAdminSettingsActivity.class));
                         break;
                     case R.id.superadmin_logout:
                         auth.signOut();
-                        startActivity(new Intent(ManageAdminActivity.this, SelectUserActivity.class));
+                        startActivity(new Intent(ManageAdminActivity.this, LoginActivity.class));
                         finish();
                         break;
                 }

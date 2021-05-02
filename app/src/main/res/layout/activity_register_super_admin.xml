@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/registration_background"
-    tools:context=".SuperAdmin.Activities.RegisterAdminActivity">
+    tools:context=".SuperAdmin.Activities.RegisterSuperAdminActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,17 +21,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/aguafina_script"
             android:gravity="center"
-            android:padding="10dp"
-            android:text="Create A New Admin"
+            android:text="Create A New SuperAdmin"
             android:textColor="#FFFFFF"
-            android:textSize="55sp"
+            android:textSize="50sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/create_admin_name"
+            android:id="@+id/create_superadmin_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -44,7 +43,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/create_admin_password"
+            android:id="@+id/create_superadmin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -56,7 +55,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/create_admin_age"
+            android:id="@+id/create_superadmin_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -69,7 +68,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/create_admin_email"
+            android:id="@+id/create_superadmin_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -95,7 +94,7 @@
                 android:background="@drawable/text_fields" />
 
             <EditText
-                android:id="@+id/create_admin_mob"
+                android:id="@+id/create_superadmin_mob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -120,7 +119,7 @@
             android:textStyle="bold" />
 
         <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/create_admin_gender_spinner"
+            android:id="@+id/create_superadmin_gender_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -130,7 +129,7 @@
             app:ms_arrow_tint="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/create_admin_address"
+            android:id="@+id/create_superadmin_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -147,7 +146,7 @@
             android:textColorHint="@color/black" />
 
         <Button
-            android:id="@+id/create_admin_button"
+            android:id="@+id/create_superadmin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_view"

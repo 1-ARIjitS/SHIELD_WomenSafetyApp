@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SuperAdmin.Activities.SuperAdminHomepage"></activity>
+        <activity android:name=".SuperAdmin.Activities.AdminHomepageActivity"></activity>
+        <activity android:name=".SuperAdmin.Activities.ManageSuperAdminActivity" />
+        <activity android:name=".SuperAdmin.Activities.RegisterSuperAdminActivity" />
+        <activity android:name=".SuperAdmin.Activities.SuperAdminHomepage" />
         <activity android:name=".SuperAdmin.Activities.UpdatePostActivity" />
         <activity android:name=".SuperAdmin.Activities.SuperAdminSettingsActivity" />
         <activity android:name=".SuperAdmin.Activities.RegisterAdminActivity" />

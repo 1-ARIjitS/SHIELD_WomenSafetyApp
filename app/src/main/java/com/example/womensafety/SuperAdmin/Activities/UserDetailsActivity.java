@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Adapters.suspectAdapter;
@@ -67,6 +68,10 @@ public class UserDetailsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
+                    case R.id.superadmin_homepage:
+                        startActivity(new Intent(UserDetailsActivity.this, SuperAdminHomepage.class));
+                        break;
+
                     case R.id.superadmin_home:
                         startActivity(new Intent(UserDetailsActivity.this, SuperAdminDashboardActivity.class));
                         break;
@@ -81,12 +86,16 @@ public class UserDetailsActivity extends AppCompatActivity {
                     case R.id.superadmin_manage_users:
                         break;
 
+                    case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(UserDetailsActivity.this, ManageSuperAdminActivity.class));
+                        break;
+
                     case R.id.superadmin_settings:
                         startActivity(new Intent(UserDetailsActivity.this, SuperAdminSettingsActivity.class));
                         break;
                     case R.id.superadmin_logout:
                         auth.signOut();
-                        startActivity(new Intent(UserDetailsActivity.this, SelectUserActivity.class));
+                        startActivity(new Intent(UserDetailsActivity.this, LoginActivity.class));
                         finish();
                         break;
 
