@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SuperAdminHomepage extends AppCompatActivity {
-
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -36,12 +36,15 @@ public class SuperAdminHomepage extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
+    DatabaseReference superAdminReference;
 
     int num=0;
 
     Button feeds,manage_super,users,manage_admins,manage_account,settings;
 
-    TextView total;
+    TextView total,super_admin_username;
+
+    String email,username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +60,20 @@ public class SuperAdminHomepage extends AppCompatActivity {
         users=(Button)findViewById(R.id.home_users);
         settings=(Button)findViewById(R.id.home_settings);
         manage_account=(Button)findViewById(R.id.home_manage_account);
+        super_admin_username=(TextView)findViewById(R.id.superadmin_homepage_name);
+
+        /*email=getIntent().getStringExtra("emailId");*/
+       /* Log.d("email_id",email);*/
+        /*final String MAIL=email;*/
 
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("registered_users");
+        superAdminReference=database.getReference("registered_super_admins");
+
+        email=auth.getCurrentUser().getEmail();
+
+
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -161,7 +174,27 @@ public class SuperAdminHomepage extends AppCompatActivity {
             }
         });
 
+        superAdminReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot superAdmin : snapshot.getChildren())
+                {
+                    if(superAdmin.child("s_email").getValue().toString().equals(email))
+                    {
+                       username=superAdmin.child("s_name").getValue().toString();
+                       Log.d("name",username);
+                       super_admin_username.setText("Welcome "+username);
+                    }
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Log.d("Email",email);
+        /*super_admin_username.setText("Welcome "+username);*/
     }
 
     @Override

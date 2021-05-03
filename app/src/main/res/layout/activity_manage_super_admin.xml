@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/button_view"
-                android:text="ADD NEW ADMIN"
+                android:text="ADD NEW SUPERADMIN"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -125,7 +125,10 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 if(isSuperAdmin)
                                 {
-                                    startActivity(new Intent(LoginActivity.this, SuperAdminHomepage.class));
+                                    Intent intent=new Intent(LoginActivity.this, SuperAdminHomepage.class);
+                                    intent.putExtra("emailId",mUser);
+                                    startActivity(intent);
+
                                 }else if(isAdmin)
                                 {
                                     startActivity(new Intent(LoginActivity.this, AdminHomepageActivity.class));

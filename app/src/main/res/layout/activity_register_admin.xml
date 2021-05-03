@@ -44,15 +44,16 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/create_admin_password"
+            android:id="@+id/create_admin_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/text_fields"
             android:ems="10"
-            android:hint="password"
-            android:inputType="textPassword"
+            android:hint="Email-id"
+            android:inputType="textEmailAddress"
             android:padding="10dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/black" />
 
         <EditText
@@ -68,18 +69,25 @@
             android:textColor="@color/white"
             android:textColorHint="@color/black" />
 
-        <EditText
-            android:id="@+id/create_admin_email"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:ems="10"
-            android:hint="Email-id"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/black" />
+            android:fontFamily="@font/actor"
+            android:text="gender"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/create_admin_gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_view"
+            android:textColor="@color/black"
+            app:ms_arrow_tint="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,25 +117,17 @@
 
         </LinearLayout>
 
-        <TextView
+        <EditText
+            android:id="@+id/create_admin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:fontFamily="@font/actor"
-            android:text="gender"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/create_admin_gender_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/black"
-            android:background="@drawable/button_view"
-            app:ms_arrow_tint="@color/colorAccent" />
+            android:background="@drawable/text_fields"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/create_admin_address"
