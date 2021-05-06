@@ -1,19 +1,14 @@
 package com.example.womensafety.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.womensafety.R;
-import com.example.womensafety.SuperAdmin.Activities.SuperAdminDashboardActivity;
 
 public class SelectUserActivity extends AppCompatActivity {
-
     Button user,admin,superadmin;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +28,7 @@ public class SelectUserActivity extends AppCompatActivity {
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),AdminPanel.class));
+                startActivity(new Intent(getApplicationContext(),AdminLoginActivity.class));
             }
         });
     }

@@ -1,12 +1,5 @@
 package com.example.womensafety.SuperAdmin.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,11 +8,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Models.users;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Adapters.ManageUsersAdapter;
-import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,35 +32,24 @@ import java.util.ArrayList;
 public class SuperAdminUsersActivity extends AppCompatActivity {
 
     ListView userList;
-
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
-
     TextView total_users;
     FirebaseDatabase database;
     DatabaseReference reference;
-
     int num=0;
-
     public String mobile;
     public String name;
-
     FirebaseAuth auth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_admin_users);
-
         total_users=(TextView)findViewById(R.id.total_users);
-
         auth=FirebaseAuth.getInstance();
-
-
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("registered_users");
-
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
 
@@ -92,9 +80,7 @@ public class SuperAdminUsersActivity extends AppCompatActivity {
                         startActivity(new Intent(SuperAdminUsersActivity.this, SelectUserActivity.class));
                         finish();
                         break;
-
                 }
-
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -136,9 +122,7 @@ public class SuperAdminUsersActivity extends AppCompatActivity {
                     users user=userSnap.getValue(users.class);
                     users_reg.add(user);
                 }
-
                 ManageUsersAdapter adapter=new ManageUsersAdapter(SuperAdminUsersActivity.this,0,users_reg);
-
                 userList.setAdapter(adapter);
             }
 
