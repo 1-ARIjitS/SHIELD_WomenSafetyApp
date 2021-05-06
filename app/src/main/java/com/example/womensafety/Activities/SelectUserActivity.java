@@ -30,10 +30,10 @@ public class SelectUserActivity extends AppCompatActivity {
             }
         });
 
-        superadmin.setOnClickListener(new View.OnClickListener() {
+        admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SuperAdminDashboardActivity.class));
+                startActivity(new Intent(getApplicationContext(),AdminPanel.class));
             }
         });
     }

@@ -94,7 +94,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:itemTextColor="@color/textColor"
-        app:menu="@menu/super_menu">
+        app:menu="@menu/admin_menu">
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

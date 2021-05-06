@@ -26,6 +26,7 @@
         <activity android:name=".Activities.ManageActivity" />
         <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.CommentActivity" />
+        <activity android:name=".Activities.AdminPanel" />
         <activity android:name=".Activities.SuspectListActivity" />
         <activity android:name=".Activities.AddingPostActivity" />
         <activity android:name=".Activities.NextTokinListActivity" />

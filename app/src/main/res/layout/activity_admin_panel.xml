@@ -7,14 +7,13 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-    tools:context=".SuperAdmin.Activities.SuperAdminUsersActivity"
+    tools:context=".Activities.AdminPanel"
     tools:openDrawer="start">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/registration_background">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -35,43 +34,19 @@
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/total_users_card"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/super_admin_post_recycler"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="#00C853"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-            <TextView
-                android:id="@+id/total_users"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#00C853"
-                android:fontFamily="@font/abel"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:textColor="@color/textColor"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                tools:text="TextView" />
-        </androidx.cardview.widget.CardView>
-
-
-        <ListView
-            android:id="@+id/users_list"
-            android:layout_width="match_parent"
+            android:background="@drawable/registration_background"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            android:drawSelectorOnTop="true"
-            app:layout_constraintTop_toBottomOf="@+id/total_users_card" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.0" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
