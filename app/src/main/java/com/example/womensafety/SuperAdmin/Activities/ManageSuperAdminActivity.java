@@ -68,7 +68,7 @@ public class ManageSuperAdminActivity extends AppCompatActivity {
                         break;
 
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(ManageSuperAdminActivity.this, SelectUserActivity.class));
+                        startActivity( new Intent(ManageSuperAdminActivity.this, ManageSuperAdminAccountActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:

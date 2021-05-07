@@ -70,7 +70,7 @@ public class ManageAdminActivity extends AppCompatActivity {
                         startActivity(new Intent(ManageAdminActivity.this, SuperAdminDashboardActivity.class));
                         break;
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(ManageAdminActivity.this, SelectUserActivity.class));
+                        startActivity( new Intent(ManageAdminActivity.this, ManageSuperAdminAccountActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:

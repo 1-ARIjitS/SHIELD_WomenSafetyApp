@@ -76,7 +76,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                         startActivity(new Intent(UserDetailsActivity.this, SuperAdminDashboardActivity.class));
                         break;
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(UserDetailsActivity.this, SelectUserActivity.class));
+                        startActivity( new Intent(UserDetailsActivity.this, ManageSuperAdminAccountActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:

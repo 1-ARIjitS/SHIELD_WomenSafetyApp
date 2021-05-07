@@ -90,7 +90,7 @@ public class SuperAdminHomepage extends AppCompatActivity {
                         startActivity(new Intent(SuperAdminHomepage.this, SuperAdminDashboardActivity.class));
                         break;
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(SuperAdminHomepage.this, SelectUserActivity.class));
+                        startActivity( new Intent(SuperAdminHomepage.this, ManageSuperAdminAccountActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:
@@ -141,7 +141,7 @@ public class SuperAdminHomepage extends AppCompatActivity {
         manage_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SuperAdminHomepage.this, SelectUserActivity.class));
+                startActivity(new Intent(SuperAdminHomepage.this, ManageSuperAdminAccountActivity.class));
             }
         });
         settings.setOnClickListener(new View.OnClickListener() {

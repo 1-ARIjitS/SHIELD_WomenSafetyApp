@@ -3,11 +3,13 @@ package com.example.womensafety.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.womensafety.R;
@@ -44,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     Boolean isAdmin=false;
     Boolean isSuperAdmin=false;
 
+    ProgressBar progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.login_password);
 
         login = (Button) findViewById(R.id.login_button);
+
+        progress=new ProgressBar(this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +113,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
 
 
                 if (mUser.isEmpty() && mPass.isEmpty()) {

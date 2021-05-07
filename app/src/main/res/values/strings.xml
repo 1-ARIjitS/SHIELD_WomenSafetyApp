@@ -24,5 +24,6 @@
     <string name="mobile">Mobile</string>
     <string name="change_password">Change Password</string>
     <string name="change_verification_code">Change Verification Code</string>
+    <string name="title_activity_user_tracking">Map</string>
 
 </resources>

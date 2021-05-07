@@ -39,6 +39,7 @@ import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.ManageActivity;
 import com.example.womensafety.Activities.NextTokinListActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
+import com.example.womensafety.Activities.UserTrackingFragment;
 import com.example.womensafety.User.LocationConstants;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
@@ -85,7 +86,7 @@ public class Detail_Forms extends AppCompatActivity {
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(
+                /*if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
                     ActivityCompat.requestPermissions(
@@ -94,7 +95,8 @@ public class Detail_Forms extends AppCompatActivity {
                     );
                 } else {
                     startLocationService();
-                }
+                }*/
+                startActivity(new Intent(Detail_Forms.this, UserTrackingFragment.class));
             }
         });
 
