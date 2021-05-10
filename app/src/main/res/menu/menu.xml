@@ -96,7 +96,6 @@
         </item>
 
     </group>
-
     <group
         android:checkableBehavior="single">
         <item

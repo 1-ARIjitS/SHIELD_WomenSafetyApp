@@ -77,6 +77,9 @@ public class AboutUsActivity extends AppCompatActivity {
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(AboutUsActivity.this, SuspectListActivity.class));
                         break;
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(AboutUsActivity.this, EmergencyContactListActivity.class));
+                        break;
 
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(AboutUsActivity.this, NextTokinListActivity.class));

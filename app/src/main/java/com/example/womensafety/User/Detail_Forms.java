@@ -100,12 +100,12 @@ public class Detail_Forms extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.reachedSafelyButton).setOnClickListener(new View.OnClickListener() {
+        /*findViewById(R.id.reachedSafelyButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 stopLocationService();
             }
-        });
+        });*/
 
         Access_DisplayTime = findViewById(R.id.timePicker);
         timeTextView = findViewById(R.id.timeTextView);

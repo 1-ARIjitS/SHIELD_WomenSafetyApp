@@ -82,6 +82,10 @@ public class NextToKinActivity extends AppCompatActivity {
                         startActivity(new Intent(NextToKinActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(NextToKinActivity.this, EmergencyContactListActivity.class));
+                        break;
+
 /*                    case R.id.nav_travelLog:
                         startActivity(new Intent(NextToKinActivity.this, TravelLog.class));
                         break;*/

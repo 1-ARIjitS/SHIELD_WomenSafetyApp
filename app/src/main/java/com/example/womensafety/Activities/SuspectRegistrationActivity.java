@@ -98,6 +98,10 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                         startActivity(new Intent(SuspectRegistrationActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, EmergencyContactListActivity.class));
+                        break;
+
                     case R.id.nav_settings:
                         startActivity(new Intent(SuspectRegistrationActivity.this, SettingsActivity.class));
                         break;

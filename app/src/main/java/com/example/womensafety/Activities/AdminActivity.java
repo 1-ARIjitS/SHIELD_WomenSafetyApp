@@ -128,6 +128,10 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, NextTokinListActivity.class));
                         break;
 
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(AdminActivity.this, EmergencyContactListActivity.class));
+                        break;
+
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
                         break;

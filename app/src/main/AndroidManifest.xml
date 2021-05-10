@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity"></activity>
+        <activity android:name=".Activities.EmergencyContactListActivity"></activity>
+        <activity android:name=".SuperAdmin.Activities.ManageEmergencyContactsActivity" />
+        <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -61,6 +61,10 @@ public class SettingsActivity extends AppCompatActivity {
                         startActivity(new Intent(SettingsActivity.this, NextTokinListActivity.class));
                         break;
 
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(SettingsActivity.this, EmergencyContactListActivity.class));
+                        break;
+
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
                         break;

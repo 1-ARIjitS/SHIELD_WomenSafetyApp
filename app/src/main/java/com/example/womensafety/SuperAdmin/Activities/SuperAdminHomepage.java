@@ -40,7 +40,7 @@ public class SuperAdminHomepage extends AppCompatActivity {
 
     int num=0;
 
-    Button feeds,manage_super,users,manage_admins,manage_account,settings;
+    Button feeds,manage_super,users,manage_admins,manage_account,settings,emergency;
 
     TextView total,super_admin_username;
 
@@ -61,6 +61,7 @@ public class SuperAdminHomepage extends AppCompatActivity {
         settings=(Button)findViewById(R.id.home_settings);
         manage_account=(Button)findViewById(R.id.home_manage_account);
         super_admin_username=(TextView)findViewById(R.id.superadmin_homepage_name);
+        emergency=(Button)findViewById(R.id.home_emergency_contacts);
 
         /*email=getIntent().getStringExtra("emailId");*/
        /* Log.d("email_id",email);*/
@@ -154,6 +155,12 @@ public class SuperAdminHomepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SuperAdminHomepage.this, ManageSuperAdminActivity.class));
+            }
+        });
+        emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SuperAdminHomepage.this, ManageEmergencyContactsActivity.class));
             }
         });
 
