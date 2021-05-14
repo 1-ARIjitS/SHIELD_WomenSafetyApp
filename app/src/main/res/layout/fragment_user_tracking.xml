@@ -44,14 +44,23 @@
         map:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/track_stop_tracking_button"
+            android:id="@+id/reached_safely_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_view"
-            android:backgroundTint="#D31919"
-            android:text="stop trackig"
+            android:text="reached safely"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/save_travel_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_view"
+            android:text="save travel log"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
