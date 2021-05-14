@@ -56,20 +56,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
                 <EditText
-                    android:id="@+id/vehicleNumber"
+                    android:id="@+id/vehicle_number_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:hint="Enter your vehicle number"
-                    android:padding="5dp"
-                    android:textColor="#009688"
-                    android:textColorHint="#070707"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Vehicle Number" />
 
                 <TextView
                     android:id="@+id/textView2"

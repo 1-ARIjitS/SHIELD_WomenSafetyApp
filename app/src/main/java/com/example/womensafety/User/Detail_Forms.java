@@ -113,9 +113,9 @@ public class Detail_Forms extends AppCompatActivity {
     ImageView vehicle_image;
 
     StorageReference storageReference;
-    EditText vehicleNumber;
-    String vehicle_num;
+    EditText vehicle;
     String estimated_time;
+    String vehicle_num;
 
     Button save_vehicle;
 
@@ -144,8 +144,7 @@ public class Detail_Forms extends AppCompatActivity {
         destination_picker = findViewById(R.id.travelingTo);
         end = findViewById(R.id.destination_text_view);
         vehicle_image=(ImageView)findViewById(R.id.vehicleImage);
-        vehicleNumber=(EditText)findViewById(R.id.vehicleNumber);
-        vehicle_num=vehicleNumber.getText().toString();
+        vehicle=(EditText) findViewById(R.id.vehicle_number_edit_text);
 
         save_vehicle=findViewById(R.id.vehicle_image_saver);
 
@@ -162,6 +161,8 @@ public class Detail_Forms extends AppCompatActivity {
                 } else {
                     startLocationService();
                 }*/
+                vehicle_num=vehicle.getText().toString();
+
                 Intent intent = new Intent(Detail_Forms.this, UserTrackingFragment.class);
                 intent.putExtra("start_latitude", start_lat);
                 intent.putExtra("start_longitude", start_lng);
@@ -170,11 +171,12 @@ public class Detail_Forms extends AppCompatActivity {
                 intent.putExtra("start_add",starting_address);
                 intent.putExtra("end_add",ending_address);
                 if(vehicle_image_uri!=null)
-                intent.putExtra("vehicle_image",vehicle_image_uri.toString());
-                intent.putExtra("vehicle_number",vehicle_num);
+                {intent.putExtra("vehicle_image",vehicle_image_uri.toString());}
+                intent.putExtra("veh_num",vehicle_num);
                 intent.putExtra("est_time",estimated_time);
                 if (start_lat != 0.0 && start_lng != 0.0 && end_lat != 0.0 && end_lng != 0.0) {
                     startActivity(intent);
+                    /*Log.d("num",vehicle_num);*/
                 } else {
                     Toast.makeText(getApplicationContext(), "Please , Choose your starting and ending locations", Toast.LENGTH_SHORT).show();
                 }

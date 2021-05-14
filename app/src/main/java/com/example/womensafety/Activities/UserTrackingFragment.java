@@ -116,7 +116,7 @@ public class UserTrackingFragment extends AppCompatActivity {
     String cud;
 
     String vehicle_image=null;
-    String vehicle_number;
+    String v_number;
     String estimated_time;
     String actual_date;
     String actual_time;
@@ -159,16 +159,16 @@ public class UserTrackingFragment extends AppCompatActivity {
         start_address=getIntent().getStringExtra("start_add");
         end_address=getIntent().getStringExtra("end_add");
         vehicle_image=getIntent().getStringExtra("vehicle_image");
-        vehicle_number=getIntent().getStringExtra("vehicle_number");
+        v_number=getIntent().getStringExtra("veh_num");
         estimated_time=getIntent().getStringExtra("est_time");
 
         //calender things start here
 
-        Calendar calendar=Calendar.getInstance();
+        /*Calendar calendar=Calendar.getInstance();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MMM-yyyy");
         actual_date=simpleDateFormat.format(calendar.getTime());
         SimpleDateFormat simpleTimeFormat=new SimpleDateFormat("hh:mm:ss a");
-        actual_time=simpleTimeFormat.format(calendar.getTime());
+        actual_time=simpleTimeFormat.format(calendar.getTime());*/
 
 
         Log.d("s_lat", String.valueOf(start_lat));
@@ -181,6 +181,7 @@ public class UserTrackingFragment extends AppCompatActivity {
         Log.d("r_bound", String.valueOf(right_boundary));
         Log.d("start",start_address);
         Log.d("end",end_address);
+        Log.d("vic_num",v_number);
 
         save_travel=(Button)findViewById(R.id.save_travel_log);
 
@@ -331,6 +332,11 @@ public class UserTrackingFragment extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 /*stopLocationService();*/
+                                Calendar calendar=Calendar.getInstance();
+                                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MMM-yyyy");
+                                actual_date=simpleDateFormat.format(calendar.getTime());
+                                SimpleDateFormat simpleTimeFormat=new SimpleDateFormat("hh:mm:ss a");
+                                actual_time=simpleTimeFormat.format(calendar.getTime());
                                 if (ActivityCompat.checkSelfPermission(UserTrackingFragment.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(UserTrackingFragment.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                     // TODO: Consider calling
                                     //    ActivityCompat#requestPermissions
@@ -377,11 +383,12 @@ public class UserTrackingFragment extends AppCompatActivity {
         save_travel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!reached_safely_address.isEmpty()){
-                userLocationTracking userLocationTracking=new userLocationTracking(start_address,end_address,vehicle_number,estimated_time,actual_time,actual_date,vehicle_image);
+                if(reached_safely_address!=null){
+                userLocationTracking userLocationTracking=new userLocationTracking(start_address,end_address,v_number,estimated_time,actual_time,actual_date,vehicle_image);
                 reference.child(actual_date).child(actual_time).setValue(userLocationTracking);
-                    Toast.makeText(getApplicationContext(),"Travel log saved successfully",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(UserTrackingFragment.this,Detail_Forms.class));}
+                Toast.makeText(getApplicationContext(),"Travel log saved successfully",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(UserTrackingFragment.this,Detail_Forms.class));
+                }
                 else
                 {
                     Toast.makeText(getApplicationContext(),"first stop location tracking to save travel log",Toast.LENGTH_SHORT).show();
