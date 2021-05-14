@@ -112,6 +112,7 @@ public class UserTrackingFragment extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
+    DatabaseReference realtimeTrackingReference;
     StorageReference storageReference;
     String cud;
 
@@ -147,6 +148,7 @@ public class UserTrackingFragment extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
         storageReference= FirebaseStorage.getInstance().getReference();
         reference=database.getReference("user_tracking_details").child(cud);
+        realtimeTrackingReference=database.getReference("realtime user location").child(cud);
 
         start_lat = getIntent().getDoubleExtra("start_latitude", 0.0);
         bottom_boundary=start_lat;
@@ -296,6 +298,9 @@ public class UserTrackingFragment extends AppCompatActivity {
 
                                     mMap.animateCamera(CameraUpdateFactory
                                             .newCameraPosition(cameraPosition));
+
+                                    savePosition(location);
+
                                 } catch (SecurityException e) {
                                     e.printStackTrace();
                                 }
@@ -395,6 +400,12 @@ public class UserTrackingFragment extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void savePosition(Location userLocation) {
+
+        realtimeTrackingReference.setValue(userLocation);
+
     }
 
     private boolean isLocationServiceRunning() {
