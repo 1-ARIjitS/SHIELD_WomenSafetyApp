@@ -17,7 +17,7 @@ import com.example.womensafety.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class kinAdapter extends ArrayAdapter {
+public class kinAdapter extends ArrayAdapter{
     public kinAdapter(@NonNull Activity context, int resource, @NonNull ArrayList<kin_registered> kin) {
         super(context, 0, kin);
     }

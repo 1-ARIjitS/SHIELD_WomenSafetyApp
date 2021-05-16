@@ -19,6 +19,7 @@ import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Adapters.suspectAdapter;
 import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Adapters.suspectSuperAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -153,7 +154,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     sus.add(suspectRegistered);
                 }
 
-                suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,0,sus);
+                suspectSuperAdapter adapter=new suspectSuperAdapter(UserDetailsActivity.this,0,sus);
 
                 userSusList.setAdapter(adapter);
             }

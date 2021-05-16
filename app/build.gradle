@@ -59,4 +59,5 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.2'
 
     implementation 'com.github.shivpujan12:LocationPicker:2.0'
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
 }

@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/user_tracking_fragment_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_narrow"
@@ -31,7 +31,7 @@
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toBottomOf="@+id/textView10"
+        map:layout_constraintTop_toBottomOf="@+id/user_tracking_fragment_heading"
         tools:context=".Activities.UserTrackingFragment" />
 
     <LinearLayout
@@ -50,6 +50,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_view"
+            android:backgroundTint="#FF6D00"
             android:text="reached safely"
             android:textColor="#FFFFFF" />
 
@@ -60,6 +61,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_view"
+            android:backgroundTint="#C51162"
             android:text="save travel log"
             android:textColor="#FFFFFF" />
     </LinearLayout>

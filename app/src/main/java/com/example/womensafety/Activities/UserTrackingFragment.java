@@ -2,12 +2,14 @@ package com.example.womensafety.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,12 +22,15 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.audiofx.BassBoost;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
+import android.util.Rational;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.womensafety.Models.userLocationTracking;
@@ -99,7 +104,6 @@ public class UserTrackingFragment extends AppCompatActivity {
     List<LatLng> full_path_list = new ArrayList<LatLng>();
 
 
-    Button stop_tracking;
 
     private Marker currentPositionMarker = null;
 
@@ -107,6 +111,8 @@ public class UserTrackingFragment extends AppCompatActivity {
     public Polyline route;
     public Polyline full_track;
 
+    TextView heading;
+    Button stop_tracking;
     Button save_travel;
 
     FirebaseAuth auth;
@@ -149,6 +155,7 @@ public class UserTrackingFragment extends AppCompatActivity {
         storageReference= FirebaseStorage.getInstance().getReference();
         reference=database.getReference("user_tracking_details").child(cud);
         realtimeTrackingReference=database.getReference("realtime user location").child(cud);
+        heading=(TextView)findViewById(R.id.user_tracking_fragment_heading);
 
         start_lat = getIntent().getDoubleExtra("start_latitude", 0.0);
         bottom_boundary=start_lat;
@@ -470,5 +477,4 @@ public class UserTrackingFragment extends AppCompatActivity {
         }
         return address;
     }
-
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.womensafety">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -40,7 +41,10 @@
 
         <activity
             android:name=".Activities.UserTrackingFragment"
-            android:label="@string/title_activity_user_tracking" />
+            android:label="@string/title_activity_user_tracking"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            tools:targetApi="o" />
 
         <activity android:name=".SuperAdmin.Activities.AdminHomepageActivity" />
         <activity android:name=".SuperAdmin.Activities.ManageSuperAdminActivity" />

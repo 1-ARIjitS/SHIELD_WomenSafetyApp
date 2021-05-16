@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import com.example.womensafety.Adapters.suspectAdapter;
 import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,12 +34,14 @@ import java.util.ArrayList;
 
 public class SuspectListActivity extends AppCompatActivity {
 
-    ListView sus_list;
+    RecyclerView sus_list;
     Button add_button;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    suspectAdapter adapter;
 
     View hView;
     TextView Username;
@@ -45,6 +50,7 @@ public class SuspectListActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +58,24 @@ public class SuspectListActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("suspects_registered");
+        /*
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mob=snapshot.child("mobile_number").getValue().toString();
+            }
 
-        sus_list = findViewById(R.id.sus_list);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+
+        reference = database.getReference("suspects_registered")/*.child(mob)*/;
+
+        sus_list =(RecyclerView) findViewById(R.id.sus_list);
+        sus_list.setLayoutManager(new LinearLayoutManager(this));
+
         add_button = findViewById(R.id.sus_reg_button);
 
         final ArrayList<suspect_registered> sus = new ArrayList<>();
@@ -120,6 +141,10 @@ public class SuspectListActivity extends AppCompatActivity {
             }
         });
 
+        adapter = new suspectAdapter(SuspectListActivity.this, sus);
+
+        sus_list.setAdapter(adapter);
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -130,9 +155,7 @@ public class SuspectListActivity extends AppCompatActivity {
                     }
                 }
 
-                suspectAdapter adapter = new suspectAdapter(SuspectListActivity.this, 0, sus);
-
-                sus_list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -141,6 +164,11 @@ public class SuspectListActivity extends AppCompatActivity {
             }
         });
 
+        /*FirebaseRecyclerOptions<suspect_registered>options=new FirebaseRecyclerOptions.Builder<suspect_registered>()
+                .setQuery(reference,suspect_registered.class).build();
+
+        adapter = new suspectAdapter(options);
+        sus_list.setAdapter(adapter);*/
 
     }
 

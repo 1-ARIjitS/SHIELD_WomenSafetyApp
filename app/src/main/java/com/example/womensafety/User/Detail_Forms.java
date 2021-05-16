@@ -174,7 +174,7 @@ public class Detail_Forms extends AppCompatActivity {
                 {intent.putExtra("vehicle_image",vehicle_image_uri.toString());}
                 intent.putExtra("veh_num",vehicle_num);
                 intent.putExtra("est_time",estimated_time);
-                if (start_lat != 0.0 && start_lng != 0.0 && end_lat != 0.0 && end_lng != 0.0) {
+                if (start_lat != 0.0 && start_lng != 0.0 && end_lat != 0.0 && end_lng != 0.0 && vehicle_num!=null && estimated_time.length()>0) {
                     startActivity(intent);
                     /*Log.d("num",vehicle_num);*/
                 } else {
