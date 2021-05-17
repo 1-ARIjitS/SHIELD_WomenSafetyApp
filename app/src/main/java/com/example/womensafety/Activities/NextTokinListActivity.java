@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,12 +36,14 @@ import java.util.Objects;
 
 public class NextTokinListActivity extends AppCompatActivity {
 
-    ListView next_to_kin_list;
+    RecyclerView next_to_kin_list;
     Button add_button;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+    kinAdapter adapter;
 
     View hView;
     TextView Username;
@@ -58,15 +62,17 @@ public class NextTokinListActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Next To kin").child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
 
-        next_to_kin_list = (ListView) findViewById(R.id.next_to_kin_list);
+        next_to_kin_list = (RecyclerView) findViewById(R.id.next_to_kin_list);
+        next_to_kin_list.hasFixedSize();
+        next_to_kin_list.setLayoutManager(new LinearLayoutManager(this));
         add_button = findViewById(R.id.add_next_to_kin_button);
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
+        /*hView=navigationView.getHeaderView(0);
         Username=hView.findViewById(R.id.header_username);
         String user=getIntent().getStringExtra("use");
-        Username.setText(user);
+        Username.setText(user);*/
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -123,6 +129,10 @@ public class NextTokinListActivity extends AppCompatActivity {
 
         final ArrayList<kin_registered> kin = new ArrayList<kin_registered>();
 
+        adapter=new kinAdapter(NextTokinListActivity.this,kin);
+
+        next_to_kin_list.setAdapter(adapter);
+
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -132,9 +142,7 @@ public class NextTokinListActivity extends AppCompatActivity {
                     kin.add(kinRegistered);
                 }
 
-                kinAdapter adapter = new kinAdapter(NextTokinListActivity.this, 0, kin);
-
-                next_to_kin_list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

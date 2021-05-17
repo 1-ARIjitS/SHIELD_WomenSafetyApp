@@ -46,7 +46,16 @@
 
             </LinearLayout>
 
-            <ListView
+            <!--<ListView
+                android:id="@+id/next_to_kin_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/add_next_to_kin_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/next_to_kin_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
