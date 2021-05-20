@@ -101,6 +101,7 @@ public class Detail_Forms extends AppCompatActivity {
     String starting_address,ending_address;
     FusedLocationProviderClient fusedLocationProviderClient;
     int PLACE_PICKER_REQUEST=1;
+    int PLACE_PICKER=2;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -146,7 +147,7 @@ public class Detail_Forms extends AppCompatActivity {
         vehicle_image=(ImageView)findViewById(R.id.vehicleImage);
         vehicle=(EditText) findViewById(R.id.vehicle_number_edit_text);
 
-        save_vehicle=findViewById(R.id.vehicle_image_saver);
+        /*save_vehicle=findViewById(R.id.vehicle_image_saver);*/
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,11 +196,16 @@ public class Detail_Forms extends AppCompatActivity {
         starting_location_picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(Detail_Forms.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    getLocation();
+                /*if (ActivityCompat.checkSelfPermission(Detail_Forms.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                   *//* getLocation();*//*
+                    Intent i = new Intent(Detail_Forms.this, LocationPickerActivity.class);
+                    startActivityForResult(i, PLACE_PICKER);
                 } else {
                     ActivityCompat.requestPermissions(Detail_Forms.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-                }
+                }*/
+
+                Intent i = new Intent(Detail_Forms.this, LocationPickerActivity.class);
+                startActivityForResult(i, PLACE_PICKER);
 
             }
         });
@@ -275,7 +281,7 @@ public class Detail_Forms extends AppCompatActivity {
 
         });
 
-        save_vehicle.setOnClickListener(new View.OnClickListener() {
+        /*save_vehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(vehicle_image_uri!=null){
@@ -296,7 +302,7 @@ public class Detail_Forms extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"please add a vehicle image",Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
@@ -509,6 +515,39 @@ public class Detail_Forms extends AppCompatActivity {
                     end.setText(completeAddress.getString("addressline2"));
 
                     ending_address=completeAddress.getString("addressline2");
+
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if (requestCode == PLACE_PICKER) {
+            try {
+                if (data != null && data.getStringExtra(MapUtility.ADDRESS) != null) {
+                    // String address = data.getStringExtra(MapUtility.ADDRESS);
+                    start_lat = data.getDoubleExtra(MapUtility.LATITUDE, 0.0);
+                    start_lng = data.getDoubleExtra(MapUtility.LONGITUDE, 0.0);
+                    Log.d("start_latitude", String.valueOf(start_lat));
+                    Log.d("start_longitude", String.valueOf(start_lng));
+                    Bundle completeAddress =data.getBundleExtra("fullAddress");
+                    /* data in completeAddress bundle
+                    "fulladdress"
+                    "city"
+                    "state"
+                    "postalcode"
+                    "country"
+                    "addressline1"
+                    "addressline2"
+                     */
+                    /*txtAddress.setText(new StringBuilder().append("addressline2: ").append
+                            (completeAddress.getString("addressline2")).append("\ncity: ").append
+                            (completeAddress.getString("city")).append("\npostalcode: ").append
+                            (completeAddress.getString("postalcode")).append("\nstate: ").append
+                            (completeAddress.getString("state")).toString());*/
+                    start.setText(completeAddress.getString("addressline2"));
+
+                    starting_address=completeAddress.getString("addressline2");
 
                 }
             } catch (Exception ex) {
