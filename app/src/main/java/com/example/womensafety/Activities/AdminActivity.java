@@ -141,7 +141,11 @@ public class AdminActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(AdminActivity.this, ManageActivity.class));
-                        break;     
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(AdminActivity.this, TravelLog.class));
+                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();

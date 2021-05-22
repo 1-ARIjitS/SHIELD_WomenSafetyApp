@@ -63,8 +63,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Objects;
-
-
 public class TrackingActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     public static final long MIN_TIME = 10000;
@@ -187,15 +185,11 @@ public class TrackingActivity extends FragmentActivity implements OnMapReadyCall
     private void saveLocation(Location location) {
         reference.setValue(location);
     }
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-
     }
-
     @Override
     public void onProviderEnabled(@NonNull String provider) {
-
     }
 
     @Override

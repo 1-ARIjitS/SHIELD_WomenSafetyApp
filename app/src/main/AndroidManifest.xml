@@ -13,9 +13,8 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -41,11 +40,10 @@
 
         <activity
             android:name=".Activities.UserTrackingFragment"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:label="@string/title_activity_user_tracking"
             android:supportsPictureInPicture="true"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             tools:targetApi="o" />
-
         <activity android:name=".SuperAdmin.Activities.AdminHomepageActivity" />
         <activity android:name=".SuperAdmin.Activities.ManageSuperAdminActivity" />
         <activity android:name=".SuperAdmin.Activities.RegisterSuperAdminActivity" />

@@ -10,100 +10,186 @@
     android:id="@+id/drawerLayout"
     tools:context=".Activities.TravelLog">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="#3700B3"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#3700B3">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:subtitleTextColor="#fff"
-                    app:titleTextColor="#fff"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="8dp"
-                    android:id="@+id/travelLogEvent">
-
-                    <TextView
-                        android:id="@+id/tv_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="#ffffff"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:layout_margin="10dp"
-                        android:textStyle="bold"
-                        android:textSize="18sp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:layout_margin="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_travelFrom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
-                            android:textSize="18sp"
-                            android:fontFamily="sans-serif-condensed-medium"
-                            android:textStyle="bold"
-                            android:layout_weight="1"
-                            android:text=""/>
-
-                        <TextView
-                            android:id="@+id/tv_travelTo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
-                            android:textSize="18sp"
-                            android:fontFamily="sans-serif-condensed-medium"
-                            android:textStyle="bold"
-                            android:layout_weight="1"
-                            android:text=""/>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
-
+                app:subtitleTextColor="#fff"
+                app:titleTextColor="#fff" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Actual Time"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintWidth_percent="0.4" />
+        <TextView
+            android:id="@+id/etActualTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="ABCD"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintVertical_bias="0.35"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Estimated Time"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.40"
+            app:layout_constraintWidth_percent="0.4" />
+        <TextView
+            android:id="@+id/etEstimatedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Ab Cd"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Travelling from"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.45"
+            app:layout_constraintWidth_percent="0.4" />
+        <TextView
+            android:id="@+id/etTravellingFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            android:textSize="19sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="abcd@gmail.com"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.45"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Travelling to"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.50"
+            app:layout_constraintWidth_percent="0.4" />
+        <TextView
+            android:id="@+id/etTravellingto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="15"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Vehicle Number"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintWidth_percent="0.4" />
+        <TextView
+            android:id="@+id/etVehicleNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="123456789"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintVertical_bias="0.55" />
+
+        <ImageView
+            android:id="@+id/imgVehicleImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.18"
+            app:layout_constraintHorizontal_bias="0.788"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etVehicleNumber"
+            app:layout_constraintVertical_bias="0.172"
+            app:layout_constraintWidth_percent="0.3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationMenu"

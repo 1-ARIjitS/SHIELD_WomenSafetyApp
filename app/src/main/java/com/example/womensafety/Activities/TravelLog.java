@@ -12,79 +12,91 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class TravelLog extends AppCompatActivity {
 
+    FirebaseAuth auth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference reference;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    LinearLayout mTravelLogEvent;
+    TextView Username;
 
+    View hView;
+    String verificationCode;
 
-    String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
-    TextView tv_date, tv_travelFrom, tv_travelTo;
-    Uri vehicleImageUri;
-
-
-
-    Intent intent;
+    TextView etvehicleNumber, ettravellingTo, ettravellingFrom, etactualTime, etestimatedTime;
+    ImageView imgVehicleImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travel_log);
 
-        Intent intentGet = getIntent();
-        Bundle bundle = intentGet.getExtras();
+        auth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        reference = firebaseDatabase.getReference("user_tracking_details");
 
 
-        tv_date = findViewById(R.id.tv_date);
-        tv_travelFrom = findViewById(R.id.tv_travelFrom);
-        tv_travelTo = findViewById(R.id.tv_travelTo);
+        setUpToolbar();
+        navigationView = findViewById(R.id.navigationMenu);
+        hView=navigationView.getHeaderView(0);
+        //Username=hView.findViewById(R.id.header_username);
+        //String user=getIntent().getStringExtra("use");
+        //Username.setText(user);
+
+        etactualTime= (TextView)findViewById(R.id.etActualTime);
+        etestimatedTime= (TextView)findViewById(R.id.etEstimatedTime);
+        ettravellingFrom= (TextView)findViewById(R.id.etTravellingFrom);
+        ettravellingTo= (TextView)findViewById(R.id.etTravellingto);
+        etvehicleNumber= (TextView)findViewById(R.id.etVehicleNumber);
+        imgVehicleImageUri=(ImageView) findViewById(R.id.vehicleImage);
 
 
-        if(bundle != null){
-            address = (String) bundle.get("address");
-            timeReached = (String) bundle.get("timeStarted");
-            timeStarted = (String) bundle.get("timeReached");
-            date = (String) bundle.get("date");
-            estimatedTime = (String) bundle.get("estimatedTime");
-            vehicleNumber = (String) bundle.get("vehicleNumber");
-            travellingFrom = (String) bundle.get("travellingFrom");
-            travellingTo = (String) bundle.get("travellingTo");
-            vehicleImageUri = (Uri) bundle.get("vehicleImageUri");
-        }
+        final String cud= Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
-        mTravelLogEvent = findViewById(R.id.travelLogEvent);
-        mTravelLogEvent.setOnClickListener(new View.OnClickListener() {
+        //Add for loop here.
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                intent = new Intent(TravelLog.this, TravelLogContent.class);
-                intent.putExtra("vehicleNumber", vehicleNumber+"");
-                intent.putExtra("travellingFrom", travellingFrom+"");
-                intent.putExtra("travellingTo", travellingTo+"");
-                intent.putExtra("date", date+"");
-                intent.putExtra("timeStarted", timeStarted+"");
-                intent.putExtra("timeReached", timeReached+"");
-                intent.putExtra("address", address+"");
-                intent.putExtra("vehicleImageUri", vehicleImageUri);
-                intent.putExtra("estimatedTime", estimatedTime+"");
-                startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String actualTime= Objects.requireNonNull(snapshot.child(cud).child("actual_time").getValue()).toString();
+                String estimatedTime= Objects.requireNonNull(snapshot.child(cud).child("estimated_time").getValue()).toString();
+                String travellingFrom= Objects.requireNonNull(snapshot.child(cud).child("travelling_from").getValue()).toString();
+                String travellingTo= Objects.requireNonNull(snapshot.child(cud).child("travelling_to").getValue()).toString();
+                String vehicleNumber= Objects.requireNonNull(snapshot.child(cud).child("vehicle_number").getValue()).toString();
+                String VehicleImageUri= Objects.requireNonNull(snapshot.child(cud).child("Vehicle_image").getValue()).toString();
+                verificationCode= Objects.requireNonNull(snapshot.child(cud).child("mUVC").getValue()).toString();
+                etactualTime.setText(actualTime);
+                etestimatedTime.setText(estimatedTime);
+                ettravellingFrom.setText(travellingFrom);
+                ettravellingTo.setText(travellingTo);
+                etvehicleNumber.setText(vehicleNumber);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-        tv_date.setText(date);
-        tv_travelTo.setText("to: "+travellingTo+"");
-        tv_travelFrom.setText("from: "+travellingFrom+"");
 
 
         setUpToolbar();
