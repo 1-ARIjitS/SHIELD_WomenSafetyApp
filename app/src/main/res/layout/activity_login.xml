@@ -97,6 +97,8 @@
                     android:text="create a new account"
                     android:textColor="#FFFFFF" />
 
+
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

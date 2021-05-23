@@ -9,16 +9,22 @@ public class users {
     public String mAddress;
     public String mPassword;
     public String mUVC;
+    public String country;
+    public String state;
+    public String city;
 
-    public users() {
-    }
 
-    public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress) {
+    public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC, String country, String state, String city) {
         this.mFull_name = mFull_name;
         this.mAge = mAge;
         this.mEmail_id = mEmail_id;
         this.mMobile_number = mMobile_number;
         this.mAddress = mAddress;
+        this.mPassword = mPassword;
+        this.mUVC = mUVC;
+        this.country = country;
+        this.state = state;
+        this.city = city;
     }
 
     public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC) {
@@ -29,6 +35,9 @@ public class users {
         this.mAddress = mAddress;
         this.mPassword = mPassword;
         this.mUVC = mUVC;
+    }
+
+    public users() {
     }
 
     public String getFull_name() {
@@ -86,4 +95,29 @@ public class users {
     public void setUVC(String mUVC) {
         this.mUVC = mUVC;
     }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+
+
 }

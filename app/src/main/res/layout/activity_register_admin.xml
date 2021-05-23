@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,7 +20,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/aguafina_script"
             android:gravity="center"
-            android:padding="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="Create A New Admin"
             android:textColor="#FFFFFF"
             android:textSize="55sp"
@@ -129,6 +129,88 @@
             android:padding="10dp"
             android:textColorHint="@color/black" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/admin_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_view"
+                    android:text="pick country"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/admin_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_view"
+                    android:text="pick state"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/admin_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_view"
+                    android:text="pick city"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/admin_country_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/text_fields"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/admin_state_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/text_fields"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/admin_city_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/text_fields"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </LinearLayout>
+
         <EditText
             android:id="@+id/create_admin_address"
             android:layout_width="match_parent"
@@ -150,11 +232,11 @@
             android:id="@+id/create_admin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:background="@drawable/button_view"
             android:backgroundTint="#FF6D00"
             android:text="create admin"
-            android:textColor="#FFFFFF"
-            android:layout_margin="10dp"/>
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </ScrollView>

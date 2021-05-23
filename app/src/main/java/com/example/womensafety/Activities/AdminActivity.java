@@ -99,7 +99,12 @@ public class AdminActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
+                try {
+                    user= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
+                }catch (Exception e){
+                    Intent intent = getIntent();
+                    user=intent.getStringExtra("user");;
+                }
                 Username.setText(user);
             }
 

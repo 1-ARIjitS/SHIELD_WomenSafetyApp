@@ -23,10 +23,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.EmergencyContactListActivity" />
-        <activity android:name=".Activities.TrackingActivity" />
-        <activity android:name=".SuperAdmin.Activities.ManageEmergencyContactsActivity" />
-        <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -46,6 +42,9 @@
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             tools:targetApi="o" />
 
+
+        <activity android:name=".SuperAdmin.Activities.ManageEmergencyContactsActivity" />
+        <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity" />
         <activity android:name=".SuperAdmin.Activities.AdminHomepageActivity" />
         <activity android:name=".SuperAdmin.Activities.ManageSuperAdminActivity" />
         <activity android:name=".SuperAdmin.Activities.RegisterSuperAdminActivity" />
@@ -58,7 +57,6 @@
         <activity android:name=".SuperAdmin.Activities.SuperAdminUsersActivity" />
         <activity android:name=".SuperAdmin.Activities.SuperAdminDashboardActivity" />
         <activity android:name=".Activities.SelectUserActivity" />
-        <activity android:name=".Activities.OtpVerification" />
         <activity android:name=".Activities.ManageActivity" />
         <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.CommentActivity" />
@@ -66,6 +64,9 @@
         <activity android:name=".Activities.AddingPostActivity" />
         <activity android:name=".Activities.NextTokinListActivity" />
         <activity android:name=".Activities.AboutUsActivity" />
+        <activity android:name=".Activities.OtpVerification" />
+        <activity android:name=".Activities.EmergencyContactListActivity" />
+        <activity android:name=".Activities.TrackingActivity" />
         <activity android:name=".Activities.NextToKinActivity" />
         <activity android:name=".Activities.SuspectRegistrationActivity" />
         <activity android:name=".Activities.RegisterActivity" />

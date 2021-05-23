@@ -183,7 +183,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:itemTextColor="#000"
-        app:menu="@menu/menu">
+        app:menu="@menu/super_menu">
 
     </com.google.android.material.navigation.NavigationView>
 

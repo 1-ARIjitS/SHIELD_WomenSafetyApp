@@ -13,8 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.womensafety.Activities.LoginActivity;
+import com.example.womensafety.Activities.RegisterActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Adapters.ManageAdminAdapter;
@@ -27,8 +30,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vikktorn.picker.City;
+import com.vikktorn.picker.CityPicker;
+import com.vikktorn.picker.Country;
+import com.vikktorn.picker.CountryPicker;
+import com.vikktorn.picker.OnCityPickerListener;
+import com.vikktorn.picker.OnCountryPickerListener;
+import com.vikktorn.picker.OnStatePickerListener;
+import com.vikktorn.picker.State;
+import com.vikktorn.picker.StatePicker;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageAdminActivity extends AppCompatActivity {
 
@@ -50,6 +69,10 @@ public class ManageAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_admin);
 
+        //picker operations starts
+
+
+        //picker operations end
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("registered_admins");
@@ -134,7 +157,9 @@ public class ManageAdminActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
