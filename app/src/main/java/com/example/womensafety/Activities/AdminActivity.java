@@ -417,7 +417,12 @@ public class AdminActivity extends AppCompatActivity {
         if (event.getKeyCode() == KeyEvent.KEYCODE_POWER) {
             counter++;
             if (counter==3){
-
+                for(String mob_numbers:contactsList)
+                {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(/*contactsList.get(i)*/mob_numbers,null,sos_message,null,null);
+                }
+                Toast.makeText(getApplicationContext(),"Emergency SOS Messages Sent to next to kin",Toast.LENGTH_SHORT).show();
                 counter=0;
             }
         }
