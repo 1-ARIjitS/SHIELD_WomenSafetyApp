@@ -73,6 +73,17 @@
         app:itemTextColor="@color/textColor"
         app:menu="@menu/menu">
 
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/sos_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="10dp"
+            android:background="#9E1818"
+            android:backgroundTint="#9E1818"
+            android:clickable="true"
+            android:src="@drawable/sos_alert" />
     </com.google.android.material.navigation.NavigationView>
 
 

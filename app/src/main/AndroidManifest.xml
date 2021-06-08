@@ -13,9 +13,13 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -37,12 +41,11 @@
 
         <activity
             android:name=".Activities.UserTrackingFragment"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:label="@string/title_activity_user_tracking"
             android:supportsPictureInPicture="true"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             tools:targetApi="o" />
-
-
+        <service android:name=".Services.SosService"/>
         <activity android:name=".SuperAdmin.Activities.ManageEmergencyContactsActivity" />
         <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity" />
         <activity android:name=".SuperAdmin.Activities.AdminHomepageActivity" />
