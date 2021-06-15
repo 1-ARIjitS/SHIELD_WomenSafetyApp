@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+    <EditText
+        android:id="@+id/txt_otp"
+        android:layout_width="340dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:elevation="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/textColor"
+        android:background="@drawable/text_fields"
+        android:hint="Enter Otp sent to Registered mobile"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:id="@+id/btn_cancel"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view"
+            android:text="Verify"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:id="@+id/btn_verify"/>
+    </LinearLayout>
+</LinearLayout>

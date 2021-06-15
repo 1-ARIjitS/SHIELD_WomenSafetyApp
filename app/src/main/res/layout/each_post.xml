@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/feedbck">
+    <!--
+    android:background="#003E3D3D" .............................
+    android:background="#2C3E3D3D"
+    android:background="#313E3D3D"
+    android:background="#343E3D3D"  .......
+    android:background="#3C3E3D3D"  ...
+    android:background="#3E3D3D"
+    android:background="#FD434242"
+    -->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/each_post_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/feedusername"
+                android:orientation="horizontal">
+                <!--
+                android:background="#00E4E4E4" ...........
+                android:background="#00EDECEC"
+                android:background="#00F6F4F4"
+                android:background="#F6F4F4"
+                -->
+
+                <TextView
+                    android:id="@+id/each_post_username"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Username" />
+
+                <TextView
+                    android:id="@+id/each_post_dnt"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    android:textStyle="normal|italic"
+                    tools:text="date and time" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/each_post_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bckcolor"
+                android:fontFamily="serif"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                tools:text="caption" />
+
+            <ImageView
+                android:id="@+id/each_post_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/bckcolor"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bckcolor"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/likes_image_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/bckcolor"
+                        android:src="@drawable/ic_like" />
+
+                    <TextView
+                        android:id="@+id/like_feature"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="0"
+                        android:textAllCaps="true"
+                        android:textColor="@color/textColor"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/comment_feature"
+                        android:layout_width="1dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/ic_comment"
+                        android:drawablePadding="5dp"
+                        android:padding="2dp"
+
+                        android:textAllCaps="true"
+
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/share_feature"
+                        android:layout_width="1dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/ic_share"
+                        android:drawablePadding="5dp"
+                        android:padding="2dp"
+                        android:textAllCaps="true"
+
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

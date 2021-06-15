@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/abel</item>
+        <item>@font/actor</item>
+        <item>@font/aguafina_script</item>
+        <item>@font/alegreya_sans_thin</item>
+        <item>@font/amarante</item>
         <item>@font/architects_daughter</item>
+        <item>@font/archivo_narrow</item>
+        <item>@font/bad_script</item>
         <item>@font/bangers</item>
+        <item>@font/berkshire_swash</item>
+        <item>@font/cantata_one</item>
+        <item>@font/cedarville_cursive</item>
+        <item>@font/vast_shadow</item>
     </array>
 </resources>
