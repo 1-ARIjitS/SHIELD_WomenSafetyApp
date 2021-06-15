@@ -47,6 +47,7 @@ import com.example.womensafety.Activities.ManageActivity;
 import com.example.womensafety.Activities.NextTokinListActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Activities.TrackingActivity;
+import com.example.womensafety.Activities.TravellingAloneVehicleImageActivity;
 import com.example.womensafety.Activities.UserTrackingFragment;
 import com.example.womensafety.User.LocationConstants;
 import com.example.womensafety.R;
@@ -109,7 +110,7 @@ public class Detail_Forms extends AppCompatActivity {
     TextView tv_latitude, tv_longitude;
     Double latitude, longitude;
 
-    public Uri vehicle_image_uri=null;
+    public String vehicle_image_uri_string=null;
     ImageView vehicle_image;
 
     StorageReference storageReference;
@@ -148,6 +149,8 @@ public class Detail_Forms extends AppCompatActivity {
 
         /*save_vehicle=findViewById(R.id.vehicle_image_saver);*/
 
+        vehicle_image_uri_string=getIntent().getStringExtra("vehicle_image_url");
+
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +166,7 @@ public class Detail_Forms extends AppCompatActivity {
                 }*/
                 vehicle_num=vehicle.getText().toString();
 
+
                 Intent intent = new Intent(Detail_Forms.this, UserTrackingFragment.class);
                 intent.putExtra("start_latitude", start_lat);
                 intent.putExtra("start_longitude", start_lng);
@@ -170,8 +174,8 @@ public class Detail_Forms extends AppCompatActivity {
                 intent.putExtra("end_longitude", end_lng);
                 intent.putExtra("start_add",starting_address);
                 intent.putExtra("end_add",ending_address);
-                if(vehicle_image_uri!=null)
-                {intent.putExtra("vehicle_image",vehicle_image_uri.toString());}
+                if(vehicle_image_uri_string!=null)
+                {intent.putExtra("vehicle_image",vehicle_image_uri_string);}
                 intent.putExtra("veh_num",vehicle_num);
                 intent.putExtra("est_time",estimated_time);
                 if (start_lat != 0.0 && start_lng != 0.0 && end_lat != 0.0 && end_lng != 0.0 && vehicle_num!=null && estimated_time.length()>0) {
@@ -271,14 +275,19 @@ public class Detail_Forms extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /*startActivityForResult(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI), GET_FROM_GALLERY);*/
-                CropImage.activity()
+                /*CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setAspectRatio(5, 3)
                         .setMinCropResultSize(512, 512)
-                        .start(Detail_Forms.this);
+                        .start(Detail_Forms.this);*/
+
+                startActivity(new Intent(getApplicationContext(), TravellingAloneVehicleImageActivity.class));
             }
 
         });
+
+        /*vehicle_image.setVisibility(View.VISIBLE);
+        vehicle_image.setImageURI();*/
 
         /*save_vehicle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -463,7 +472,7 @@ public class Detail_Forms extends AppCompatActivity {
             imageView.setImageURI(data.getData());
         }*/
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+       /* if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 vehicle_image.setVisibility(View.VISIBLE);
@@ -472,7 +481,7 @@ public class Detail_Forms extends AppCompatActivity {
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Toast.makeText(getApplicationContext(), result.getError().toString(), Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
 
         /*if(requestCode==PLACE_PICKER_REQUEST)
         {

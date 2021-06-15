@@ -90,4 +90,12 @@ public class userLocationTracking {
     public void setMap_bitmap(Bitmap map_bitmap) {
         this.map_bitmap = map_bitmap;
     }
+
+    public String getActual_date() {
+        return actual_date;
+    }
+
+    public void setActual_date(String actual_date) {
+        this.actual_date = actual_date;
+    }
 }

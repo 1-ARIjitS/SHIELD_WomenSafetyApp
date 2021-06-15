@@ -126,6 +126,7 @@ public class UserTrackingFragment extends AppCompatActivity {
     String v_number;
     String estimated_time;
     String actual_date;
+    String travel_log_date;
     String actual_time;
 
 
@@ -347,6 +348,7 @@ public class UserTrackingFragment extends AppCompatActivity {
                                 Calendar calendar=Calendar.getInstance();
                                 SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MMM-yyyy");
                                 actual_date=simpleDateFormat.format(calendar.getTime());
+                                travel_log_date=actual_date;
                                 SimpleDateFormat simpleTimeFormat=new SimpleDateFormat("hh:mm:ss a");
                                 actual_time=simpleTimeFormat.format(calendar.getTime());
                                 if (ActivityCompat.checkSelfPermission(UserTrackingFragment.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(UserTrackingFragment.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -392,12 +394,13 @@ public class UserTrackingFragment extends AppCompatActivity {
             }
         });
 
+
         save_travel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(reached_safely_address!=null){
                 userLocationTracking userLocationTracking=new userLocationTracking(start_address,end_address,v_number,estimated_time,actual_time,actual_date,vehicle_image);
-                reference.child(actual_date).child(actual_time).setValue(userLocationTracking);
+                reference.child(travel_log_date).child(actual_time).setValue(userLocationTracking);
                 Toast.makeText(getApplicationContext(),"Travel log saved successfully",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(UserTrackingFragment.this,Detail_Forms.class));
                 }

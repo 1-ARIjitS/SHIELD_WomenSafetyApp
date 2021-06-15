@@ -190,6 +190,9 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.travellingALone:
                         startActivity(new Intent(AdminActivity.this, Detail_Forms.class));
                         break;
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(AdminActivity.this, TravelLogContent.class));
+                        break;
 
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(AdminActivity.this, SuspectListActivity.class));

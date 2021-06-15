@@ -6,7 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.womensafety.Adapters.travelLogAdapter;
+import com.example.womensafety.Models.suspect_registered;
+import com.example.womensafety.Models.userLocationTracking;
 import com.example.womensafety.R;
 
 import android.content.Intent;
@@ -14,11 +19,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class TravelLogContent extends AppCompatActivity {
 
@@ -26,66 +42,32 @@ public class TravelLogContent extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    TextView textDate, textVehicleNumber, textTravellingFrom, textTravellingTo, textTimeStarted, textTimeExpected, textTimeReached, textAddress;
+    FirebaseAuth auth;
+    String cud;
 
-    ImageView vehicleImage;
+    RecyclerView TravelLogRecycler;
+    ArrayList<userLocationTracking> travelLogList;
+    FirebaseDatabase database;
+    DatabaseReference reference;
+    travelLogAdapter adapter;
 
-    View hView;
-    TextView Username;
 
-
-    Uri vehicleImageUri;
-
-    String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travel_log_content);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        auth=FirebaseAuth.getInstance();
+        cud= Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
-        textDate = findViewById(R.id.disp_date);
-        textVehicleNumber = findViewById(R.id.disp_vehicleNumber);
-        textTravellingFrom = findViewById(R.id.disp_travellingFrom);
-        textTravellingTo = findViewById(R.id.disp_travellingTo);
-        textTimeStarted = findViewById(R.id.disp_startedTime);
-        textTimeExpected = findViewById(R.id.disp_expectedTime);
-        textTimeReached = findViewById(R.id.disp_reachedTime);
-        textAddress = findViewById(R.id.disp_lastLocation);
-
-        vehicleImage = findViewById(R.id.disp_vehicleImage);
-
-        if(bundle != null){
-            address = (String) bundle.get("address");
-            timeReached = (String) bundle.get("timeStarted");
-            timeStarted = (String) bundle.get("timeReached");
-            date = (String) bundle.get("date");
-            estimatedTime = (String) bundle.get("estimatedTime");
-            vehicleNumber = (String) bundle.get("vehicleNumber");
-            travellingFrom = (String) bundle.get("travellingFrom");
-            travellingTo = (String) bundle.get("travellingTo");
-            vehicleImageUri = (Uri) bundle.get("vehicleImageUri") ;
-
-            textDate.setText(date + "");
-            textVehicleNumber.setText(vehicleNumber + "");
-            textTimeStarted.setText(timeStarted + "");
-            textTimeReached.setText(timeReached + "");
-            textTimeExpected.setText(estimatedTime + "");
-            textAddress.setText(address + "");
-            textTravellingFrom.setText(travellingFrom + "");
-            textTravellingTo.setText(travellingTo + "");
-            vehicleImage.setImageURI(vehicleImageUri);
-        }
+        database=FirebaseDatabase.getInstance();
+        reference=database.getReference("user_tracking_details").child(cud);
 
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -119,6 +101,41 @@ public class TravelLogContent extends AppCompatActivity {
                 return true;
             }
         });
+
+
+        //recycler view operations starting here
+
+        TravelLogRecycler=findViewById(R.id.travel_log_recycler);
+
+        TravelLogRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        TravelLogRecycler.hasFixedSize();
+
+        travelLogList=new ArrayList<userLocationTracking>();
+
+        adapter=new travelLogAdapter(TravelLogContent.this,travelLogList);
+
+        TravelLogRecycler.setAdapter(adapter);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dateSnap : snapshot.getChildren()) {
+                    for (DataSnapshot timeSnap : dateSnap.getChildren()) {
+                        userLocationTracking userTravelLog = timeSnap.getValue(userLocationTracking.class);
+                        travelLogList.add(userTravelLog);
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     public void onBackPressed() {
