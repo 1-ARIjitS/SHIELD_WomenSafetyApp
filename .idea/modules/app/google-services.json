@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "617521249099",
+    "firebase_url": "https://womensafety-836cb-default-rtdb.firebaseio.com",
     "project_id": "womensafety-836cb",
     "storage_bucket": "womensafety-836cb.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "617521249099-4sdao99kapr26cdfd1c2gvrvnbvpca2t.apps.googleusercontent.com",
+          "client_id": "617521249099-taoaejjrm69rc4mcjv093isvjlgfb1qn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.womensafety",

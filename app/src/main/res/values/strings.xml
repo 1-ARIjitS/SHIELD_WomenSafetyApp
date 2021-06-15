@@ -1,10 +1,11 @@
+
 <resources>
-    <string name="app_name">WomenSafety</string>
+    <string name="app_name">Shield</string>
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>
     </string-array>
-    
+
     <!-- Travelling Button -->
     <string name="travelling_along_button">Travelling Alone</string>
 
@@ -15,5 +16,16 @@
     <string name="select_vehicle_image">Select Vehicle Image</string>
     <string name="select_estimated_arrival_time">Estimated destination arrival time</string>
     <string name="time_picker">Pick Time</string>
+    <string name="this_applicaton_is_developed_amp_powered_by_cybertron_software_s_if_you_have_any_query_issue_or_inquiry_related_to_this_application_please_feel_free_to_contact_us_on_the_following_links"><![CDATA[This applicaton is developed & powered by Cybertron Software\'s. If you have any query,issue or inquiry related to this application please feel free to Contact Us on the following Links :-]]></string>
+    <string name="user_name">User Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="age">Age</string>
+    <string name="mobile">Mobile</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_verification_code">Change Verification Code</string>
+
+    <string name="web_client_id">xxxxxxxx..place your web client id here</string>
+    <string name="country">Country</string>
 
 </resources>

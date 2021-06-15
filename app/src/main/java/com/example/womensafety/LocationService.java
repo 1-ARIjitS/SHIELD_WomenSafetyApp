@@ -112,7 +112,7 @@ public class LocationService extends Service {
 
     }
 
-    private void stopLocationService(){
+    private void stopLocationService() {
         LocationServices.getFusedLocationProviderClient(this)
                 .removeLocationUpdates(locationCallback);
         stopForeground(true);
@@ -121,24 +121,23 @@ public class LocationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent != null){
+        if (intent != null) {
             String action = intent.getAction();
-            if(action != null){
-                if(action.equals(LocationConstants.ACTION_START_LOCATION_SERVICE)) {
+            if (action != null) {
+                if (action.equals(LocationConstants.ACTION_START_LOCATION_SERVICE)) {
                     startLocationService();
-                }
-                else if(action.equals(LocationConstants.ACTION_STOP_LOCATION_SERVICE)){
+                } else if (action.equals(LocationConstants.ACTION_STOP_LOCATION_SERVICE)) {
                     stopLocationService();
-                    }
+                }
             }
         }
         return super.onStartCommand(intent, flags, startId);
     }
 
-    private void fn_update(Location location){
+    private void fn_update(Location location) {
 
-        intent.putExtra("latitude",location.getLatitude()+"");
-        intent.putExtra("longitude",location.getLongitude()+"");
+        intent.putExtra("latitude", location.getLatitude() + "");
+        intent.putExtra("longitude", location.getLongitude() + "");
         sendBroadcast(intent);
     }
 

@@ -1,4 +1,4 @@
-package com.example.womensafety;
+package com.example.womensafety.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.womensafety.R;
+
 public class MainActivity extends AppCompatActivity {
 
-    public static final int SPLASH_SCREEN_TIMEOUT=2000;
+    public static final int SPLASH_SCREEN_TIMEOUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent loginIntent=new Intent(MainActivity.this, LoginActivity.class);
+                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(loginIntent);
                 finish();
             }
-        },SPLASH_SCREEN_TIMEOUT);
+        }, SPLASH_SCREEN_TIMEOUT);
     }
 }

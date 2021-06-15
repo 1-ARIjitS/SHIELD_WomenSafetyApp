@@ -28,6 +28,9 @@ public class TravelLog extends AppCompatActivity {
 
     LinearLayout mTravelLogEvent;
 
+    View hView;
+    TextView Username;
+
     String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
     TextView tv_date, tv_travelFrom, tv_travelTo;
     Uri vehicleImageUri;
@@ -87,6 +90,10 @@ public class TravelLog extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
+        hView=navigationView.getHeaderView(0);
+        Username=hView.findViewById(R.id.header_username);
+        String user=getIntent().getStringExtra("use");
+        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -117,10 +124,10 @@ public class TravelLog extends AppCompatActivity {
 
     }
 
-    public void openLogDialog(){
+   /* public void openLogDialog(){
         TravelLogDialog travelLogDialog = new TravelLogDialog();
         travelLogDialog.show(getSupportFragmentManager(), "Travel Log Dialog");
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

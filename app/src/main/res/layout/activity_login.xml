@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        tools:context=".LoginActivity">
+        tools:context=".Activities.LoginActivity">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login_card_view"
@@ -47,7 +47,7 @@
                     android:layout_margin="10dp"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:text="please enter your registered username and password to login"
+                    android:text="Please enter your registered username and password to login"
                     android:textSize="18sp" />
 
                 <EditText
@@ -72,7 +72,7 @@
                     android:drawableLeft="@drawable/password"
                     android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="password"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:padding="10dp" />
 
@@ -96,6 +96,8 @@
                     android:backgroundTint="#3F51B5"
                     android:text="create a new account"
                     android:textColor="#FFFFFF" />
+
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
