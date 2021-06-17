@@ -61,7 +61,8 @@
                     android:ems="10"
                     android:hint="Username / Email"
                     android:inputType="textPersonName"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:textColor="@color/textColor" />
 
                 <EditText
                     android:id="@+id/login_password"
@@ -74,7 +75,8 @@
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:textColor="@color/textColor" />
 
                 <Button
                     android:id="@+id/login_button"
