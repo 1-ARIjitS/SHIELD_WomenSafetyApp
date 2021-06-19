@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-    tools:context=".Admin.Activities.AdminHomepageActivity"
+    tools:context=".Admin.Activities.UserDetailsActivity"
     tools:openDrawer="start">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/registration_background">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -34,19 +35,31 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/super_admin_post_recycler"
+
+        <TextView
+            android:id="@+id/sus_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00C853"
+            android:fontFamily="@font/actor"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Suspects Registered"
+            android:textColor="@color/textColor"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <ListView
+            android:id="@+id/users_suspect_list"
             android:layout_width="0dp"
-            android:background="@drawable/registration_background"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.0" >
+            app:layout_constraintTop_toBottomOf="@+id/sus_user_name" />
 
-        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,7 +70,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:itemTextColor="@color/textColor"
-        app:menu="@menu/admin_menu">
+        app:menu="@menu/super_menu">
 
     </com.google.android.material.navigation.NavigationView>
 

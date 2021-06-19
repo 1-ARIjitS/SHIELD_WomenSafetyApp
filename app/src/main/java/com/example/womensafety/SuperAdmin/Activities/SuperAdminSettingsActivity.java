@@ -10,12 +10,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
+import com.example.womensafety.Admin.Activities.AdminHomepageActivity;
+import com.example.womensafety.Admin.Activities.AdminUserActivity;
 import com.example.womensafety.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +32,7 @@ public class SuperAdminSettingsActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
 
+    String flag="0";
 
     FloatingActionButton dark_switch;
 
@@ -38,9 +42,53 @@ public class SuperAdminSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_super_admin_settings);
 
         auth=FirebaseAuth.getInstance();
+        try {
+            flag = getIntent().getStringExtra("flag");
+        }
+        catch (Exception ignored) {
+        }
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
+
+        if(flag.equals("1")){
+            Menu menu = navigationView.getMenu();
+
+            // find MenuItem you want to change
+            menu.removeItem(R.id.superadmin_home);
+            menu.removeItem(R.id.superadmin_manage_superadmin);
+            menu.removeItem(R.id.superadmin_manage_account);
+            menu.removeItem(R.id.superadmin_manage_admin);
+
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+
+                        case R.id.superadmin_homepage:
+                            startActivity(new Intent(SuperAdminSettingsActivity.this, AdminHomepageActivity.class));
+                            break;
+
+                        case R.id.superadmin_manage_users:
+                            startActivity(new Intent(SuperAdminSettingsActivity.this, AdminUserActivity.class));
+                            break;
+
+                        case R.id.superadmin_settings:
+                            break;
+                        case R.id.superadmin_logout:
+                            auth.signOut();
+                            startActivity(new Intent(SuperAdminSettingsActivity.this, LoginActivity.class));
+                            finish();
+                            break;
+
+                    }
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+            });
+        }
+        else{
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -82,7 +130,7 @@ public class SuperAdminSettingsActivity extends AppCompatActivity {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
-        });
+        });}
 
 
         dark_switch=(FloatingActionButton) findViewById(R.id.dark_action);

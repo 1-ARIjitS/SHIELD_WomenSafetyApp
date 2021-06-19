@@ -1,4 +1,4 @@
-package com.example.womensafety.SuperAdmin.Activities;
+package com.example.womensafety.Admin.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -9,21 +9,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Adapters.suspectAdapter;
-import com.example.womensafety.Admin.Activities.AdminHomepageActivity;
-import com.example.womensafety.Admin.Activities.AdminUserActivity;
 import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
-import com.example.womensafety.SuperAdmin.Adapters.suspectSuperAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -49,71 +44,24 @@ public class UserDetailsActivity extends AppCompatActivity {
 
     public String name;
     public String mob_num;
-    String flag="0";
+
     FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_details);
+        setContentView(R.layout.activity_user_details2);
 
         database=FirebaseDatabase.getInstance();
 
         auth=FirebaseAuth.getInstance();
 
         name=getIntent().getStringExtra("username");
-        mob_num=getIntent().getStringExtra("mob");
-        flag=getIntent().getStringExtra("flag");
-        //Toast.makeText(UserDetailsActivity.this, flag, Toast.LENGTH_SHORT).show();
-
-        reference=database.getReference("suspects_registered").child(mob_num);
+        //mob_num=getIntent().getStringExtra("mob");
+        reference=database.getReference("suspects_registered").child("8318836646");
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        if(flag.equals("1")){
-            Menu menu = navigationView.getMenu();
-
-            // find MenuItem you want to change
-            menu.removeItem(R.id.superadmin_home);
-            menu.removeItem(R.id.superadmin_manage_superadmin);
-            menu.removeItem(R.id.superadmin_manage_account);
-            menu.removeItem(R.id.superadmin_manage_admin);
-
-            MenuItem user = menu.findItem(R.id.superadmin_manage_users);
-
-            // set new title to the MenuItem
-            user.setTitle("Manage User");
-
-            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-
-                        case R.id.superadmin_homepage:
-                            startActivity(new Intent(UserDetailsActivity.this, AdminHomepageActivity.class));
-                            break;
-
-                        case R.id.superadmin_manage_users:
-                            startActivity(new Intent(UserDetailsActivity.this, AdminUserActivity.class));
-                            break;
-
-                        case R.id.superadmin_settings:
-                            startActivity(new Intent(UserDetailsActivity.this, SuperAdminSettingsActivity.class));
-                            break;
-                        case R.id.superadmin_logout:
-                            auth.signOut();
-                            startActivity(new Intent(UserDetailsActivity.this, LoginActivity.class));
-                            finish();
-                            break;
-
-                    }
-
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    return true;
-                }
-            });
-        }
-        else{
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -143,7 +91,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.superadmin_settings:
-                        startActivity(new Intent(UserDetailsActivity.this, SuperAdminSettingsActivity.class));
+                        startActivity(new Intent(UserDetailsActivity.this, AdminSettingsActivity.class));
                         break;
                     case R.id.superadmin_logout:
                         auth.signOut();
@@ -156,7 +104,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
-        });}
+        });
 
         //database referencing work
 
@@ -205,7 +153,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     sus.add(suspectRegistered);
                 }
 
-                suspectSuperAdapter adapter=new suspectSuperAdapter(UserDetailsActivity.this,0,sus);
+                suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,0,sus);
 
                 userSusList.setAdapter(adapter);
             }

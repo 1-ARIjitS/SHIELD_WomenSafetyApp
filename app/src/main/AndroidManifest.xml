@@ -27,7 +27,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.TravellingAloneVehicleImageActivity"></activity>
+        <activity android:name=".Activities.TravellingAloneVehicleImageActivity" />
+        <activity android:name=".Admin.Activities.AdminUserActivity"></activity>
+        <activity android:name=".Admin.Activities.AdminHomepageActivity" />
+        <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -52,6 +55,7 @@
         <activity android:name=".SuperAdmin.Activities.ManageEmergencyContactsActivity" />
         <activity android:name=".SuperAdmin.Activities.ManageSuperAdminAccountActivity" />
         <activity android:name=".SuperAdmin.Activities.AdminHomepageActivity" />
+            android:label="@string/title_activity_user_tracking" />
         <activity android:name=".SuperAdmin.Activities.ManageSuperAdminActivity" />
         <activity android:name=".SuperAdmin.Activities.RegisterSuperAdminActivity" />
         <activity android:name=".SuperAdmin.Activities.SuperAdminHomepage" />
@@ -63,6 +67,7 @@
         <activity android:name=".SuperAdmin.Activities.SuperAdminUsersActivity" />
         <activity android:name=".SuperAdmin.Activities.SuperAdminDashboardActivity" />
         <activity android:name=".Activities.SelectUserActivity" />
+        <activity android:name=".Activities.OtpVerification" />
         <activity android:name=".Activities.ManageActivity" />
         <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.CommentActivity" />
