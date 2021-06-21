@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,7 +36,7 @@ public class ManageSuperAdminActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    ListView superAdminList;
+    RecyclerView superAdminList;
 
     Button addButton;
     FirebaseAuth auth;
@@ -105,9 +107,15 @@ public class ManageSuperAdminActivity extends AppCompatActivity {
             }
         });
 
-        superAdminList=(ListView)findViewById(R.id.manage_superadmin_list);
+        superAdminList=(RecyclerView) findViewById(R.id.manage_superadmin_list);
+
+        superAdminList.setLayoutManager(new LinearLayoutManager(this));
 
         final ArrayList<SuperAdmins> superAdminsArrayList=new ArrayList<SuperAdmins>();
+
+        ManageSuperAdminAdapter adapter=new ManageSuperAdminAdapter(ManageSuperAdminActivity.this,superAdminsArrayList);
+
+        superAdminList.setAdapter(adapter);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -117,10 +125,7 @@ public class ManageSuperAdminActivity extends AppCompatActivity {
                     SuperAdmins s_admin=superAdminSnap.getValue(SuperAdmins.class);
                     superAdminsArrayList.add(s_admin);
                 }
-
-                ManageSuperAdminAdapter adapter=new ManageSuperAdminAdapter(ManageSuperAdminActivity.this,0,superAdminsArrayList);
-
-                superAdminList.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

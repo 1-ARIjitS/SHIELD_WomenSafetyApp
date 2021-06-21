@@ -51,7 +51,7 @@ public class SuperAdminSettingsActivity extends AppCompatActivity {
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
 
-        if(flag.equals("1")){
+        /*if(flag.equals("1")){
             Menu menu = navigationView.getMenu();
 
             // find MenuItem you want to change
@@ -87,8 +87,8 @@ public class SuperAdminSettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
-        }
-        else{
+        }*/
+        /*else{*/
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -130,7 +130,7 @@ public class SuperAdminSettingsActivity extends AppCompatActivity {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
-        });}
+        });/*}*/
 
 
         dark_switch=(FloatingActionButton) findViewById(R.id.dark_action);

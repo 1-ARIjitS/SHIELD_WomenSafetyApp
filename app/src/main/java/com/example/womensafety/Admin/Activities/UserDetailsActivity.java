@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 
 public class UserDetailsActivity extends AppCompatActivity {
 
-    ListView userSusList;
+    RecyclerView userSusList;
     TextView susUser;
 
     DrawerLayout drawerLayout;
@@ -139,9 +141,14 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         //List View operations starting from here
 
-        userSusList=(ListView)findViewById(R.id.users_suspect_list);
+        userSusList=(RecyclerView) findViewById(R.id.users_suspect_list);
+        userSusList.setLayoutManager(new LinearLayoutManager(this));
 
         final ArrayList<suspect_registered> sus=new ArrayList<suspect_registered>();
+
+        suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,sus);
+
+        userSusList.setAdapter(adapter);
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -153,9 +160,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     sus.add(suspectRegistered);
                 }
 
-                suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,0,sus);
-
-                userSusList.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

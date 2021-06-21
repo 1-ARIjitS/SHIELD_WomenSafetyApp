@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.womensafety.Activities.LoginActivity;
+import com.example.womensafety.Interfaces.userListItemClickInterface;
 import com.example.womensafety.Models.users;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Activities.ManageAdminActivity;
@@ -38,9 +41,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdminUserActivity extends AppCompatActivity {
+public class AdminUserActivity extends AppCompatActivity implements userListItemClickInterface {
 
-    ListView userList;
+    RecyclerView userList;
+    ArrayList<users> users_reg;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -137,9 +141,15 @@ public class AdminUserActivity extends AppCompatActivity {
 
         // list view operations starting here
 
-        userList=(ListView)findViewById(R.id.users_list);
+        userList=(RecyclerView) findViewById(R.id.users_list);
 
-        final ArrayList<users> users_reg=new ArrayList<users>();
+        userList.setLayoutManager(new LinearLayoutManager(this));
+
+        users_reg=new ArrayList<users>();
+
+        ManageUsersAdapter adapter=new ManageUsersAdapter(AdminUserActivity.this,users_reg,this);
+
+        userList.setAdapter(adapter);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -149,10 +159,7 @@ public class AdminUserActivity extends AppCompatActivity {
                     users user=userSnap.getValue(users.class);
                     users_reg.add(user);
                 }
-
-                ManageUsersAdapter adapter=new ManageUsersAdapter(AdminUserActivity.this,0,users_reg);
-
-                userList.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -162,8 +169,8 @@ public class AdminUserActivity extends AppCompatActivity {
         });
 
         //setting on click listeners on the list items so that it will be redirected to the details of that particular user
-
-        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* userList
+        .setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -172,7 +179,7 @@ public class AdminUserActivity extends AppCompatActivity {
                 mobile=user.getMobile_number();
                 name=user.getFull_name();
 
-                /*Log.d("user_e_mail", e_mail );*/
+                *//*Log.d("user_e_mail", e_mail );*//*
                 //Toast.makeText(AdminUserActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
 
                 final Intent intent=new Intent(AdminUserActivity.this, UserDetailsActivity.class);
@@ -181,7 +188,7 @@ public class AdminUserActivity extends AppCompatActivity {
                 intent.putExtra("flag","1");
                 //Toast.makeText(AdminUserActivity.this, "Intent  start", Toast.LENGTH_SHORT).show();
 
-/*
+*//*
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -189,11 +196,11 @@ public class AdminUserActivity extends AppCompatActivity {
                         {
                             if(use.child("email_id").getValue().toString().equals(e_mail)){
                                 user_specific_id= use.getKey();
-                                *//*uidg=uidg+user_specific_id;
-                                intent.putExtra("user_id",uidg);*//*
-                 *//*intent.putExtra("user_id",""+user_specific_id);*//*
-                 *//*Log.d("uid", user_specific_id );
-                                Log.d("user_email",use.child("email_id").getValue().toString() );*//*
+                                *//**//*uidg=uidg+user_specific_id;
+                                intent.putExtra("user_id",uidg);*//**//*
+                 *//**//*intent.putExtra("user_id",""+user_specific_id);*//**//*
+                 *//**//*Log.d("uid", user_specific_id );
+                                Log.d("user_email",use.child("email_id").getValue().toString() );*//**//*
                                 Log.d("userId",use.getKey());
                             }
                         }
@@ -209,12 +216,12 @@ public class AdminUserActivity extends AppCompatActivity {
                 uidg+=user_specific_id;
                 intent.putExtra("user_id",uidg);
 
-*//*              Intent intent=new Intent(SuperAdminUsersActivity.this,UserDetailsActivity.class);
-                intent.putExtra("username",name);*//*
-                 *//*intent.putExtra("userId",user_specific_id);*/
+*//**//*              Intent intent=new Intent(SuperAdminUsersActivity.this,UserDetailsActivity.class);
+                intent.putExtra("username",name);*//**//*
+                 *//**//*intent.putExtra("userId",user_specific_id);*//*
                 startActivity(intent);
             }
-        });
+        });*/
 
 
     }
@@ -238,4 +245,54 @@ public class AdminUserActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        users user=users_reg.get(position);
+
+        mobile=user.getMobile_number();
+        name=user.getFull_name();
+
+        /*Log.d("user_e_mail", e_mail );*/
+
+        final Intent intent=new Intent(AdminUserActivity.this,UserDetailsActivity.class);
+        intent.putExtra("mob",mobile);
+        intent.putExtra("username",name);
+/*
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot use : snapshot.getChildren())
+                        {
+                            if(use.child("email_id").getValue().toString().equals(e_mail)){
+                                user_specific_id= use.getKey();
+                                *//*uidg=uidg+user_specific_id;
+                                intent.putExtra("user_id",uidg);*//*
+         *//*intent.putExtra("user_id",""+user_specific_id);*//*
+         *//*Log.d("uid", user_specific_id );
+                                Log.d("user_email",use.child("email_id").getValue().toString() );*//*
+                                Log.d("userId",use.getKey());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                uidg="";
+                uidg+=user_specific_id;
+                intent.putExtra("user_id",uidg);
+
+*//*              Intent intent=new Intent(SuperAdminUsersActivity.this,UserDetailsActivity.class);
+                intent.putExtra("username",name);*//*
+         *//*intent.putExtra("userId",user_specific_id);*/
+        startActivity(intent);
+    }
+
+    @Override
+    public void onLongItemClick(int position) {
+
+    }
 }

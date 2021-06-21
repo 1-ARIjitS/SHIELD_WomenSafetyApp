@@ -1,6 +1,6 @@
 package com.example.womensafety.SuperAdmin.Adapters;
 
-import android.app.Activity;
+/*import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,5 +63,89 @@ public class ManageAdminAdapter extends ArrayAdapter {
 
 
         return listItemView;
+    }
+}*/
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.womensafety.Models.suspect_registered;
+import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Models.Admins;
+import com.example.womensafety.SuperAdmin.Models.SuperAdmins;
+
+import java.util.ArrayList;
+
+public class ManageAdminAdapter extends RecyclerView.Adapter<ManageAdminAdapter.myViewHolder>{
+
+    ArrayList<Admins> super_admins_list;
+    Context context;
+
+    public ManageAdminAdapter(Context context,ArrayList<Admins>super_admins_list)
+    {
+        this.context=context;
+        this.super_admins_list=super_admins_list;
+    }
+
+    @NonNull
+    @Override
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(context).inflate(R.layout.single_manage_admin,parent,false);
+
+        return new myViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+
+
+        Admins currentAdmin=super_admins_list.get(position);
+
+        String name="Name :- ";
+        String age="Age :- ";
+        String address="Address :- ";
+        String phone="Mobile Number :- ";
+        String emailId="Email-Id :- ";
+        String gender="Gender :- ";
+
+        name+=currentAdmin.getR_name();
+        age+=currentAdmin.getR_age();
+        address+=currentAdmin.getR_address();
+        phone+=currentAdmin.getR_mobile();
+        emailId+=currentAdmin.getR_email();
+        gender+=currentAdmin.getR_gender();
+
+        holder.admin_name.setText(name);
+        holder.admin_mobile.setText(phone);
+        holder.admin_age.setText(age);
+        holder.admin_email.setText(emailId);
+        holder.admin_gender.setText(gender);
+        holder.admin_address.setText(address);
+    }
+
+    @Override
+    public int getItemCount() {
+        return super_admins_list.size();
+    }
+
+    class myViewHolder extends RecyclerView.ViewHolder
+    {
+        TextView admin_name,admin_mobile,admin_age,admin_email,admin_address,admin_gender;
+
+        public myViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            admin_name=(TextView)itemView.findViewById(R.id.manage_admin_name);
+            admin_mobile=(TextView)itemView.findViewById(R.id.manage_admin_mobile_number);
+            admin_age=(TextView)itemView.findViewById(R.id.manage_admin_age);
+            admin_email=(TextView)itemView.findViewById(R.id.manage_admin_email_id);
+            admin_gender=(TextView)itemView.findViewById(R.id.manage_admin_gender);
+            admin_address=(TextView)itemView.findViewById(R.id.manage_admin_address);
+        }
     }
 }

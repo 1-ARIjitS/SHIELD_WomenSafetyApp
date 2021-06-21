@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 
 public class UserDetailsActivity extends AppCompatActivity {
 
-    ListView userSusList;
+    RecyclerView userSusList;
     TextView susUser;
 
     DrawerLayout drawerLayout;
@@ -70,7 +72,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        if(flag.equals("1")){
+        /*if(flag.equals("1")){
             Menu menu = navigationView.getMenu();
 
             // find MenuItem you want to change
@@ -82,9 +84,9 @@ public class UserDetailsActivity extends AppCompatActivity {
             MenuItem user = menu.findItem(R.id.superadmin_manage_users);
 
             // set new title to the MenuItem
-            user.setTitle("Manage User");
+            user.setTitle("Manage User");*/
 
-            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            /*navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
@@ -112,8 +114,8 @@ public class UserDetailsActivity extends AppCompatActivity {
                     return true;
                 }
             });
-        }
-        else{
+        }*/
+        /*else{*/
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -156,7 +158,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
-        });}
+        });/*}*/
 
         //database referencing work
 
@@ -191,9 +193,14 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         //List View operations starting from here
 
-        userSusList=(ListView)findViewById(R.id.users_suspect_list);
+        userSusList=(RecyclerView) findViewById(R.id.users_suspect_list);
+        userSusList.setLayoutManager(new LinearLayoutManager(this));
 
         final ArrayList<suspect_registered> sus=new ArrayList<suspect_registered>();
+
+        suspectAdapter adapter=new suspectAdapter(UserDetailsActivity.this,sus);
+
+        userSusList.setAdapter(adapter);
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -205,9 +212,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     sus.add(suspectRegistered);
                 }
 
-                suspectSuperAdapter adapter=new suspectSuperAdapter(UserDetailsActivity.this,0,sus);
-
-                userSusList.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

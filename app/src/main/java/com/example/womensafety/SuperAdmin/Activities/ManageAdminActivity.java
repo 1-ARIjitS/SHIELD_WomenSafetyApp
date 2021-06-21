@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,7 +59,7 @@ public class ManageAdminActivity extends AppCompatActivity {
 
     Button add_button;
 
-    ListView manage_admin_list;
+    RecyclerView manage_admin_list;
 
     FirebaseAuth auth;
 
@@ -133,10 +135,16 @@ public class ManageAdminActivity extends AppCompatActivity {
 
 
 
-        manage_admin_list=(ListView)findViewById(R.id.manage_admins_list);
+        manage_admin_list=(RecyclerView) findViewById(R.id.manage_admins_list);
+
+        manage_admin_list.setLayoutManager(new LinearLayoutManager(this));
 
         final ArrayList<Admins> adminsArrayList=new ArrayList<>();
 
+
+        ManageAdminAdapter adapter=new ManageAdminAdapter(ManageAdminActivity.this,adminsArrayList);
+
+        manage_admin_list.setAdapter(adapter);
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -147,9 +155,7 @@ public class ManageAdminActivity extends AppCompatActivity {
                     Admins admins=adminSnap.getValue(Admins.class);
                     adminsArrayList.add(admins);
                 }
-                ManageAdminAdapter adapter=new ManageAdminAdapter(ManageAdminActivity.this,0,adminsArrayList);
-
-                manage_admin_list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
