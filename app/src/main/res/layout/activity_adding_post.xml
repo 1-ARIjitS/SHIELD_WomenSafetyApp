@@ -8,9 +8,12 @@
 
     <ImageView
         android:id="@+id/post_add_logo"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="30dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,19 +24,20 @@
 
     <EditText
         android:id="@+id/post_caption_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="101dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/text_fields"
         android:ems="10"
+        android:elevation="5dp"
         android:hint="add captions for your post here"
         android:maxLines="5"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="100dp"
+        android:paddingBottom="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_add_logo" />
@@ -49,7 +53,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_caption_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/post_caption_edit_text"
+        app:layout_constraintVertical_bias="0.212"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

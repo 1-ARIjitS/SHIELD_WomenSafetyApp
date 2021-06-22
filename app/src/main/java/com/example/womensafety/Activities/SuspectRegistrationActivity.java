@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.example.womensafety.Models.suspect_registered;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,6 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ValueEventListener;
 
 public class SuspectRegistrationActivity extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference userReference;
 
     View hView;
     TextView Username;
@@ -44,15 +48,22 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
+    String currentUserId;
+    String phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suspect_registration);
 
         auth = FirebaseAuth.getInstance();
+        currentUserId=auth.getCurrentUser().getUid();
+
+
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("suspects_registered");
+        userReference=rootNode.getReference("registered_users");
 
         suspect_name = findViewById(R.id.suspect_name);
         suspect_description = findViewById(R.id.suspect_description);
@@ -62,11 +73,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
 
 
         setUpToolbar();
-        navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);
+        navigationView=findViewById(R.id.navigationMenu);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,6 +98,21 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                         startActivity(new Intent(SuspectRegistrationActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, EmergencyContactListActivity.class));
+                        break;
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, SettingsActivity.class));
+                        break;
+
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, ManageActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(SuspectRegistrationActivity.this, TravelLogContent.class));
+                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();
@@ -100,6 +122,23 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
+            }
+        });
+
+        userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    phone=snapshot.child(currentUserId).child("mobile_number").getValue().toString();
+                } catch(NullPointerException ignored) {
+
+                }
+                //phone=snapshot.child(currentUserId).child("mobile_number").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -120,12 +159,12 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter the name of the suspect", Toast.LENGTH_SHORT).show();
                 } else if (s_description.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "INVALID,please enter a valid description of the suspect", Toast.LENGTH_SHORT).show();
-                } else if (s_mobile_num.length() < 10) {
+                }if (s_mobile_num.length()>0 && s_mobile_num.length() < 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too short ", Toast.LENGTH_SHORT).show();
-                } else if (s_mobile_num.length() > 10) {
+                }if (s_mobile_num.length() > 10) {
                     Toast.makeText(getApplicationContext(), "INVALID,mobile number is too long", Toast.LENGTH_SHORT).show();
                 } else {
-                    reference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(sus);
+                    reference.child(phone).child(s_description).setValue(sus);
                     Toast.makeText(getApplicationContext(), "suspect registration successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SuspectRegistrationActivity.this, SuspectListActivity.class));
                 }
@@ -149,7 +188,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
     }
 

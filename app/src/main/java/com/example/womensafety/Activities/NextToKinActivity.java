@@ -13,19 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.example.womensafety.Models.kin_registered;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -37,14 +33,11 @@ public class NextToKinActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
+    DatabaseReference reference2;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
-
-    TextView Username;
-    View hView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +46,7 @@ public class NextToKinActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference("Next To kin").child(Objects.requireNonNull(auth.getCurrentUser()).getUid());
+        reference2=firebaseDatabase.getReference("registered_users");
 
         kin_name = findViewById(R.id.kin_name);
         kin_phone = findViewById(R.id.kin_mobile);
@@ -60,10 +54,6 @@ public class NextToKinActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -84,13 +74,25 @@ public class NextToKinActivity extends AppCompatActivity {
                     case R.id.nav_nextToKin:
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(NextToKinActivity.this, SettingsActivity.class));
+                        break;
+
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(NextToKinActivity.this, AboutUsActivity.class));
                         break;
 
-/*                    case R.id.nav_travelLog:
-                        startActivity(new Intent(NextToKinActivity.this, TravelLog.class));
-                        break;*/
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(NextToKinActivity.this, EmergencyContactListActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(NextToKinActivity.this, TravelLogContent.class));
+                        break;
+
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(NextToKinActivity.this, ManageActivity.class));
+                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();
@@ -134,6 +136,7 @@ public class NextToKinActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     @Override
@@ -151,7 +154,7 @@ public class NextToKinActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
     }
 }

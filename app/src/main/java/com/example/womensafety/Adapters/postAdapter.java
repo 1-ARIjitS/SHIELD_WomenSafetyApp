@@ -158,6 +158,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             }
         });
 
+        //share posts
 
         holder.share_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +173,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         });
 
+        // comment posts going to the comment activity
 
         holder.comment_text.setOnClickListener(new View.OnClickListener() {
             @Override

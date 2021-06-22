@@ -2,86 +2,145 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@android:style/Widget.Holo.ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/registration_background">
+    android:orientation="vertical"
+    tools:context=".Activities.OtpVerification">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="405dp"
+        android:layout_height="730dp"
         android:layout_gravity="center"
+        android:visibility="visible"
+
+        android:clipChildren="false"
+        android:clipToPadding="false"
         tools:context=".Activities.OtpVerification">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login_card_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:padding="10dp"
+            android:layout_width="405dp"
+            android:layout_height="730dp"
+            android:layout_margin="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="0dp"
+
+            app:cardBackgroundColor="#07FFFFFF"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_width="405dp"
+                android:layout_height="730dp"
+                android:layout_gravity="center"
+                android:background="#4DFFFFFF"
+                android:orientation="vertical"
+                android:visibility="visible"
+
+                tools:visibility="visible">
 
 
-                <ImageView
-                    android:id="@+id/login_image"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="30dp"
-                    app:srcCompat="@drawable/login_image" />
+                    android:layout_marginBottom="20dp"
+                    app:cardBackgroundColor="#0B0A0A"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageView
+                        android:id="@+id/login_image"
+                        android:layout_width="78dp"
+                        android:layout_height="89dp"
+                        android:layout_gravity="center"
+
+
+                        android:background="#E1B252"
+                        app:srcCompat="@drawable/vig" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="3dp"
+                    android:text="OTP Verification"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtOtpMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
                     android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:paddingLeft="3dp"
+                    android:layout_marginBottom="20dp"
                     android:text="Please enter the OTP"
-                    android:textSize="19sp" />
+                    android:textColor="#6A000000" />
 
                 <EditText
                     android:id="@+id/etOtp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="298dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/text_fields"
-                    android:drawableLeft="@drawable/user"
-                    android:drawablePadding="10dp"
-                    android:ems="10"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:elevation="5dp"
+                    android:paddingRight="30dp"
                     android:hint="OTP"
-                    android:inputType="phone"
-                    android:padding="10dp" />
+                    android:paddingLeft="10dp"
+                    android:textAlignment="center"
+                    android:textCursorDrawable="@drawable/shape_cursor" />
 
                 <Button
                     android:id="@+id/verify_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_width="180dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:alpha="3.0"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="10dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
                     android:background="@drawable/button_view"
-                    android:backgroundTint="#4CAF50"
-                    android:text="Verify and Sign up"
+
+                    android:text="Verify and Sign Up"
+                    android:textSize="10sp"
                     android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/edit_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_width="180dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center"
+
+                    android:layout_marginBottom="15dp"
+                    android:alpha="3.0"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="10dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
                     android:background="@drawable/button_view"
-                    android:backgroundTint="#3F51B5"
+                    android:backgroundTint="#000000"
                     android:text="Edit Mobile Number"
+                    android:textSize="10sp"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>

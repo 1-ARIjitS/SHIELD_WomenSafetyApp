@@ -2,6 +2,16 @@ package com.example.womensafety.Models;
 
 public class suspect_registered {
     String name,description,identity,mobile_num;
+    private boolean expandable;
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+    }
+
 
     public suspect_registered(String name, String description, String identity, String mobile_num) {
         this.name = name;

@@ -4,99 +4,181 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/registration_background">
+    android:orientation="vertical"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="405dp"
+        android:layout_height="730dp"
         android:layout_gravity="center"
-        tools:context=".Activities.LoginActivity">
+        android:visibility="visible"
+        tools:context=".Activities.LoginActivity"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login_card_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:padding="10dp"
+            android:layout_width="405dp"
+            android:layout_height="730dp"
+            android:layout_margin="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="0dp"
+
+            app:cardBackgroundColor="#07FFFFFF"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_width="405dp"
+                android:layout_height="730dp"
+                android:layout_gravity="center"
+                android:background="#4DFFFFFF"
+                android:orientation="vertical"
+                android:visibility="visible"
 
+                tools:visibility="visible">
 
-                <ImageView
-                    android:id="@+id/login_image"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="30dp"
-                    app:srcCompat="@drawable/login_image" />
+                    android:layout_marginTop="70dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardBackgroundColor="#0B0A0A"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageView
+                        android:id="@+id/login_image"
+                        android:layout_width="78dp"
+                        android:layout_height="89dp"
+                        android:layout_gravity="center"
+
+
+                        android:background="#E1B252"
+                        app:srcCompat="@drawable/vig" />
+
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_width="212dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+
                     android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:text="Please enter your registered username and password to login"
-                    android:textSize="18sp" />
+                    android:gravity="center_vertical"
+                    android:paddingLeft="3dp"
+                    android:text="Login"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginLeft="50dp"
+                    android:paddingLeft="3dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Please sign in to continue"
+                    android:textColor="#6A000000"
+
+                    />
+
+
 
                 <EditText
                     android:id="@+id/login_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="298dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/text_fields"
-                    android:drawableLeft="@drawable/user"
+                    android:drawableLeft="@drawable/ic_user"
                     android:drawablePadding="10dp"
-                    android:ems="10"
-                    android:hint="Username / Email"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
+                    android:elevation="5dp"
+                    android:paddingRight="30dp"
+                    android:hint="Username or Email"
+                    android:paddingLeft="10dp"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    />
 
                 <EditText
                     android:id="@+id/login_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="298dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/text_fields"
-                    android:drawableLeft="@drawable/password"
+                    android:drawableLeft="@drawable/ic_password"
                     android:drawablePadding="10dp"
-                    android:ems="10"
+                    android:elevation="5dp"
                     android:hint="Password"
+                    android:paddingLeft="10dp"
+
                     android:inputType="textPassword"
-                    android:padding="10dp" />
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    />
 
                 <Button
                     android:id="@+id/login_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:alpha="3.0"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="10dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
                     android:background="@drawable/button_view"
-                    android:backgroundTint="#4CAF50"
+
                     android:text="login"
+                    android:textSize="22sp"
                     android:textColor="#FFFFFF" />
 
-                <Button
-                    android:id="@+id/login_create_a_new_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/button_view"
-                    android:backgroundTint="#3F51B5"
-                    android:text="create a new account"
-                    android:textColor="#FFFFFF" />
+                <LinearLayout
+                    android:id="@+id/button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="45dp"
+                    android:padding="20dp"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginLeft="50dp"
+                        android:paddingLeft="3dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="Don't have an account?"
+                        android:textSize="15sp"
+                        android:textColor="#6A000000"
+
+                        />
+
+                    <Button
+                        android:id="@+id/login_create_a_new_account"
+                        android:layout_width="80dp"
+                        android:layout_height="35dp"
+
+                        android:paddingBottom="9dp"
+
+                        android:backgroundTint="#FFFFFF"
+                        android:text="Sign up"
+                        android:textColor="#F1BE3E" />
+
+
+                </LinearLayout>
 
 
             </LinearLayout>

@@ -4,13 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,17 +15,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class AboutUsActivity extends AppCompatActivity {
 
@@ -42,25 +32,22 @@ public class AboutUsActivity extends AppCompatActivity {
     TextView website;
 
     FirebaseAuth auth;
-    FirebaseDatabase database;
-    DatabaseReference reference;
 
-    View hView;
-
-    TextView Username;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
-        auth = FirebaseAuth.getInstance();
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("registered_users");
+       auth = FirebaseAuth.getInstance();
+/*        database=FirebaseDatabase.getInstance();
+        reference=database.getReference("registered_users");*/
 
         linked_in = findViewById(R.id.linkedin);
         instagram = findViewById(R.id.instagram);
@@ -74,10 +61,6 @@ public class AboutUsActivity extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -94,17 +77,28 @@ public class AboutUsActivity extends AppCompatActivity {
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(AboutUsActivity.this, SuspectListActivity.class));
                         break;
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(AboutUsActivity.this, EmergencyContactListActivity.class));
+                        break;
 
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(AboutUsActivity.this, NextTokinListActivity.class));
                         break;
 
-                    case R.id.nav_aboutUs:
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(AboutUsActivity.this, ManageActivity.class));
                         break;
 
-/*                    case R.id.nav_travelLog:
+                    case R.id.nav_settings:
+                        startActivity(new Intent(AboutUsActivity.this, SettingsActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
                         startActivity(new Intent(AboutUsActivity.this, TravelLogContent.class));
-                        break;*/
+                        break;
+
+                    case R.id.nav_aboutUs:
+                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();
@@ -156,19 +150,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         });
 
-        mobile_num.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:7774050060"));
-
-                if (ActivityCompat.checkSelfPermission(AboutUsActivity.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent);
-            }
-        });
 
         email_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +181,8 @@ public class AboutUsActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+          startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+           /* super.onBackPressed();*/
         }
     }
 
@@ -210,7 +192,7 @@ public class AboutUsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
     }
 

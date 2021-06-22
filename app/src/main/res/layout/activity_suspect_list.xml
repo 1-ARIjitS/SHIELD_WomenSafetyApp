@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/registration_background">
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#3700B3"
+
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/sus_list"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,12 +39,21 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#fff"
-                    app:titleTextColor="#fff" />
+                    app:subtitleTextColor="#000"
+                    app:titleTextColor="#000" />
 
             </LinearLayout>
 
-            <ListView
+            <!--<ListView
+                android:id="@+id/sus_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/sus_reg_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sus_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -55,12 +64,14 @@
 
             <Button
                 android:id="@+id/sus_reg_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/button_view"
-                android:text="add new suspect"
-                android:textColor="#FFFFFF"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="28dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/round_btn"
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:drawableTint="#fff"
+                android:padding="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -70,11 +81,11 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationMenu"
-        android:layout_width="match_parent"
+        android:layout_width="275dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000"
+        app:itemTextColor="@color/textColor"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>
