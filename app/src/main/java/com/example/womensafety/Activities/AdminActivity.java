@@ -1,6 +1,7 @@
 package com.example.womensafety.Activities;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
@@ -259,6 +260,7 @@ public class AdminActivity extends AppCompatActivity {
 
         /*Intent intent = new Intent(AdminActivity.this, SosService.class);*/
         sos.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.DONUT)
             @Override
             public void onClick(View v) {
                 if(sos_message_address!=null&&sos_message_latitude!=0.0&&sos_message_longitude!=0.0)
@@ -280,10 +282,13 @@ public class AdminActivity extends AppCompatActivity {
                                         .READ_PHONE_STATE}, PackageManager.PERMISSION_GRANTED);
                         }}}*/
 
+                    Log.d("sos_message",sos_message);
+
                     for(String mob_numbers:contactsList)
                     {
                         SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(/*contactsList.get(i)*/mob_numbers,null,sos_message,null,null);
+                        ArrayList<String>parts=smsManager.divideMessage(sos_message);
+                        smsManager.sendMultipartTextMessage(/*contactsList.get(i)*/mob_numbers,null,parts,null,null);
                     }
                     Toast.makeText(getApplicationContext(),"Emergency SOS Messages Sent to next to kin",Toast.LENGTH_SHORT).show();
 
@@ -383,6 +388,10 @@ public class AdminActivity extends AppCompatActivity {
                         sos_message_latitude=addressList.get(0).getLatitude();
                         sos_message_longitude=addressList.get(0).getLongitude();
                         sos_message_address=addressList.get(0).getAddressLine(0);
+
+                        Log.d("lat", String.valueOf(sos_message_latitude));
+                        Log.d("long", String.valueOf(sos_message_longitude));
+                        Log.d("address",sos_message_address);
 
                     } catch (IOException e) {
                         e.printStackTrace();
