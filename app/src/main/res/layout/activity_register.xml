@@ -452,7 +452,7 @@
                 <LinearLayout
                     android:id="@+id/button"
                     android:layout_width="fill_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:orientation="horizontal"
                     android:padding="20dp">
@@ -473,10 +473,9 @@
                     <Button
                         android:id="@+id/registration_already_an_user"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:backgroundTint="@color/bg_col"
-                        android:elevation="5dp"
-                        android:paddingBottom="9dp"
+                        android:textSize="20dp"
                         android:text="Already have an account? LOGIN"
                         android:textAllCaps="false"
                         android:textColor="@color/textColor" />
