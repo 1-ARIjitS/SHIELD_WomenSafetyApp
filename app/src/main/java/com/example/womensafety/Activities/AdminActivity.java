@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -84,6 +85,7 @@ public class AdminActivity extends AppCompatActivity {
     TextView Username;
     int counter = 0;
 
+    SharedPreferences prf;
     /*SwitchCompat dark_mode_switch;*/
     FloatingActionButton sos;
 
@@ -119,6 +121,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
 
+        prf = getSharedPreferences("user_details",MODE_PRIVATE);
         auth = FirebaseAuth.getInstance();
         cud = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         database = FirebaseDatabase.getInstance();
@@ -219,6 +222,9 @@ public class AdminActivity extends AppCompatActivity {
 
                     case R.id.nav_logout:
                         auth.signOut();
+                        SharedPreferences.Editor editor = prf.edit();
+                        editor.putBoolean("isLogin",false);
+                        editor.apply();
                         startActivity(new Intent(AdminActivity.this, LoginActivity.class));
                         finish();
                         break;

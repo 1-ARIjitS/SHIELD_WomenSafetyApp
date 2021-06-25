@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,23 +30,18 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
 
     Button create_an_account_button;
-
     EditText username;
-
     EditText password;
-
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference adminReference;
     DatabaseReference superAdminReference;
-
     Button login;
-
     String mUser, mPass;
     Boolean isAdmin = false;
     Boolean isSuperAdmin = false;
-
     ProgressBar progress;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         adminReference = database.getReference("registered_admins");
+        pref = getSharedPreferences("user_details",MODE_PRIVATE);
+
+        boolean isLogin=pref.getBoolean("isLogin",false);
+
+        if(isLogin){
+            Toast.makeText(getApplicationContext(), "User already login!",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+        }
+
         superAdminReference = database.getReference("registered_super_admins");
 
         create_an_account_button = (Button) findViewById(R.id.login_create_a_new_account);
@@ -128,6 +133,9 @@ public class LoginActivity extends AppCompatActivity {
                                 } else if (isAdmin) {
                                     startActivity(new Intent(LoginActivity.this, AdminHomepageActivity.class));
                                 } else {
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putBoolean("isLogin",true);
+                                    editor.apply();
                                     startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                                 }
                                 Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
