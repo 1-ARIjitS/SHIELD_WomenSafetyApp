@@ -236,9 +236,9 @@ public class SuperAdminPostAdapter extends RecyclerView.Adapter<SuperAdminPostAd
 
     public class superadminPostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView username, date, caption, postLikes, share_text, comment_text,edit_button;
+        TextView username, date, caption, postLikes,edit_button;
 
-        ImageView imageView, likePic;
+        ImageView imageView, likePic,share_text, comment_text;
 
         /*Button delete_button,edit_button;*/
 
@@ -251,9 +251,9 @@ public class SuperAdminPostAdapter extends RecyclerView.Adapter<SuperAdminPostAd
 
             likePic = (ImageView) mView.findViewById(R.id.likes_image_button);
 
-            share_text = (TextView) mView.findViewById(R.id.share_feature);
+            share_text = (ImageView) mView.findViewById(R.id.share_feature);
 
-            comment_text = (TextView) mView.findViewById(R.id.comment_feature);
+            comment_text = (ImageView) mView.findViewById(R.id.comment_feature);
 
             edit_button=(TextView)mView.findViewById(R.id.edit_post);
 

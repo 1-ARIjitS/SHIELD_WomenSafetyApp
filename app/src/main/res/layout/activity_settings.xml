@@ -9,6 +9,7 @@
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
     tools:context=".Activities.SettingsActivity"
+    android:background="@color/bg_col"
     tools:openDrawer="start">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,8 +29,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:subtitleTextColor="#000"
-                app:titleTextColor="#000" />
+                app:titleTextColor="@color/textColor"
+                android:background="@color/bg_col" />
 
         </LinearLayout>
 
@@ -62,8 +63,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif"
-                    android:textStyle="bold"
                     android:text="@string/text"
+                    android:textColor="@color/textColor"
                     android:textSize="20sp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -92,7 +93,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>

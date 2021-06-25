@@ -12,14 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#ffffff"
-        app:cardCornerRadius="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+
+
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
         android:elevation="5dp"
+        app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,37 +37,42 @@
                 android:id="@+id/kin_name"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:background="@color/bg_col"
+                android:drawableLeft="@drawable/ic_user"
+                android:drawableRight="@drawable/ic_drop_down"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/textColor"
                 android:fontFamily="sans-serif"
                 android:padding="10dp"
-                android:drawableLeft="@drawable/ic_user"
-                android:drawablePadding="10dp"
-                android:background="@drawable/text_fields"
-                android:drawableRight="@drawable/ic_drop_down"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 tools:text="Name" />
 
             <RelativeLayout
+                android:id="@+id/expandable_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/expandable_layout">
+                android:background="@color/bg_col">
 
                 <TextView
                     android:id="@+id/kin_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@color/bg_col"
                     android:drawableLeft="@drawable/ic_call"
                     android:drawablePadding="10dp"
-                    android:textColor="#6A000000"
-                    android:background="#fff"
+                    android:drawableTint="@color/textColor"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     tools:text="mobile number" />
 
             </RelativeLayout>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -108,7 +108,6 @@ public class EmergencyContactListActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_emergencyContacts:
-                        //startActivity(new Intent(EmergencyContactListActivity.this, EmergencyContactListActivity.class));
                         break;
 
                     case R.id.nav_travelLog:
@@ -119,7 +118,6 @@ public class EmergencyContactListActivity extends AppCompatActivity {
                         auth.signOut();
                         startActivity(new Intent(EmergencyContactListActivity.this, LoginActivity.class));
                         finish();
-                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -150,7 +148,8 @@ public class EmergencyContactListActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+            /*super.onBackPressed();*/
         }
     }
 
@@ -160,12 +159,8 @@ public class EmergencyContactListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        try {
-            drawerLayout.addDrawerListener(actionBarDrawerToggle);
-            actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
-        } catch (NullPointerException ignored) {
-
-        }
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         //drawerLayout.addDrawerListener(actionBarDrawerToggle);
         //actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();

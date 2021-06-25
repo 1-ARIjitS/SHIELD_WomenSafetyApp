@@ -12,12 +12,13 @@
         android:id="@+id/user_tracking_fragment_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/archivo_narrow"
+        android:background="@color/bg_col"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:padding="10dp"
         android:text="User Tracking"
-        android:textColor="@color/black"
-        android:textSize="60sp"
+        android:textColor="@color/textColor"
+        android:textSize="50sp"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent" />
@@ -38,8 +39,8 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/bg_col"
         android:orientation="horizontal"
-        android:background="#E6E5E5"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent">
@@ -53,7 +54,7 @@
             android:background="@drawable/button_view"
 
             android:text="reached safely"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/textColor" />
 
         <Button
             android:id="@+id/save_travel_log"
@@ -64,7 +65,7 @@
             android:background="@drawable/button_view"
 
             android:text="save travel log"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/textColor" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

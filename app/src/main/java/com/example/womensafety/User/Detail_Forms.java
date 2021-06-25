@@ -42,11 +42,14 @@ import android.widget.Toast;
 import com.example.womensafety.Activities.AboutUsActivity;
 import com.example.womensafety.Activities.AddingPostActivity;
 import com.example.womensafety.Activities.AdminActivity;
+import com.example.womensafety.Activities.EmergencyContactListActivity;
 import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.Activities.ManageActivity;
 import com.example.womensafety.Activities.NextTokinListActivity;
+import com.example.womensafety.Activities.SettingsActivity;
 import com.example.womensafety.Activities.SuspectListActivity;
 import com.example.womensafety.Activities.TrackingActivity;
+import com.example.womensafety.Activities.TravelLogContent;
 import com.example.womensafety.Activities.TravellingAloneVehicleImageActivity;
 import com.example.womensafety.Activities.UserTrackingFragment;
 import com.example.womensafety.User.LocationConstants;
@@ -320,25 +323,36 @@ public class Detail_Forms extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.nav_home:
-                        startActivity(new Intent(Detail_Forms.this, AdminActivity.class));
+                        startActivity( new Intent(Detail_Forms.this, AdminActivity.class));
                         break;
-
                     case R.id.travellingALone:
                         break;
 
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(Detail_Forms.this, SuspectListActivity.class));
                         break;
+
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(Detail_Forms.this, NextTokinListActivity.class));
                         break;
 
+                    case R.id.nav_aboutUs:
+                        startActivity(new Intent(Detail_Forms.this, AboutUsActivity.class));
+                        break;
+
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(Detail_Forms.this, EmergencyContactListActivity.class));
+                        break;
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(Detail_Forms.this, SettingsActivity.class));
+                        break;
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(Detail_Forms.this, ManageActivity.class));
                         break;
 
-                    case R.id.nav_aboutUs:
-                        startActivity(new Intent(Detail_Forms.this, AboutUsActivity.class));
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(Detail_Forms.this, TravelLogContent.class));
                         break;
 
                     case R.id.nav_logout:
@@ -571,7 +585,8 @@ public class Detail_Forms extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+            /*super.onBackPressed();*/
         }
     }
 
@@ -581,7 +596,7 @@ public class Detail_Forms extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 

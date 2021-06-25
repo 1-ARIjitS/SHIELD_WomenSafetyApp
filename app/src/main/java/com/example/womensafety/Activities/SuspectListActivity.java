@@ -92,11 +92,10 @@ public class SuspectListActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.nav_home:
-                        startActivity(new Intent(SuspectListActivity.this, AdminActivity.class));
+                        startActivity( new Intent(SuspectListActivity.this, AdminActivity.class));
                         break;
-
                     case R.id.travellingALone:
-                        startActivity(new Intent(SuspectListActivity.this, Detail_Forms.class));
+                        startActivity( new Intent(SuspectListActivity.this, Detail_Forms.class));
                         break;
 
                     case R.id.nav_suspectRegistration:
@@ -110,20 +109,19 @@ public class SuspectListActivity extends AppCompatActivity {
                         startActivity(new Intent(SuspectListActivity.this, AboutUsActivity.class));
                         break;
 
-                    case R.id.nav_settings:
-                        startActivity(new Intent(SuspectListActivity.this, SettingsActivity.class));
-                        break;
-
                     case R.id.nav_emergencyContacts:
                         startActivity(new Intent(SuspectListActivity.this, EmergencyContactListActivity.class));
                         break;
 
-                    case R.id.nav_travelLog:
-                        startActivity(new Intent(SuspectListActivity.this, TravelLogContent.class));
+                    case R.id.nav_settings:
+                        startActivity(new Intent(SuspectListActivity.this, SettingsActivity.class));
                         break;
-
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(SuspectListActivity.this, ManageActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(SuspectListActivity.this, TravelLogContent.class));
                         break;
 
                     case R.id.nav_logout:
@@ -180,7 +178,8 @@ public class SuspectListActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+            /*super.onBackPressed();*/
         }
     }
 
@@ -190,7 +189,7 @@ public class SuspectListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

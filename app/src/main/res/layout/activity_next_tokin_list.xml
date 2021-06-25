@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_col"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
     tools:context=".Activities.NextTokinListActivity"
@@ -14,8 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,7 +29,7 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:background="#fff"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/next_to_kin_list"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,21 +40,39 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000" />
+                    app:titleTextColor="@color/textColor"
+                    android:background="@color/bg_col" />
 
             </LinearLayout>
 
-            <!--<ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/next_to_kin_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@+id/add_next_to_kin_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />-->
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <Button
+                android:id="@+id/add_next_to_kin_button"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/round_btn"
+                android:backgroundTint="#00C853"
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:drawableTint="#fff"
+                android:elevation="10dp"
+                android:padding="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+            <!--
+            <ListView
                 android:id="@+id/next_to_kin_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -66,18 +83,16 @@
 
             <Button
                 android:id="@+id/add_next_to_kin_button"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_marginBottom="28dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/round_btn"
-                android:drawableLeft="@drawable/ic_baseline_add_24"
-                android:drawableTint="#fff"
-                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_view"
+                android:text="add new next to kin"
+                android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
+                -->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,10 +102,103 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+
+
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <androidx.drawerlayout.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:minWidth="20dp"
+        tools:context=".Activities.NextTokinListActivity"
+        tools:openDrawer="start">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/registration_background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#3700B3"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/next_to_kin_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:subtitleTextColor="#fff"
+                        app:titleTextColor="#fff" />
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/next_to_kin_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/add_next_to_kin_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+                <Button
+                    android:id="@+id/add_next_to_kin_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/button_view"
+                    android:text="add new next to kin"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/header"
+            app:itemTextColor="#000"
+            app:menu="@menu/menu">
+
+        </com.google.android.material.navigation.NavigationView>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+    -->

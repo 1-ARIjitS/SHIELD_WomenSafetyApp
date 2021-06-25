@@ -194,9 +194,9 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
     public class postViewHolder extends RecyclerView.ViewHolder {
 
-        TextView username, date, caption, postLikes, share_text, comment_text;
+        TextView username, date, caption, postLikes;
 
-        ImageView imageView, likePic;
+        ImageView imageView, likePic, share_text, comment_text;
 
         View mView;
 
@@ -207,9 +207,9 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
             likePic = (ImageView) mView.findViewById(R.id.likes_image_button);
 
-            share_text = (TextView) mView.findViewById(R.id.share_feature);
+            share_text = (ImageView) mView.findViewById(R.id.share_feature);
 
-            comment_text = (TextView) mView.findViewById(R.id.comment_feature);
+            comment_text = (ImageView) mView.findViewById(R.id.comment_feature);
 
         }
 

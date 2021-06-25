@@ -19,37 +19,43 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="@color/textColor"
+                    android:background="@color/bg_col"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:titleTextColor="@color/textColor" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--<include layout="@layout/custom_toolbar"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/bg_col">
 
                 <ImageView
                     android:id="@+id/cybertron_logo"
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
-                    android:layout_margin="10dp"
+                    android:layout_height="350dp"
+                    android:layout_marginTop="10dp"
                     app:srcCompat="@drawable/cybertron_logo" />
 
                 <TextView
                     android:id="@+id/about_us_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="sans-serif-condensed-medium"
@@ -57,9 +63,8 @@
                     android:padding="10dp"
                     android:text="@string/this_applicaton_is_developed_amp_powered_by_cybertron_software_s_if_you_have_any_query_issue_or_inquiry_related_to_this_application_please_feel_free_to_contact_us_on_the_following_links"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
-                <!--
                 <TextView
                     android:id="@+id/contct_us_text"
                     android:layout_width="match_parent"
@@ -68,10 +73,9 @@
                     android:layout_marginRight="10dp"
                     android:padding="10dp"
                     android:text="Contact Us -"
-                    android:textColor="#388F3C"
+                    android:textColor="#00C853"
                     android:textSize="24sp"
                     android:textStyle="bold" />
-                    -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,9 +86,9 @@
 
                     <ImageView
                         android:id="@+id/imageView5"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_call" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/phone" />
 
                     <TextView
                         android:id="@+id/about_us_phone"
@@ -93,8 +97,8 @@
                         android:layout_gravity="center"
                         android:paddingLeft="20dp"
                         android:text="7774050060"
-                        android:textColor="#6A000000"
-                        android:textSize="18sp"
+                        android:textColor="#2962FF"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -107,10 +111,10 @@
 
                     <ImageView
                         android:id="@+id/email_image"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_email" />
+                        app:srcCompat="@drawable/em" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -125,8 +129,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:text="cybertronsoftwares@gmail.com"
-                            android:textColor="#6A000000"
-                            android:textSize="18sp"
+                            android:textColor="#2962FF"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -134,8 +138,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="info@cybertronsoftwares.com"
-                            android:textColor="#6A000000"
-                            android:textSize="18sp"
+                            android:textColor="#2962FF"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -149,9 +153,9 @@
 
                     <ImageView
                         android:id="@+id/www"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_contact_support" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/worldwide" />
 
                     <TextView
                         android:id="@+id/website"
@@ -160,8 +164,8 @@
                         android:layout_gravity="center"
                         android:paddingLeft="20dp"
                         android:text="cybertronsoftwares.com"
-                        android:textColor="#6A000000"
-                        android:textSize="18sp"
+                        android:textColor="#2962FF"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -175,21 +179,21 @@
                     <ImageView
                         android:id="@+id/linkedin"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/linkedin" />
 
                     <ImageView
                         android:id="@+id/facebook"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/facebook" />
 
                     <ImageView
                         android:id="@+id/instagram"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/instagram" />
                 </LinearLayout>
@@ -204,7 +208,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>

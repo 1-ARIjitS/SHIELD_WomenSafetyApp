@@ -8,13 +8,13 @@
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
     tools:context=".Activities.AdminActivity"
+    android:background="@color/bg_col"
     tools:openDrawer="start">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_col">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -40,6 +40,7 @@
             android:id="@+id/post_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/bg_col"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -72,7 +73,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
 
 
@@ -82,10 +83,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="10dp"
-            android:background="@drawable/gradient"
-
             android:clickable="true"
-            android:src="@drawable/sos_alert" />
+            android:src="@drawable/sos_alert"
+            android:tint="@color/white"
+            android:backgroundTint="#D50000"/>
     </com.google.android.material.navigation.NavigationView>
 
 

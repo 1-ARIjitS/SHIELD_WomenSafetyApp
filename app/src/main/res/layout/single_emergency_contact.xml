@@ -19,6 +19,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/bg_col"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -26,35 +27,51 @@
                 android:id="@+id/emergency_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/bg_col"
+                android:drawableLeft="@drawable/ic_user"
+                android:drawableRight="@drawable/ic_drop_down"
+                android:drawablePadding="10dp"
                 android:fontFamily="sans-serif"
                 android:padding="10dp"
-                android:background="@drawable/text_fields"
-                android:drawableRight="@drawable/ic_drop_down"
-                android:drawableLeft="@drawable/ic_user"
-                android:drawablePadding="10dp"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
+                app:drawableTint="@color/textColor"
                 tools:text="service" />
 
             <RelativeLayout
+                android:id="@+id/expandable_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/expandable_layout">
+                android:background="@color/bg_col">
 
                 <TextView
                     android:id="@+id/emergency_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
+                    android:layout_marginLeft="30dp"
+                    android:background="@color/bg_col"
                     android:drawableLeft="@drawable/ic_call"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif"
                     android:padding="10dp"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
-                    android:textColor="#6A000000"
+                    app:drawableTint="@color/textColor"
                     tools:text="contact" />
 
             </RelativeLayout>
 
+            <!--
+            <TextView
+                android:id="@+id/emergency_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:padding="10dp"
+                android:textColor="@color/textColor"
+                android:textSize="24sp"
+                tools:text="contact" />
+                -->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

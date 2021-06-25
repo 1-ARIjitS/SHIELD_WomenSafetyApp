@@ -1,9 +1,8 @@
 package com.example.womensafety.Activities;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.SwitchCompat;
@@ -14,9 +13,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -28,14 +26,12 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.womensafety.Adapters.postAdapter;
 import com.example.womensafety.Services.SosService;
 import com.example.womensafety.User.Detail_Forms;
@@ -44,17 +40,17 @@ import com.example.womensafety.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -68,7 +64,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +86,7 @@ public class AdminActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
     DatabaseReference kinContacts;
+    DatabaseReference uvcReference;
     FirebaseFirestore firestore;
     RecyclerView post_rec;
     FloatingActionButton fab;
@@ -113,6 +109,10 @@ public class AdminActivity extends AppCompatActivity {
 
     public ListenerRegistration listenerRegistration;
 
+    String unique_verification_code;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +123,7 @@ public class AdminActivity extends AppCompatActivity {
         cud = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("registered_users");
+        uvcReference = database.getReference("registered_users").child(cud);
         kinContacts = database.getReference("Next To kin").child(cud);
         firestore = FirebaseFirestore.getInstance();
 
@@ -180,6 +181,19 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
+        uvcReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                unique_verification_code= Objects.requireNonNull(snapshot.child("mUVC").getValue()).toString();
+                Log.d("uvc_db",unique_verification_code);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -188,10 +202,7 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         break;
                     case R.id.travellingALone:
-                        startActivity(new Intent(AdminActivity.this, Detail_Forms.class));
-                        break;
-                    case R.id.nav_travelLog:
-                        startActivity(new Intent(AdminActivity.this, TravelLogContent.class));
+                        startActivity( new Intent(AdminActivity.this, Detail_Forms.class));
                         break;
 
                     case R.id.nav_suspectRegistration:
@@ -202,12 +213,12 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminActivity.this, NextTokinListActivity.class));
                         break;
 
-                    case R.id.nav_emergencyContacts:
-                        startActivity(new Intent(AdminActivity.this, EmergencyContactListActivity.class));
-                        break;
-
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(AdminActivity.this, AboutUsActivity.class));
+                        break;
+
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(AdminActivity.this, EmergencyContactListActivity.class));
                         break;
 
                     case R.id.nav_settings:
@@ -215,6 +226,10 @@ public class AdminActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(AdminActivity.this, ManageActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(AdminActivity.this, TravelLogContent.class));
                         break;
 
                     case R.id.nav_logout:
@@ -258,17 +273,36 @@ public class AdminActivity extends AppCompatActivity {
                 }).check();
 
         /*Intent intent = new Intent(AdminActivity.this, SosService.class);*/
+
+        //sos fab button operations start here
         sos.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.DONUT)
             @Override
             public void onClick(View v) {
-                if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0) {
-                    sos_message = "HELP!!!" + "\n"
-                            + "SHIELD SOS SERVICE " + "\n"
-                            + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
-                            + "LATITUDE:- " + sos_message_latitude + "\n"
-                            + "LONGITUDE:- " + sos_message_longitude + "\n"
-                            + "CURRENT LOCATION:- " + sos_message_address;
+
+                //close navigation drawer
+                drawerLayout.closeDrawer(GravityCompat.START);
+
+                //popup message for verifying uvc starts here
+
+                EditText uvc=new EditText(v.getContext());
+                uvc.setHint("Unique Verification Code");
+                AlertDialog.Builder uvc_verification=new AlertDialog.Builder(v.getContext());
+                uvc_verification.setTitle("ARE YOU SURE,YOU WANT TO SEND AN SOS MESSAGE?");
+                uvc_verification.setMessage("Enter your Unique Verification Code to send an SOS message");
+                uvc_verification.setView(uvc);
+
+                uvc_verification.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String uvcEntered=uvc.getText().toString();
+                        if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0 && uvcEntered.equals(unique_verification_code)) {
+                            sos_message = "HELP!!!" + "\n"
+                                    + "SHIELD SOS SERVICE " + "\n"
+                                    + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
+                                    + "LATITUDE:- " + sos_message_latitude + "\n"
+                                    + "LONGITUDE:- " + sos_message_longitude + "\n"
+                                    + "CURRENT LOCATION:- " + sos_message_address;
                     /*for(int i=0;i<contactsList.size();i++) {
                         try{*/
                        /* }catch (Exception e)
@@ -280,18 +314,61 @@ public class AdminActivity extends AppCompatActivity {
                                         .READ_PHONE_STATE}, PackageManager.PERMISSION_GRANTED);
                         }}}*/
 
+                            Log.d("sos_message", sos_message);
+                            Toast.makeText(getApplicationContext(), "Sending SOS Messages .....", Toast.LENGTH_SHORT).show();
+                            for (String mob_numbers : contactsList) {
+                                SmsManager smsManager = SmsManager.getDefault();
+                                ArrayList<String> parts = smsManager.divideMessage(sos_message);
+                                smsManager.sendMultipartTextMessage(mob_numbers, null, parts, null, null);
+                            }
+                            Toast.makeText(getApplicationContext(), "Emergency SOS Messages Sent", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Message can not be sent,please check if location is turned on", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                uvc_verification.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //close
+                    }
+                });
+
+                uvc_verification.create().show();
+
+
+                /*if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0) {
+                    sos_message = "HELP!!!" + "\n"
+                            + "SHIELD SOS SERVICE " + "\n"
+                            + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
+                            + "LATITUDE:- " + sos_message_latitude + "\n"
+                            + "LONGITUDE:- " + sos_message_longitude + "\n"
+                            + "CURRENT LOCATION:- " + sos_message_address;
+                    *//*for(int i=0;i<contactsList.size();i++) {
+                        try{*//*
+                       *//* }catch (Exception e)
+                        {
+                            if (e.toString().contains(Manifest.permission.READ_PHONE_STATE) && ContextCompat
+                                    .checkSelfPermission(AdminActivity.this, Manifest.permission.READ_PHONE_STATE)!=
+                                    PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(AdminActivity.this, new String[] {Manifest.permission
+                                        .READ_PHONE_STATE}, PackageManager.PERMISSION_GRANTED);
+                        }}}*//*
+
                     Log.d("sos_message", sos_message);
 
                     for (String mob_numbers : contactsList) {
                         SmsManager smsManager = SmsManager.getDefault();
                         ArrayList<String> parts = smsManager.divideMessage(sos_message);
-                        smsManager.sendMultipartTextMessage(/*contactsList.get(i)*/mob_numbers, null, parts, null, null);
+                        smsManager.sendMultipartTextMessage(*//*contactsList.get(i)*//*mob_numbers, null, parts, null, null);
                     }
                     Toast.makeText(getApplicationContext(), "Emergency SOS Messages Sent to next to kin", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Message can not be sent", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
 

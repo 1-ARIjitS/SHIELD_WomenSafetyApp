@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
-
+    android:background="@color/bg_col"
     android:id="@+id/drawerLayout"
     tools:context=".Activities.ManageActivity">
 
@@ -33,8 +33,8 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000" />
+                    android:background="@color/bg_col"
+                    app:titleTextColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -65,7 +65,7 @@
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_profile" />
+                        app:srcCompat="@drawable/woman" />
 
 
                 </androidx.cardview.widget.CardView>
@@ -74,25 +74,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/user_name"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="25dp" />
+                        android:layout_marginLeft="25dp"
+                        android:text="@string/user_name"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/etUserName"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
                         android:text="ABCD"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,23 +104,22 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/full_name"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="25dp"
-                        />
+                        android:text="@string/full_name"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etFullName"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
-
+                        android:layout_marginLeft="10dp"
                         android:text="Ab Cd"
-                        android:textColor="@color/black"
-                        />
+
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -131,23 +131,22 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/email"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="25dp"
-                        />
+                        android:text="@string/email"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etEmail"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
-
+                        android:layout_marginLeft="10dp"
                         android:text="abcd@gmail.com"
-                        android:textColor="@color/black"
-                        />
+
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -159,23 +158,22 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/age"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="25dp"
-                        />
+                        android:text="@string/age"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etAge"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
-
+                        android:layout_marginLeft="10dp"
                         android:text="15"
-                        android:textColor="@color/black"
-                        />
+
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -187,23 +185,22 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/mobile"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="25dp"
-                        />
+                        android:text="@string/mobile"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etMobile"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
-
+                        android:layout_marginLeft="10dp"
                         android:text="123456789"
-                        android:textColor="@color/black"
-                        />
+
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -215,21 +212,21 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/country"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="25dp" />
+                        android:layout_marginLeft="25dp"
+                        android:text="@string/country"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etCountry"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
                         android:text="123456789"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -241,22 +238,21 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="State"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:layout_marginLeft="25dp"
-                        />
+                        android:text="State"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etState"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
                         android:text="123456789"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -268,22 +264,21 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="City"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:layout_marginLeft="25dp"
-                        />
+                        android:text="City"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/etCity"
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
                         android:text="123456789"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -532,11 +527,11 @@
                 android:id="@+id/btnChangePass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_view"
-                android:text="@string/change_password"
-                android:textColor="@color/white"
-                android:padding="12dp"
                 android:layout_marginTop="310dp"
+                android:background="@drawable/button_view"
+                android:padding="12dp"
+                android:text="@string/change_password"
+                android:textColor="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -548,11 +543,11 @@
                 android:id="@+id/btnChangeVerificationCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_view"
-                android:text="@string/change_verification_code"
-                android:textColor="@color/white"
-                android:padding="12dp"
                 android:layout_marginTop="500dp"
+                android:background="@drawable/button_view"
+                android:padding="12dp"
+                android:text="@string/change_verification_code"
+                android:textColor="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -570,7 +565,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>

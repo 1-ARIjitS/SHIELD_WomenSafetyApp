@@ -12,7 +12,8 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/bg_col">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,8 +30,8 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000"/>
+                    app:titleTextColor="@color/textColor"
+                    android:background="@color/bg_col"/>
 
             </LinearLayout>
 
@@ -49,12 +50,11 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
-
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center_vertical"
                     android:paddingLeft="3dp"
                     android:text="@string/vehicle_number"
-                    android:textColor="#000000"
+                    android:textColor="@color/textColor"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     />
@@ -68,6 +68,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/text_fields"
                     android:elevation="5dp"
+                    android:textColor="@color/black"
                     android:hint="Enter Vehicle Number"
                     android:paddingLeft="15dp"
                     android:textCursorDrawable="@drawable/shape_cursor"
@@ -187,7 +188,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     />
 
@@ -216,7 +217,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
 
                 <!--
@@ -259,7 +260,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:textColor="#000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     android:visibility="gone" />
 
@@ -276,7 +277,7 @@
                     android:fontFamily="serif"
                     android:text="Start"
                     android:textAllCaps="false"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -362,7 +363,7 @@
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor">
+        app:itemTextColor="@color/black">
 
     </com.google.android.material.navigation.NavigationView>
 

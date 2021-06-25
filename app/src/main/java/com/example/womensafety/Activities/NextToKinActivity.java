@@ -82,6 +82,10 @@ public class NextToKinActivity extends AppCompatActivity {
                         startActivity(new Intent(NextToKinActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(NextToKinActivity.this, ManageActivity.class));
+                        break;
+
                     case R.id.nav_emergencyContacts:
                         startActivity(new Intent(NextToKinActivity.this, EmergencyContactListActivity.class));
                         break;
@@ -90,9 +94,6 @@ public class NextToKinActivity extends AppCompatActivity {
                         startActivity(new Intent(NextToKinActivity.this, TravelLogContent.class));
                         break;
 
-                    case R.id.nav_manageAccount:
-                        startActivity(new Intent(NextToKinActivity.this, ManageActivity.class));
-                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();
@@ -154,7 +155,7 @@ public class NextToKinActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

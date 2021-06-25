@@ -13,7 +13,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="50dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,97 +23,82 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout">
+            android:background="@color/bg_col"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/each_travel_log_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:padding="10dp"
-                android:textSize="20sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:paddingLeft="10dp"
                 android:textColor="@color/textColor"
-                tools:text="Date"
-                android:drawableRight="@drawable/ic_drop_down"
-                android:drawablePadding="10dp" />
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:text="Date" />
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/each_travel_log_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/expandable_layout">
+                android:fontFamily="sans-serif-condensed"
+                android:paddingLeft="10dp"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="normal|italic"
+                tools:text="Estimated Time" />
 
-                <TextView
-                    android:id="@+id/each_travel_log_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:textSize="18sp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/textColor"
-                    tools:text="Estimated Time" />
+            <ImageView
+                android:id="@+id/each_trael_log_vehicle_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                tools:srcCompat="@tools:sample/avatars" />
 
-                <ImageView
-                    android:id="@+id/each_trael_log_vehicle_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_below="@+id/each_travel_log_time"
-                    tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/each_travel_log_vehicle_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                tools:text="vehicle number" />
 
-                <TextView
-                    android:id="@+id/each_travel_log_vehicle_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:gravity="center"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
-                    android:textSize="17sp"
-                    tools:text="vehicle number"
-                    android:layout_below="@+id/each_trael_log_vehicle_image"/>
-                <TextView
-                    android:id="@+id/each_travel_log_actual_arrival_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+            <TextView
+                android:id="@+id/each_travel_log_actual_arrival_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                tools:text="actual arrival time" />
 
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
-                    android:textSize="17sp"
-                    tools:text="actual arrival time"
-                    android:layout_below="@+id/each_travel_log_vehicle_number" />
+            <TextView
+                android:id="@+id/each_travel_log_travelling_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                tools:text="travelling from" />
 
-                <TextView
-                    android:id="@+id/each_travel_log_travelling_from"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
-                    android:textSize="17sp"
-                    tools:text="travelling from"
-                    android:layout_below="@+id/each_travel_log_actual_arrival_time" />
-                <TextView
-                    android:id="@+id/each_travel_log_travelling_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
-                    android:textSize="17sp"
-                    tools:text="travelling to"
-                    android:layout_below="@id/each_travel_log_travelling_from" />
+            <TextView
+                android:id="@+id/each_travel_log_travelling_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/textColor"
+                android:textSize="17sp"
+                tools:text="travelling to" />
 
-            </RelativeLayout>
-
-
-            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

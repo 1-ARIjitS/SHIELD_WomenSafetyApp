@@ -62,23 +62,22 @@ public class SettingsActivity extends AppCompatActivity {
                         startActivity(new Intent(SettingsActivity.this, NextTokinListActivity.class));
                         break;
 
-                    case R.id.nav_emergencyContacts:
-                        startActivity(new Intent(SettingsActivity.this, EmergencyContactListActivity.class));
-                        break;
-
                     case R.id.nav_aboutUs:
                         startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
                         break;
 
-                    case R.id.nav_travelLog:
-                        startActivity(new Intent(SettingsActivity.this, TravelLogContent.class));
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(SettingsActivity.this, EmergencyContactListActivity.class));
                         break;
 
+                    case R.id.nav_settings:
+                        break;
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(SettingsActivity.this, ManageActivity.class));
                         break;
 
-                    case R.id.nav_settings:
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(SettingsActivity.this, TravelLogContent.class));
                         break;
 
                     case R.id.nav_logout:
@@ -99,11 +98,6 @@ public class SettingsActivity extends AppCompatActivity {
         dark_mode_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
-                {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                }
-                else{
                 if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
                 {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -112,7 +106,7 @@ public class SettingsActivity extends AppCompatActivity {
                 {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
-            }}
+            }
         });
 
 
@@ -124,7 +118,8 @@ public class SettingsActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            /* super.onBackPressed();*/
+            startActivity(new Intent(getApplicationContext(),AdminActivity.class));
         }
     }
     public void setUpToolbar() {
@@ -133,7 +128,7 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

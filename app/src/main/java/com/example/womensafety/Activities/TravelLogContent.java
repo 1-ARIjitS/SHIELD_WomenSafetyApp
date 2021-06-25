@@ -73,32 +73,19 @@ public class TravelLogContent extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
-                    case R.id.nav_travelLog:
-                        startActivity(new Intent(TravelLogContent.this, TravelLog.class));
-                        break;
-
                     case R.id.nav_home:
-                        startActivity(new Intent(TravelLogContent.this, AdminActivity.class));
+                        startActivity( new Intent(TravelLogContent.this, AdminActivity.class));
                         break;
-
                     case R.id.travellingALone:
-                        startActivity(new Intent(TravelLogContent.this, Detail_Forms.class));
+                        startActivity( new Intent(TravelLogContent.this, Detail_Forms.class));
                         break;
 
                     case R.id.nav_suspectRegistration:
-                        startActivity(new Intent(TravelLogContent.this, SuspectRegistrationActivity.class));
-                        break;
-
-                    case R.id.nav_settings:
-                        startActivity(new Intent(TravelLogContent.this, SettingsActivity.class));
+                        startActivity(new Intent(TravelLogContent.this, SuspectListActivity.class));
                         break;
 
                     case R.id.nav_nextToKin:
-                        startActivity(new Intent(TravelLogContent.this, NextToKinActivity.class));
-                        break;
-
-                    case R.id.nav_manageAccount:
-                        startActivity(new Intent(TravelLogContent.this, ManageActivity.class));
+                        startActivity(new Intent(TravelLogContent.this, NextTokinListActivity.class));
                         break;
 
                     case R.id.nav_aboutUs:
@@ -107,6 +94,16 @@ public class TravelLogContent extends AppCompatActivity {
 
                     case R.id.nav_emergencyContacts:
                         startActivity(new Intent(TravelLogContent.this, EmergencyContactListActivity.class));
+                        break;
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(TravelLogContent.this, SettingsActivity.class));
+                        break;
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(TravelLogContent.this, ManageActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
                         break;
 
                     case R.id.nav_logout:
@@ -161,7 +158,8 @@ public class TravelLogContent extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            startActivity(new Intent(getApplicationContext(),AdminActivity.class));
+            /*super.onBackPressed();*/
         }
     }
     public void setUpToolbar() {
@@ -170,7 +168,7 @@ public class TravelLogContent extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }
