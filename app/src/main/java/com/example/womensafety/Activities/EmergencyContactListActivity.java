@@ -2,6 +2,7 @@ package com.example.womensafety.Activities;
 
 import android.content.Intent;
 import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,17 +47,17 @@ public class EmergencyContactListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_contact_list);
 
-        auth=FirebaseAuth.getInstance();
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("Default_Emergency_Contacts");
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Default_Emergency_Contacts");
 
-        contact_list=(RecyclerView) findViewById(R.id.emergency_contact_list);
+        contact_list = (RecyclerView) findViewById(R.id.emergency_contact_list);
         contact_list.hasFixedSize();
         contact_list.setLayoutManager(new LinearLayoutManager(this));
 
-        final ArrayList<EmergencyContacts>contactsArrayList=new ArrayList<EmergencyContacts>();
+        final ArrayList<EmergencyContacts> contactsArrayList = new ArrayList<EmergencyContacts>();
 
-        adapter=new EmergencyContactsAdapter(EmergencyContactListActivity.this,contactsArrayList);
+        adapter = new EmergencyContactsAdapter(EmergencyContactListActivity.this, contactsArrayList);
 
         contact_list.setAdapter(adapter);
 
@@ -64,7 +65,7 @@ public class EmergencyContactListActivity extends AppCompatActivity {
         try {
             setUpToolbar();
             //navigationView = findViewById(R.id.navigationMenu);
-        } catch(RuntimeException ignored) {
+        } catch (RuntimeException ignored) {
 
         }
 
@@ -126,14 +127,11 @@ public class EmergencyContactListActivity extends AppCompatActivity {
         });
 
 
-
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot conSnap : snapshot.getChildren())
-                {
-                    EmergencyContacts contacts=conSnap.getValue(EmergencyContacts.class);
+                for (DataSnapshot conSnap : snapshot.getChildren()) {
+                    EmergencyContacts contacts = conSnap.getValue(EmergencyContacts.class);
                     contactsArrayList.add(contacts);
                 }
 
@@ -165,7 +163,7 @@ public class EmergencyContactListActivity extends AppCompatActivity {
         try {
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
-        } catch(NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
 
         }
         //drawerLayout.addDrawerListener(actionBarDrawerToggle);
