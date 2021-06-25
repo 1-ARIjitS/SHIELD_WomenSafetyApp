@@ -265,7 +265,7 @@
                         android:elevation="30dp"
                         android:paddingTop="13dp"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -302,7 +302,7 @@
                         android:elevation="30dp"
                         android:paddingTop="13dp"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -340,7 +340,7 @@
                         android:elevation="30dp"
                         android:paddingTop="13dp"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="18sp" />
 
                 </LinearLayout>
