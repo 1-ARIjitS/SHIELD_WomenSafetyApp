@@ -5,6 +5,9 @@
     <color name="colorAccent">#304FFE</color>
 
     <color name="textColor">#FFFFFF</color>
-    <color name="white">#FFFFFF</color>
+    <color name="card_bg">#3A3A3C</color>
+    <color name="white">#F3F0F0</color>
+    <color name="bg_col">#000000</color>
+    <color name="login_col">#333232</color>
     <color name="black">#000000</color>
 </resources>

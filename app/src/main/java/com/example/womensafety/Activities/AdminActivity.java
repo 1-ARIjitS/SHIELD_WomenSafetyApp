@@ -138,7 +138,7 @@ public class AdminActivity extends AppCompatActivity {
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
 
-        hView = navigationView.getHeaderView(0);
+       /* hView = navigationView.getHeaderView(0);
         Username = hView.findViewById(R.id.header_username);
 
         final String cud = Objects.requireNonNull(auth.getCurrentUser()).getUid();
@@ -159,7 +159,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         //kin contacts snap from firebase realtime database
 
@@ -420,7 +420,7 @@ public class AdminActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 
