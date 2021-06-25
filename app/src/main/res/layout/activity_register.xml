@@ -246,9 +246,10 @@
                         android:layout_margin="10dp"
                         android:background="@drawable/text_fields"
                         android:drawableEnd="@drawable/ic_drop_down"
+                        android:drawableTint="@color/black"
                         android:paddingRight="10dp"
                         android:text="Country"
-                        android:textColor="@color/textColor" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="40dp"
@@ -282,9 +283,10 @@
                         android:layout_margin="10dp"
                         android:background="@drawable/text_fields"
                         android:drawableEnd="@drawable/ic_drop_down"
+                        android:drawableTint="@color/black"
                         android:paddingRight="10dp"
                         android:text="State"
-                        android:textColor="@color/textColor" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="40dp"
@@ -318,9 +320,10 @@
                         android:layout_margin="10dp"
                         android:background="@drawable/text_fields"
                         android:drawableEnd="@drawable/ic_drop_down"
+                        android:drawableTint="@color/black"
                         android:paddingRight="10dp"
                         android:text="City"
-                        android:textColor="@color/textColor" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="40dp"
