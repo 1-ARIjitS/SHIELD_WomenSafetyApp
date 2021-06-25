@@ -42,8 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
 
     String mUser, mPass;
-    Boolean isAdmin=false;
-    Boolean isSuperAdmin=false;
+    Boolean isAdmin = false;
+    Boolean isSuperAdmin = false;
 
     ProgressBar progress;
 
@@ -53,9 +53,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-        database=FirebaseDatabase.getInstance();
-        adminReference=database.getReference("registered_admins");
-        superAdminReference=database.getReference("registered_super_admins");
+        database = FirebaseDatabase.getInstance();
+        adminReference = database.getReference("registered_admins");
+        superAdminReference = database.getReference("registered_super_admins");
 
         create_an_account_button = (Button) findViewById(R.id.login_create_a_new_account);
 
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.login_button);
 
-        progress=new ProgressBar(this);
+        progress = new ProgressBar(this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,15 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                 mPass = password.getText().toString();
 
 
-
                 adminReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot admin : snapshot.getChildren())
-                        {
-                            if(admin.child("r_email").getValue().toString().equals(mUser))
-                            {
-                                isAdmin=true;
+                        for (DataSnapshot admin : snapshot.getChildren()) {
+                            if (admin.child("r_email").getValue().toString().equals(mUser)) {
+                                isAdmin = true;
                             }
                         }
                     }
@@ -98,11 +95,9 @@ public class LoginActivity extends AppCompatActivity {
                 superAdminReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot superAdmin : snapshot.getChildren())
-                        {
-                            if(superAdmin.child("s_email").getValue().toString().equals(mUser))
-                            {
-                                isSuperAdmin=true;
+                        for (DataSnapshot superAdmin : snapshot.getChildren()) {
+                            if (superAdmin.child("s_email").getValue().toString().equals(mUser)) {
+                                isSuperAdmin = true;
                             }
                         }
                     }
@@ -125,17 +120,14 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                if(isSuperAdmin)
-                                {
-                                    Intent intent=new Intent(LoginActivity.this, SuperAdminHomepage.class);
-                                    intent.putExtra("emailId",mUser);
+                                if (isSuperAdmin) {
+                                    Intent intent = new Intent(LoginActivity.this, SuperAdminHomepage.class);
+                                    intent.putExtra("emailId", mUser);
                                     startActivity(intent);
 
-                                }else if(isAdmin)
-                                {
+                                } else if (isAdmin) {
                                     startActivity(new Intent(LoginActivity.this, AdminHomepageActivity.class));
-                                }else
-                                {
+                                } else {
                                     startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                                 }
                                 Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
