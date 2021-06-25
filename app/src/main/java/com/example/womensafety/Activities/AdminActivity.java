@@ -98,10 +98,10 @@ public class AdminActivity extends AppCompatActivity {
     //location latitude and longitude
     FusedLocationProviderClient fusedLocationProviderClient;
     String sos_message_address;
-    double sos_message_latitude=0.0;
-    double sos_message_longitude=0.0;
+    double sos_message_latitude = 0.0;
+    double sos_message_longitude = 0.0;
     String kinCon;
-    List<String>contactsList;
+    List<String> contactsList;
     String sos_message;
 
     List<posts> mList;
@@ -163,14 +163,13 @@ public class AdminActivity extends AppCompatActivity {
 
         //kin contacts snap from firebase realtime database
 
-        contactsList=new ArrayList<String>();
+        contactsList = new ArrayList<String>();
         kinContacts.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot kinConSnap: snapshot.getChildren())
-                {
-                    kinCon= Objects.requireNonNull(kinConSnap.child("mobile_number").getValue()).toString();
-                    Log.d("contacts",kinCon);
+                for (DataSnapshot kinConSnap : snapshot.getChildren()) {
+                    kinCon = Objects.requireNonNull(kinConSnap.child("mobile_number").getValue()).toString();
+                    Log.d("contacts", kinCon);
                     contactsList.add(kinCon);
                 }
             }
@@ -232,7 +231,7 @@ public class AdminActivity extends AppCompatActivity {
 
         //sos service switch operations starting here
 
-        ActivityCompat.requestPermissions(AdminActivity.this,new String[]{Manifest.permission.SEND_SMS},PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(AdminActivity.this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
 
 
         Dexter.withContext(getApplicationContext())
@@ -263,13 +262,12 @@ public class AdminActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.DONUT)
             @Override
             public void onClick(View v) {
-                if(sos_message_address!=null&&sos_message_latitude!=0.0&&sos_message_longitude!=0.0)
-                {
-                    sos_message = "HELP!!!"+"\n"
-                            + "SHIELD SOS SERVICE "+"\n"
-                            + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP "+"\n"
-                            + "LATITUDE:- " + sos_message_latitude+"\n"
-                            + "LONGITUDE:- " + sos_message_longitude+"\n"
+                if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0) {
+                    sos_message = "HELP!!!" + "\n"
+                            + "SHIELD SOS SERVICE " + "\n"
+                            + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
+                            + "LATITUDE:- " + sos_message_latitude + "\n"
+                            + "LONGITUDE:- " + sos_message_longitude + "\n"
                             + "CURRENT LOCATION:- " + sos_message_address;
                     /*for(int i=0;i<contactsList.size();i++) {
                         try{*/
@@ -282,19 +280,17 @@ public class AdminActivity extends AppCompatActivity {
                                         .READ_PHONE_STATE}, PackageManager.PERMISSION_GRANTED);
                         }}}*/
 
-                    Log.d("sos_message",sos_message);
+                    Log.d("sos_message", sos_message);
 
-                    for(String mob_numbers:contactsList)
-                    {
+                    for (String mob_numbers : contactsList) {
                         SmsManager smsManager = SmsManager.getDefault();
-                        ArrayList<String>parts=smsManager.divideMessage(sos_message);
-                        smsManager.sendMultipartTextMessage(/*contactsList.get(i)*/mob_numbers,null,parts,null,null);
+                        ArrayList<String> parts = smsManager.divideMessage(sos_message);
+                        smsManager.sendMultipartTextMessage(/*contactsList.get(i)*/mob_numbers, null, parts, null, null);
                     }
-                    Toast.makeText(getApplicationContext(),"Emergency SOS Messages Sent to next to kin",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Emergency SOS Messages Sent to next to kin", Toast.LENGTH_SHORT).show();
 
-                }else
-                {
-                    Toast.makeText(getApplicationContext(),"Message can not be sent",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Message can not be sent", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -379,19 +375,18 @@ public class AdminActivity extends AppCompatActivity {
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
-                Location location=task.getResult();
-                if(location!=null)
-                {
-                    Geocoder geocoder=new Geocoder(AdminActivity.this, Locale.getDefault());
+                Location location = task.getResult();
+                if (location != null) {
+                    Geocoder geocoder = new Geocoder(AdminActivity.this, Locale.getDefault());
                     try {
-                        List<Address>addressList=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                        sos_message_latitude=addressList.get(0).getLatitude();
-                        sos_message_longitude=addressList.get(0).getLongitude();
-                        sos_message_address=addressList.get(0).getAddressLine(0);
+                        List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                        sos_message_latitude = addressList.get(0).getLatitude();
+                        sos_message_longitude = addressList.get(0).getLongitude();
+                        sos_message_address = addressList.get(0).getAddressLine(0);
 
                         Log.d("lat", String.valueOf(sos_message_latitude));
                         Log.d("long", String.valueOf(sos_message_longitude));
-                        Log.d("address",sos_message_address);
+                        Log.d("address", sos_message_address);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -414,6 +409,7 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(startMain);
         }
     }
+
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -428,14 +424,13 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_POWER) {
             counter++;
-            if (counter==3){
-                for(String mob_numbers:contactsList)
-                {
+            if (counter == 3) {
+                for (String mob_numbers : contactsList) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(/*contactsList.get(i)*/mob_numbers,null,sos_message,null,null);
+                    smsManager.sendTextMessage(/*contactsList.get(i)*/mob_numbers, null, sos_message, null, null);
                 }
-                Toast.makeText(getApplicationContext(),"Emergency SOS Messages Sent to next to kin",Toast.LENGTH_SHORT).show();
-                counter=0;
+                Toast.makeText(getApplicationContext(), "Emergency SOS Messages Sent to next to kin", Toast.LENGTH_SHORT).show();
+                counter = 0;
             }
         }
         return super.onKeyDown(keyCode, event);
