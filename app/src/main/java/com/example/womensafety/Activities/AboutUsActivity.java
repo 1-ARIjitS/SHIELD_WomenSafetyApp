@@ -39,13 +39,12 @@ public class AboutUsActivity extends AppCompatActivity {
     NavigationView navigationView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
-       auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 /*        database=FirebaseDatabase.getInstance();
         reference=database.getReference("registered_users");*/
 
@@ -181,8 +180,8 @@ public class AboutUsActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-          startActivity(new Intent(getApplicationContext(),AdminActivity.class));
-           /* super.onBackPressed();*/
+            startActivity(new Intent(getApplicationContext(), AdminActivity.class));
+            /* super.onBackPressed();*/
         }
     }
 
