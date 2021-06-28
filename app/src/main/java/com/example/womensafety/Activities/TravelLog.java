@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.womensafety.Detail_Forms;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,12 +28,11 @@ public class TravelLog extends AppCompatActivity {
 
     LinearLayout mTravelLogEvent;
 
-    View hView;
-    TextView Username;
 
     String vehicleNumber, travellingTo, travellingFrom, timeStarted, timeReached, address, date, estimatedTime;
     TextView tv_date, tv_travelFrom, tv_travelTo;
     Uri vehicleImageUri;
+
 
 
     Intent intent;
@@ -90,10 +89,6 @@ public class TravelLog extends AppCompatActivity {
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
-        Username=hView.findViewById(R.id.header_username);
-        String user=getIntent().getStringExtra("use");
-        Username.setText(user);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -124,7 +119,7 @@ public class TravelLog extends AppCompatActivity {
 
     }
 
-   /* public void openLogDialog(){
+/*    public void openLogDialog(){
         TravelLogDialog travelLogDialog = new TravelLogDialog();
         travelLogDialog.show(getSupportFragmentManager(), "Travel Log Dialog");
     }*/
@@ -143,7 +138,7 @@ public class TravelLog extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 

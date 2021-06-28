@@ -17,8 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.womensafety.Detail_Forms;
 import com.example.womensafety.R;
+import com.example.womensafety.User.Detail_Forms;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -88,6 +88,28 @@ public class ManageActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    String name= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
+                    String email= Objects.requireNonNull(snapshot.child(cud).child("mEmail_id").getValue()).toString();
+                    String age= Objects.requireNonNull(snapshot.child(cud).child("mAge").getValue()).toString();
+                    String mobile= Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
+                    String country= Objects.requireNonNull(snapshot.child(cud).child("country").getValue()).toString();
+                    String state= Objects.requireNonNull(snapshot.child(cud).child("state").getValue()).toString();
+                    String city= Objects.requireNonNull(snapshot.child(cud).child("city").getValue()).toString();
+                    password= Objects.requireNonNull(snapshot.child(cud).child("mPassword").getValue()).toString();
+                    verificationCode= Objects.requireNonNull(snapshot.child(cud).child("mUVC").getValue()).toString();
+                    etUserName.setText(name);
+                    etFullName.setText(name);
+                    etEmail.setText(email);
+                    etAge.setText(age);
+                    etMobile.setText(mobile);
+                    etCountry.setText(country);
+                    etState.setText(state);
+                    etCity.setText(city);
+                } catch(NullPointerException ignored) {
+
+                }
+                /*
                 String name= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
                 String email= Objects.requireNonNull(snapshot.child(cud).child("mEmail_id").getValue()).toString();
                 String age= Objects.requireNonNull(snapshot.child(cud).child("mAge").getValue()).toString();
@@ -105,6 +127,8 @@ public class ManageActivity extends AppCompatActivity {
                 etCountry.setText(country);
                 etState.setText(state);
                 etCity.setText(city);
+
+                 */
             }
 
             @Override
@@ -246,6 +270,17 @@ public class ManageActivity extends AppCompatActivity {
                         startActivity(new Intent(ManageActivity.this, AboutUsActivity.class));
                         break;
 
+                    case R.id.nav_settings:
+                        startActivity(new Intent(ManageActivity.this, SettingsActivity.class));
+                        break;
+
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(ManageActivity.this, EmergencyContactListActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(ManageActivity.this, TravelLogContent.class));
+                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();
@@ -275,7 +310,7 @@ public class ManageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

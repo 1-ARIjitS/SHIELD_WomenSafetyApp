@@ -14,7 +14,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/registration_background">
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,14 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#3700B3">
+            >
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:subtitleTextColor="#fff"
-                app:titleTextColor="#fff"/>
+                app:subtitleTextColor="@color/textColor"
+                app:titleTextColor="@color/textColor"/>
 
         </LinearLayout>
 
@@ -40,98 +40,142 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#0B0A0A"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/login_image"
+                    android:layout_width="78dp"
+                    android:layout_height="89dp"
+                    android:layout_gravity="center"
+
+
+                    android:background="#E1B252"
+                    app:srcCompat="@drawable/vig" />
+
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bangers"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="SUSPECT REGISTRATION"
-                android:textColor="#F3F0F8"
-                android:textSize="50sp" />
+                android:id="@+id/textView"
+                android:layout_width="340dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:paddingLeft="3dp"
+                android:text="Suspect Registration"
+                android:textColor="@color/textColor"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/suspect_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="350dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@drawable/text_fields"
-                android:ems="10"
+                android:elevation="5dp"
+
                 android:hint="Suspect Name"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
                 android:inputType="textPersonName"
-                android:padding="10dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#3A3838" />
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor" />
 
             <EditText
                 android:id="@+id/suspect_description"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@drawable/text_fields"
-                android:ems="10"
+                android:elevation="5dp"
                 android:hint="description of the suspect"
-                android:inputType="textPersonName"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="100dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#3A3838" />
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:inputType="textMultiLine"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
-                android:padding="10dp">
+
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/suspect_ccp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
+                    app:ccp_arrowColor="@color/textColor"
+                    app:ccp_contentColor="@color/textColor"
+                    app:ccpDialog_textColor="@color/textColor"
                     android:background="@drawable/text_fields"
                     android:layout_gravity="center" />
 
                 <EditText
                     android:id="@+id/suspect_phone_number"
-                    android:layout_width="match_parent"
+                    android:layout_width="215dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/text_fields"
-                    android:ems="10"
-                    android:hint="Mobile number (if any)"
+                    android:elevation="5dp"
+                    android:hint="Mobile number"
                     android:inputType="phone"
                     android:padding="10dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#3A3838" />
+                    android:paddingLeft="15dp"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/subtextcolor" />
 
             </LinearLayout>
 
             <EditText
                 android:id="@+id/suspect_specific_identity"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:layout_weight="1"
                 android:background="@drawable/text_fields"
-                android:ems="10"
+                android:elevation="5dp"
                 android:hint="specific identity of the suspect (if any)"
-                android:inputType="textPersonName"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="100dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#3A3838" />
+                android:inputType="textMultiLine"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor" />
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+                android:alpha="3.0"
                 android:background="@drawable/button_view"
-                android:backgroundTint="#B30B44"
-                android:text="register "
-                android:textColor="#FFFFFF" />
+
+                android:padding="10dp"
+                android:text="Register"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -141,12 +185,12 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationMenu"
-        android:layout_width="match_parent"
+        android:layout_width="275dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000">
+        app:itemTextColor="@color/textColor">
 
     </com.google.android.material.navigation.NavigationView>
 

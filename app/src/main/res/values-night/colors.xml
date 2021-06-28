@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#161620</color> //toolbar
+    <color name="colorPrimaryDark">#151415</color>
+    <color name="colorAccent">#304FFE</color>
+
+    <color name="textColor">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="subtextcolor">#88C5BFBF</color>
+    <color name="bckcolor">#30ffffff</color>
+    <!--
+    <color name="bckcolor">#33ffffff</color>
+    -->
+    <color name="txtfldcolor">#6A000000</color>
+    <color name="cursor">#FFFFFF</color>
+    <color name="feedbck">#003E3D3D</color>
+    <color name="feedusername">#00E4E4E4</color>
+    <color name="add">#000000</color>
+    <color name="floatcolor">#F1BE3E</color>
+    <!--
+    <color name="floatcolor">#FCA6D0F3</color>
+    -->
+    <color name="laboutbck">#434242</color>
+</resources>

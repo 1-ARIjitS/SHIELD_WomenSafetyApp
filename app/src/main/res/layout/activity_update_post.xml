@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SuperAdmin.Activities.UpdatePostActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Edit Post"
+            android:textColor="@color/textColor"
+            android:textSize="60sp" />
+
+        <EditText
+            android:id="@+id/edit_post_text_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/text_fields"
+            android:elevation="5dp"
+            android:hint="Edit Caption"
+            android:textColor="@color/textColor"
+
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="50dp" />
+
+        <Button
+            android:id="@+id/update_post_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_view"
+            android:text="Update Post"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/delete_post_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_view"
+            android:text="delete post"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>

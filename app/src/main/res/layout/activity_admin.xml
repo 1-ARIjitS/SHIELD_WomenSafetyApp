@@ -19,7 +19,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3700B3"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,23 +28,26 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:subtitleTextColor="#fff"
-                app:titleTextColor="#fff" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                app:subtitleTextColor="@color/textColor"
+                app:titleTextColor="@color/textColor" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/post_recycler"
             android:layout_width="0dp"
-            android:background="@drawable/registration_background"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_button"
@@ -52,10 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/floatcolor"
             android:clickable="true"
             android:focusable="true"
-            android:tint="#FFFFFF"
+            android:outlineSpotShadowColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
@@ -64,13 +67,24 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationMenu"
-        android:layout_width="match_parent"
+        android:layout_width="275dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000"
+        app:itemTextColor="@color/textColor"
         app:menu="@menu/menu">
 
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/sos_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="10dp"
+            android:background="@drawable/gradient"
+
+            android:clickable="true"
+            android:src="@drawable/sos_alert" />
     </com.google.android.material.navigation.NavigationView>
 
 

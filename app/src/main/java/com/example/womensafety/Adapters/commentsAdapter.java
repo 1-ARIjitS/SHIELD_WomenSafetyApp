@@ -64,8 +64,14 @@ public class commentsAdapter extends RecyclerView.Adapter<commentsAdapter.commen
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String user=snapshot.child(uid).child("full_name").getValue().toString();
-                holder.setUser(user);
+                try {
+                    String user=snapshot.child(uid).child("full_name").getValue().toString();
+                    holder.setUser(user);
+                } catch(NullPointerException ignored) {
+
+                }
+                //String user=snapshot.child(uid).child("full_name").getValue().toString();
+                //holder.setUser(user);
             }
 
             @Override

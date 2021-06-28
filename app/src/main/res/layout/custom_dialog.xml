@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Enter your Current Password"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
     <EditText
         android:id="@+id/txt_new"
@@ -16,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Enter your New Password"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
     <EditText
         android:id="@+id/txt_new2"
@@ -23,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Confirm your new Password"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +34,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
+            android:background="@drawable/button_view"
+            android:textColor="#FFF"
             android:text="Cancel"
             android:textSize="18sp"
             android:layout_weight="1"
@@ -39,8 +43,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
+            android:background="@drawable/button_view"
             android:text="Change"
+            android:textColor="#fff"
             android:textSize="18sp"
             android:layout_weight="1"
             android:id="@+id/btn_change"/>

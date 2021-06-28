@@ -4,6 +4,16 @@ public class kin_registered {
     String name;
     String mobile_number;
 
+    private boolean expandable;
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+    }
+
     public kin_registered(String name, String mobile_number) {
         this.name = name;
         this.mobile_number = mobile_number;

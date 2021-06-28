@@ -2,17 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sus_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:background="@color/bckcolor"
         app:cardCornerRadius="10dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,47 +26,79 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+
+            android:gravity="center"
+            android:id="@+id/linearLayout">
 
             <TextView
                 android:id="@+id/each_sus_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="casual"
+                android:fontFamily="sans-serif"
                 android:padding="10dp"
-                android:text="name"
-                android:textColor="#673AB7"
-                android:textSize="24sp" />
+                android:background="@drawable/text_fields"
+                android:drawableLeft="@drawable/ic_user"
+                android:textColor="@color/textColor"
+                android:drawableRight="@drawable/ic_drop_down"
 
-            <TextView
-                android:id="@+id/each_sus_description"
+                android:drawablePadding="10dp"
+                android:textSize="20sp" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:padding="10dp"
-                android:text="description"
-                android:textColor="#673AB7"
-                android:textSize="24sp" />
+                android:id="@+id/expandable_layout">
 
-            <TextView
-                android:id="@+id/each_sus_mobile_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:padding="10dp"
-                android:text="mobile number"
-                android:textColor="#673AB7"
-                android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/each_sus_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@color/txtfldcolor"
+                    android:drawableLeft="@drawable/ic_description"
+                    android:drawablePadding="10dp"
+                    android:text="Description"
+                    android:textColor="@color/subtextcolor"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/each_sus_identity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:padding="10dp"
-                android:text="identity"
-                android:textColor="#673AB7"
-                android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/each_sus_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Mobile Number"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
+                    android:layout_below="@+id/each_sus_description"
+                    android:drawableLeft="@drawable/ic_call"
+                    android:drawablePadding="10dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/each_sus_identity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Identity"
+                    android:drawableLeft="@drawable/ic_identity"
+                    android:background="@color/txtfldcolor"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/subtextcolor"
+                    android:layout_below="@+id/each_sus_mobile_number"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

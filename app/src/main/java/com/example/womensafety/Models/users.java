@@ -13,6 +13,16 @@ public class users {
     public String state;
     public String city;
 
+    private boolean expandable;
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+    }
+
 
     public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC, String country, String state, String city) {
         this.mFull_name = mFull_name;
@@ -25,6 +35,19 @@ public class users {
         this.country = country;
         this.state = state;
         this.city = city;
+    }
+
+    public users(String mFull_name, String mAge, String mEmail_id, String mMobile_number, String mAddress, String mPassword, String mUVC) {
+        this.mFull_name = mFull_name;
+        this.mAge = mAge;
+        this.mEmail_id = mEmail_id;
+        this.mMobile_number = mMobile_number;
+        this.mAddress = mAddress;
+        this.mPassword = mPassword;
+        this.mUVC = mUVC;
+    }
+
+    public users() {
     }
 
     public String getFull_name() {

@@ -23,14 +23,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#3700B3">
+                >
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#fff"
-                    app:titleTextColor="#fff"/>
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor"/>
 
             </LinearLayout>
 
@@ -55,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="#ffffff"
+                        android:textColor="@color/textColor"
                         android:fontFamily="sans-serif-condensed-medium"
                         android:layout_margin="10dp"
                         android:textStyle="bold"
@@ -72,7 +72,7 @@
                             android:id="@+id/tv_travelFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp"
                             android:fontFamily="sans-serif-condensed-medium"
                             android:textStyle="bold"
@@ -83,7 +83,7 @@
                             android:id="@+id/tv_travelTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp"
                             android:fontFamily="sans-serif-condensed-medium"
                             android:textStyle="bold"
@@ -107,12 +107,12 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationMenu"
-        android:layout_width="match_parent"
+        android:layout_width="275dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000">
+        app:itemTextColor="@color/textColor">
 
     </com.google.android.material.navigation.NavigationView>
 
