@@ -94,6 +94,9 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
             }
         });*/
 
+        //home==feeds edit page
+        //homepage==page where buttons are given to enter each activity
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,6 +118,7 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(SuperAdminDashboardActivity.this, ManageSuperAdminActivity.class));
                         break;
 
                     case R.id.superadmin_manage_users:
@@ -221,7 +225,7 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

@@ -29,8 +29,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:subtitleTextColor="#000"
-                app:titleTextColor="#000" />
+                android:background="@color/bg_col"
+                app:titleTextColor="@color/textColor" />
 
         </LinearLayout>
 
@@ -38,6 +38,7 @@
             android:id="@+id/super_admin_post_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/bg_col"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -55,7 +56,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/super_menu">
 
     </com.google.android.material.navigation.NavigationView>
