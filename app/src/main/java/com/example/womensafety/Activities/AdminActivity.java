@@ -279,13 +279,6 @@ public class AdminActivity extends AppCompatActivity {
 
         /*Intent intent = new Intent(AdminActivity.this, SosService.class);*/
 
-        sos_message = "HELP!!!" + "\n"
-                + "SHIELD SOS SERVICE " + "\n"
-                + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
-                + "LATITUDE:- " + sos_message_latitude + "\n"
-                + "LONGITUDE:- " + sos_message_longitude + "\n"
-                + "CURRENT LOCATION:- " + sos_message_address;
-
         //sos fab button operations start here
         sos.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.DONUT)
@@ -312,12 +305,12 @@ public class AdminActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         String uvcEntered=uvc.getText().toString();
                         if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0 && uvcEntered.equals(unique_verification_code)) {
-                            /*sos_message = "HELP!!!" + "\n"
+                            sos_message = "HELP!!!" + "\n"
                                     + "SHIELD SOS SERVICE " + "\n"
                                     + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
                                     + "LATITUDE:- " + sos_message_latitude + "\n"
                                     + "LONGITUDE:- " + sos_message_longitude + "\n"
-                                    + "CURRENT LOCATION:- " + sos_message_address;*/
+                                    + "CURRENT LOCATION:- " + sos_message_address;
                     /*for(int i=0;i<contactsList.size();i++) {
                         try{*/
                        /* }catch (Exception e)
@@ -564,6 +557,12 @@ public class AdminActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             String uvcEntered=uvc.getText().toString();
                             if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0 && uvcEntered.equals(unique_verification_code)) {
+                                sos_message = "HELP!!!" + "\n"
+                                        + "SHIELD SOS SERVICE " + "\n"
+                                        + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
+                                        + "LATITUDE:- " + sos_message_latitude + "\n"
+                                        + "LONGITUDE:- " + sos_message_longitude + "\n"
+                                        + "CURRENT LOCATION:- " + sos_message_address;
                                 Toast.makeText(getApplicationContext(), "Sending SOS Messages .....", Toast.LENGTH_SHORT).show();
                                 for (String mob_numbers : contactsList) {
                                     SmsManager smsManager = SmsManager.getDefault();
