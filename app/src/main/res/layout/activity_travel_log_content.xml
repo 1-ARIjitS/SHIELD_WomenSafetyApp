@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
 
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/travel_log_recycler"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,8 +30,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextColor="@color/textColor"
-                android:background="@color/bg_col" />
+                android:background="@color/bg_col"
+                app:titleTextColor="@color/textColor" />
 
         </LinearLayout>
 

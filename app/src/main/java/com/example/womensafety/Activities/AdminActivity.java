@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -22,6 +23,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.speech.RecognizerIntent;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -29,6 +31,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,6 +114,9 @@ public class AdminActivity extends AppCompatActivity {
 
     String unique_verification_code;
 
+    //speech to text values
+    public static final String HELP_SOS_STRING="help help help";
+    String result_string;
 
 
     @Override
@@ -247,8 +253,7 @@ public class AdminActivity extends AppCompatActivity {
         //sos service switch operations starting here
 
         ActivityCompat.requestPermissions(AdminActivity.this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
-
-
+        ActivityCompat.requestPermissions(AdminActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
         Dexter.withContext(getApplicationContext())
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new PermissionListener() {
@@ -274,6 +279,13 @@ public class AdminActivity extends AppCompatActivity {
 
         /*Intent intent = new Intent(AdminActivity.this, SosService.class);*/
 
+        sos_message = "HELP!!!" + "\n"
+                + "SHIELD SOS SERVICE " + "\n"
+                + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
+                + "LATITUDE:- " + sos_message_latitude + "\n"
+                + "LONGITUDE:- " + sos_message_longitude + "\n"
+                + "CURRENT LOCATION:- " + sos_message_address;
+
         //sos fab button operations start here
         sos.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.DONUT)
@@ -285,24 +297,27 @@ public class AdminActivity extends AppCompatActivity {
 
                 //popup message for verifying uvc starts here
 
-                EditText uvc=new EditText(v.getContext());
-                uvc.setHint("Unique Verification Code");
+                /*EditText uvc=new EditText(v.getContext());
+                uvc.setHint("Unique Verification Code");*/
                 AlertDialog.Builder uvc_verification=new AlertDialog.Builder(v.getContext());
-                uvc_verification.setTitle("ARE YOU SURE,YOU WANT TO SEND AN SOS MESSAGE?");
-                uvc_verification.setMessage("Enter your Unique Verification Code to send an SOS message");
-                uvc_verification.setView(uvc);
+                View mView=getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
+                EditText uvc=(EditText)mView.findViewById(R.id.uvc_edit_text);
+                Button confirm=mView.findViewById(R.id.confirm);
+                /*uvc_verification.setTitle("ARE YOU SURE,YOU WANT TO SEND AN SOS MESSAGE?");
+                uvc_verification.setMessage("Enter your Unique Verification Code to send an SOS message");*/
+                uvc_verification.setView(mView);
 
-                uvc_verification.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         String uvcEntered=uvc.getText().toString();
                         if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0 && uvcEntered.equals(unique_verification_code)) {
-                            sos_message = "HELP!!!" + "\n"
+                            /*sos_message = "HELP!!!" + "\n"
                                     + "SHIELD SOS SERVICE " + "\n"
                                     + "Here is the LATITUDE and LONGITUDE of the user along with the CURRENT LOCATION  PLEASE HELP " + "\n"
                                     + "LATITUDE:- " + sos_message_latitude + "\n"
                                     + "LONGITUDE:- " + sos_message_longitude + "\n"
-                                    + "CURRENT LOCATION:- " + sos_message_address;
+                                    + "CURRENT LOCATION:- " + sos_message_address;*/
                     /*for(int i=0;i<contactsList.size();i++) {
                         try{*/
                        /* }catch (Exception e)
@@ -326,13 +341,6 @@ public class AdminActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Message can not be sent,please check if location is turned on", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
-
-                uvc_verification.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //close
                     }
                 });
 
@@ -369,6 +377,26 @@ public class AdminActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Message can not be sent", Toast.LENGTH_SHORT).show();
                 }*/
+                    }
+                });
+
+
+        //on long press listener for google text to speech that would open up/trigger sos message for users
+
+        sos.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,Locale.getDefault());
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"speak HELP 3 Times To Trigger The SOS Message");
+                try {
+                    startActivityForResult(intent,1);
+                }catch (ActivityNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+                return false;
             }
         });
 
@@ -511,6 +539,49 @@ public class AdminActivity extends AppCompatActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK && null != data) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                result_string = result.get(0);
+
+                if(result_string.equals(HELP_SOS_STRING))
+                {
+                    //close navigation drawer
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    //open alert dialog
+                    AlertDialog.Builder uvc_verification=new AlertDialog.Builder(this);
+                    View mView=getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
+                    EditText uvc=(EditText)mView.findViewById(R.id.uvc_edit_text);
+                    Button confirm=mView.findViewById(R.id.confirm);
+                    uvc_verification.setView(mView);
+                    confirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String uvcEntered=uvc.getText().toString();
+                            if (sos_message_address != null && sos_message_latitude != 0.0 && sos_message_longitude != 0.0 && uvcEntered.equals(unique_verification_code)) {
+                                Toast.makeText(getApplicationContext(), "Sending SOS Messages .....", Toast.LENGTH_SHORT).show();
+                                for (String mob_numbers : contactsList) {
+                                    SmsManager smsManager = SmsManager.getDefault();
+                                    ArrayList<String> parts = smsManager.divideMessage(sos_message);
+                                    smsManager.sendMultipartTextMessage(mob_numbers, null, parts, null, null);
+                                }
+                                Toast.makeText(getApplicationContext(), "Emergency SOS Messages Sent", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Message can not be sent,please check if location is turned on", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    uvc_verification.create().show();}
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
 
