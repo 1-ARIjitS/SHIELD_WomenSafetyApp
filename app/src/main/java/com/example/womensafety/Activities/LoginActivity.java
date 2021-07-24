@@ -42,8 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
 
     String mUser, mPass;
-    Boolean isAdmin=false;
-    Boolean isSuperAdmin=false;
+    Boolean isAdmin = false;
+    Boolean isSuperAdmin = false;
 
     ProgressBar progress;
 
@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         {
                             if(superAdmin.child("s_email").getValue().toString().equals(mUser))
                             {
-                                isSuperAdmin=true;
+                                isSuperAdmin = true;
                             }
                         }
                     }

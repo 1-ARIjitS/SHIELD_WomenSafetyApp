@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +9,7 @@
     tools:openDrawer="start"
     android:id="@+id/drawerLayout"
     tools:context=".Activities.TravelLogContent"
+    android:background="@color/bckcolor"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,10 +28,11 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:background="@color/bckcolor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:subtitleTextColor="#000"
-                app:titleTextColor="#000" />
+                app:subtitleTextColor="@color/textColor"
+                app:titleTextColor="@color/textColor" />
 
         </LinearLayout>
 
@@ -59,10 +60,20 @@
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor">
+        app:itemTextColor="@color/black">
+
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
-
-
-

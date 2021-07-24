@@ -7,19 +7,20 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
+
     tools:context=".Activities.AdminActivity"
     tools:openDrawer="start">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/bckcolor">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,13 +29,13 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:background="@color/bckcolor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/white"
                 android:textAlignment="center"
-                app:subtitleTextColor="#000"
-                app:titleTextColor="#000" />
+                app:subtitleTextColor="@color/textColor"
+                app:titleTextColor="@color/textColor" />
 
         </LinearLayout>
 
@@ -57,11 +58,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="#010D17"
+            android:backgroundTint="@color/floatcolor"
             android:clickable="true"
             android:focusable="true"
             android:outlineSpotShadowColor="@color/black"
-            android:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
@@ -74,9 +74,22 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
 
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/sos_fab"
@@ -88,6 +101,7 @@
 
             android:clickable="true"
             android:src="@drawable/sos_alert" />
+
     </com.google.android.material.navigation.NavigationView>
 
 

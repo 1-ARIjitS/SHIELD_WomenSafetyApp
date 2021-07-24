@@ -1,6 +1,7 @@
 package com.example.womensafety.Activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -39,6 +41,9 @@ public class NextTokinListActivity extends AppCompatActivity {
 
     View hView;
     TextView Username;
+
+    /*SwitchCompat dark_mode_switch;*/
+    Button dark_mode_switch;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -97,10 +102,13 @@ public class NextTokinListActivity extends AppCompatActivity {
                         startActivity(new Intent(NextTokinListActivity.this, EmergencyContactListActivity.class));
                         break;
 
+                        /*
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(NextTokinListActivity.this, ManageActivity.class));
                         break;
 
+
+                         */
                     case R.id.nav_travelLog:
                         startActivity(new Intent(NextTokinListActivity.this, TravelLogContent.class));
                         break;
@@ -158,6 +166,27 @@ public class NextTokinListActivity extends AppCompatActivity {
             }
         });
 
+        dark_mode_switch=(Button) findViewById(R.id.dar);
+
+        dark_mode_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                else{
+                    if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                    else
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                }}
+        });
+
     }
 
     @Override
@@ -176,7 +205,7 @@ public class NextTokinListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

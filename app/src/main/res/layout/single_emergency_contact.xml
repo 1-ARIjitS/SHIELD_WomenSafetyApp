@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/kin_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#ffffff"
+        android:background="@color/bckcolor"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -47,10 +50,11 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:drawableLeft="@drawable/ic_call"
+                    android:background="@color/txtfldcolor"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:textSize="18sp"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
                     tools:text="contact" />
 
             </RelativeLayout>

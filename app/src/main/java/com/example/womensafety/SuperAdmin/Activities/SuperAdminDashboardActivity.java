@@ -1,9 +1,13 @@
 package com.example.womensafety.SuperAdmin.Activities;
 
+import android.os.Build;
+import android.view.View;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -46,6 +50,9 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    /*SwitchCompat dark_mode_switch;*/
+    Button dark_mode_switch;
 
     FirebaseAuth auth;
     FirebaseFirestore firestore;
@@ -115,6 +122,7 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(SuperAdminDashboardActivity.this, ManageSuperAdminActivity.class));
                         break;
 
                     case R.id.superadmin_manage_users:
@@ -205,6 +213,27 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
             }
         });*/
 
+        dark_mode_switch=(Button) findViewById(R.id.dar);
+
+        dark_mode_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                else{
+                    if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                    else
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                }}
+        });
+
     }
 
     @Override
@@ -221,7 +250,7 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }

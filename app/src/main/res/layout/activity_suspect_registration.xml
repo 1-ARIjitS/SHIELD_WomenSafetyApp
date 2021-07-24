@@ -9,7 +9,8 @@
     android:minWidth="20dp"
     tools:openDrawer="start"
     android:id="@+id/drawerLayout"
-    tools:context=".Activities.SuspectRegistrationActivity">
+    tools:context=".Activities.SuspectRegistrationActivity"
+    android:background="@color/bckcolor">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -28,17 +29,17 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:background="@color/bckcolor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:subtitleTextColor="#000"
-                app:titleTextColor="#000"/>
+                app:subtitleTextColor="@color/textColor"
+                app:titleTextColor="@color/textColor"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -47,7 +48,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                app:cardBackgroundColor="#0B0A0A"
+                app:cardBackgroundColor="#000000"
                 app:cardCornerRadius="50dp">
 
                 <ImageView
@@ -58,7 +59,7 @@
 
 
                     android:background="#E1B252"
-                    app:srcCompat="@drawable/vig" />
+                    app:srcCompat="@drawable/flash_screen" />
 
 
             </androidx.cardview.widget.CardView>
@@ -74,7 +75,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="3dp"
                 android:text="Suspect Registration"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -88,7 +89,8 @@
                 android:elevation="5dp"
 
                 android:hint="Suspect Name"
-
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
                 android:textCursorDrawable="@drawable/shape_cursor" />
@@ -102,6 +104,8 @@
                 android:background="@drawable/text_fields"
                 android:elevation="5dp"
                 android:hint="description of the suspect"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
                 android:inputType="textMultiLine"
                 android:paddingTop="30dp"
                 android:paddingBottom="30dp"
@@ -120,6 +124,9 @@
                     android:id="@+id/suspect_ccp"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
+                    app:ccp_arrowColor="@color/textColor"
+                    app:ccp_contentColor="@color/textColor"
+                    app:ccpDialog_textColor="@color/textColor"
                     android:background="@drawable/text_fields"
                     android:layout_gravity="center" />
 
@@ -135,7 +142,8 @@
                     android:padding="10dp"
                     android:paddingLeft="15dp"
                     android:textCursorDrawable="@drawable/shape_cursor"
-                    android:textColor="#000000" />
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/subtextcolor" />
 
             </LinearLayout>
 
@@ -149,6 +157,8 @@
                 android:elevation="5dp"
                 android:hint="specific identity of the suspect (if any)"
                 android:inputType="textMultiLine"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
                 android:paddingTop="30dp"
                 android:paddingBottom="30dp"
                 android:paddingLeft="15dp"
@@ -182,7 +192,20 @@
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor">
+        app:itemTextColor="@color/black">
+
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
     </com.google.android.material.navigation.NavigationView>
 

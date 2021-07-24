@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-
+        android:background="@color/bckcolor"
         app:cardCornerRadius="10dp"
-
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -53,9 +54,9 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:drawablePadding="10dp"
-                    android:background="#fff"
                     android:drawableLeft="@drawable/ic_age"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="18sp"
                     android:text="Age"
                     />
@@ -69,9 +70,9 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:drawablePadding="10dp"
-                    android:background="#fff"
                     android:drawableLeft="@drawable/ic_email"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="18sp"
                     android:layout_below="@+id/user_age"/>
 
@@ -84,9 +85,9 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:drawablePadding="10dp"
-                    android:background="#fff"
                     android:drawableLeft="@drawable/ic_call"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="18sp"
                     android:text="Mobile Number"
                     android:layout_below="@+id/user_email"/>
@@ -100,9 +101,9 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:drawablePadding="10dp"
-                    android:background="#fff"
                     android:drawableLeft="@drawable/ic_address"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="18sp"
                     android:layout_below="@+id/user_phone"/>
 

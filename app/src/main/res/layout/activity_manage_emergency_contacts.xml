@@ -1,77 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SuperAdmin.Activities.ManageEmergencyContactsActivity">
+    android:fitsSystemWindows="true"
+    android:minWidth="20dp"
+    android:background="@color/bckcolor"
+    tools:context=".SuperAdmin.Activities.ManageEmergencyContactsActivity"
+    tools:openDrawer="start">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="360dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical"
-            android:paddingLeft="3dp"
-            android:text="Add New Emergency Contacts"
-            android:textColor="#000"
-            android:textSize="26sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/emergency_name"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:ems="10"
-            android:elevation="5dp"
-            android:hint="Name of emergency service"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/emergency_mobile_number"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:ems="10"
-            android:elevation="5dp"
-            android:hint="Mobile number of service"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:background="@color/bckcolor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="360dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:paddingLeft="1dp"
+                android:text="Add New Emergency Contacts"
+                android:textColor="@color/textColor"
+                android:textSize="26sp" />
+
+            <EditText
+                android:id="@+id/emergency_name"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:ems="10"
+                android:elevation="5dp"
+                android:textColorHint="@color/subtextcolor"
+                android:textColor="@color/textColor"
+                android:hint="Name of emergency service"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/emergency_mobile_number"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:ems="10"
+                android:elevation="5dp"
+                android:hint="Mobile number of service"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/emergency_add_button"
+                android:layout_width="130dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"
+                android:alpha="3.0"
+                android:paddingRight="30dp"
+                android:paddingLeft="10dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:background="@drawable/button_view"
+
+                android:textSize="22sp"
+                android:text="ADD"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationMenu"
+        android:layout_width="275dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/super_menu">
 
         <Button
-            android:id="@+id/emergency_add_button"
-            android:layout_width="150dp"
+            android:id="@+id/dar"
+            android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="15dp"
-            android:alpha="3.0"
-            android:paddingRight="30dp"
-            android:paddingLeft="10dp"
-            android:drawableEnd="@drawable/ic_arrow_forward"
-            android:background="@drawable/button_view"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
 
-            android:textSize="22sp"
-            android:text="ADD"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:drawableTint="#FFFFFF"/>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

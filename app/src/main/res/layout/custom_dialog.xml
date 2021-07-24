@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:background="@color/bckcolor">
     <EditText
         android:id="@+id/txt_old"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Enter your Current Password"
+        android:textColorHint="@color/subtextcolor"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
     <EditText
         android:id="@+id/txt_new"
@@ -16,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Enter your New Password"
+        android:textColorHint="@color/subtextcolor"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
     <EditText
         android:id="@+id/txt_new2"
@@ -23,6 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Confirm your new Password"
+        android:textColorHint="@color/subtextcolor"
+        android:textColor="@color/textColor"
         android:textSize="20sp" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_view"
+            android:textColor="#FFF"
             android:text="Cancel"
             android:textSize="18sp"
             android:layout_weight="1"
@@ -41,6 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_view"
             android:text="Change"
+            android:textColor="#fff"
             android:textSize="18sp"
             android:layout_weight="1"
             android:id="@+id/btn_change"/>

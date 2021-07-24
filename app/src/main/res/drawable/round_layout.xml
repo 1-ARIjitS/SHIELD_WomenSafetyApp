@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <size
+        android:height="50dp">
+
+    </size>
+    <stroke
+        android:color="@color/laboutbck">
+
+    </stroke>
+    <solid
+        android:color="@color/laboutbck">
+
+    </solid>
+    <corners
+        android:topLeftRadius="20dp"
+        android:topRightRadius="20dp">
+
+    </corners>
+    <!--
+    <corners
+        android:radius="20dp">
+
+    </corners>
+    -->
+
+</shape>

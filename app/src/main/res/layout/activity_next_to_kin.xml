@@ -8,11 +8,13 @@
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
     tools:context=".Activities.NextToKinActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:background="@color/bckcolor">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         >
 
         <LinearLayout
@@ -28,17 +30,18 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
+                    android:background="@color/bckcolor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000"/>
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
+
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -47,7 +50,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
-                    app:cardBackgroundColor="#0B0A0A"
+                    app:cardBackgroundColor="#000000"
                     app:cardCornerRadius="50dp">
 
                     <ImageView
@@ -58,7 +61,7 @@
 
 
                         android:background="#E1B252"
-                        app:srcCompat="@drawable/vig" />
+                        app:srcCompat="@drawable/flash_screen" />
 
 
                 </androidx.cardview.widget.CardView>
@@ -76,7 +79,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="3dp"
                 android:text="Next to kin"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -89,8 +92,8 @@
                 android:layout_marginLeft="5dp"
                 android:paddingLeft="3dp"
                 android:layout_marginBottom="20dp"
-                android:text="Note - add contact name and number of your next to kin (i.e. the person who you think is closest to you and can help in emergency situations. e.g. father,brother or any relative) Remember,an emergency SMS alert will be sent to the below registered number when you click on the Emergency Switch"
-                android:textColor="#6A000000" />
+                android:text="Note - add contact name and number of your next to kin (i.e. the person who you think is closest to you and can help in emergency situations. e.g. father, brother or any relative) Remember an emergency SMS alert will be sent to the below registered number when you click on the Emergency Switch."
+                android:textColor="@color/subtextcolor" />
 
             <EditText
                 android:id="@+id/kin_name"
@@ -104,6 +107,8 @@
                 android:elevation="5dp"
                 android:paddingRight="30dp"
                 android:hint="Name of next to kin"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
                 android:paddingLeft="10dp"
                 android:textCursorDrawable="@drawable/shape_cursor"
                 />
@@ -121,6 +126,9 @@
                     android:layout_width="127dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    app:ccp_arrowColor="@color/textColor"
+                    app:ccp_contentColor="@color/textColor"
+                    app:ccpDialog_textColor="@color/textColor"
                     android:background="@drawable/text_fields" />
 
                 <EditText
@@ -131,9 +139,10 @@
                     android:background="@drawable/text_fields"
                     android:ems="10"
                     android:hint="Contact Number"
+                    android:textColorHint="@color/subtextcolor"
                     android:inputType="phone"
                     android:padding="10dp"
-                    android:textColor="#000" />
+                    android:textColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -156,8 +165,21 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
+
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
     </com.google.android.material.navigation.NavigationView>
 

@@ -8,7 +8,8 @@
     android:minWidth="20dp"
     tools:openDrawer="start"
     android:id="@+id/drawerLayout"
-    tools:context=".Activities.TravelLog">
+    tools:context=".Activities.TravelLog"
+    android:background="@color/bckcolor">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -27,10 +28,11 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
+                    android:background="@color/bckcolor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000"/>
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor"/>
 
             </LinearLayout>
 
@@ -55,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="#ffffff"
+                        android:textColor="@color/textColor"
                         android:fontFamily="sans-serif-condensed-medium"
                         android:layout_margin="10dp"
                         android:textStyle="bold"
@@ -72,7 +74,7 @@
                             android:id="@+id/tv_travelFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp"
                             android:fontFamily="sans-serif-condensed-medium"
                             android:textStyle="bold"
@@ -83,7 +85,7 @@
                             android:id="@+id/tv_travelTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/textColor"
                             android:textSize="18sp"
                             android:fontFamily="sans-serif-condensed-medium"
                             android:textStyle="bold"
@@ -112,7 +114,20 @@
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor">
+        app:itemTextColor="@color/black">
+
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
     </com.google.android.material.navigation.NavigationView>
 

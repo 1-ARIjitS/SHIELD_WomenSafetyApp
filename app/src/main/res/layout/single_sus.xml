@@ -15,7 +15,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="#E6E5E5"
+        android:background="@color/bckcolor"
         app:cardCornerRadius="10dp"
         android:elevation="5dp"
         app:cardElevation="5dp"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#E6E5E5"
+
             android:gravity="center"
             android:id="@+id/linearLayout">
 
@@ -58,11 +58,11 @@
                     android:paddingBottom="3dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:background="@color/txtfldcolor"
                     android:drawableLeft="@drawable/ic_description"
                     android:drawablePadding="10dp"
-                    android:background="#fff"
                     android:text="Description"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
                     android:textSize="18sp" />
 
                 <TextView
@@ -74,8 +74,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Mobile Number"
-                    android:background="#fff"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:layout_below="@+id/each_sus_description"
                     android:drawableLeft="@drawable/ic_call"
                     android:drawablePadding="10dp"
@@ -89,11 +89,11 @@
                     android:paddingBottom="3dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:background="#fff"
                     android:text="Identity"
                     android:drawableLeft="@drawable/ic_identity"
+                    android:background="@color/txtfldcolor"
                     android:drawablePadding="10dp"
-                    android:textColor="#6A000000"
+                    android:textColor="@color/subtextcolor"
                     android:layout_below="@+id/each_sus_mobile_number"
                     android:textSize="18sp" />
 

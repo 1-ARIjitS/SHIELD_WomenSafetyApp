@@ -29,13 +29,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:textColor="#6A000000"
+                android:textColor="@color/commentuser"
                 android:drawableLeft="@drawable/ic_user"
                 android:drawablePadding="10dp"
                 android:paddingLeft="10dp"
                 android:paddingBottom="2dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
+
                 tools:text="username" />
 
             <TextView
@@ -43,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:textColor="@color/textColor"
+                android:textColor="@color/black"
                 android:paddingLeft="55dp"
                 android:textSize="18sp"
                 tools:text="comment" />

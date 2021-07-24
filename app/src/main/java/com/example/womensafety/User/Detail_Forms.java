@@ -39,16 +39,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.view.MenuItem;
 import android.widget.Toast;
-import com.example.womensafety.Activities.AboutUsActivity;
-import com.example.womensafety.Activities.AddingPostActivity;
-import com.example.womensafety.Activities.AdminActivity;
-import com.example.womensafety.Activities.LoginActivity;
-import com.example.womensafety.Activities.ManageActivity;
-import com.example.womensafety.Activities.NextTokinListActivity;
-import com.example.womensafety.Activities.SuspectListActivity;
-import com.example.womensafety.Activities.TrackingActivity;
-import com.example.womensafety.Activities.TravellingAloneVehicleImageActivity;
-import com.example.womensafety.Activities.UserTrackingFragment;
+import com.example.womensafety.Activities.*;
 import com.example.womensafety.User.LocationConstants;
 import com.example.womensafety.R;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -333,8 +324,23 @@ public class Detail_Forms extends AppCompatActivity {
                         startActivity(new Intent(Detail_Forms.this, NextTokinListActivity.class));
                         break;
 
+                        /*
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(Detail_Forms.this, ManageActivity.class));
+                        break;
+
+
+                         */
+                    case R.id.nav_settings:
+                        startActivity(new Intent(Detail_Forms.this, SettingsActivity.class));
+                        break;
+
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(Detail_Forms.this, EmergencyContactListActivity.class));
+                        break;
+
+                    case R.id.nav_travelLog:
+                        startActivity(new Intent(Detail_Forms.this, TravelLogContent.class));
                         break;
 
                     case R.id.nav_aboutUs:
@@ -581,7 +587,7 @@ public class Detail_Forms extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 

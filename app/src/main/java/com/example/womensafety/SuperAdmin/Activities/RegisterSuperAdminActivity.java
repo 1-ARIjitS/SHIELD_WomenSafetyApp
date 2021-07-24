@@ -1,6 +1,9 @@
 package com.example.womensafety.SuperAdmin.Activities;
 
+import android.os.Build;
+import android.view.MenuItem;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,10 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.R;
 import com.example.womensafety.SuperAdmin.Models.SuperAdmins;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +32,13 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import java.util.Objects;
 
 public class RegisterSuperAdminActivity extends AppCompatActivity {
+
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
+
+    /*SwitchCompat dark_mode_switch;*/
+    Button dark_mode_switch;
 
     Button create_super_admin_button;
     EditText name,password,age,email,mob_num,address;
@@ -42,6 +58,54 @@ public class RegisterSuperAdminActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("registered_super_admins");
+
+
+        setUpToolbar();
+        navigationView = findViewById(R.id.navigationMenu);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.superadmin_homepage:
+                        startActivity(new Intent(RegisterSuperAdminActivity.this, SuperAdminHomepage.class));
+                        break;
+
+                    case R.id.superadmin_home:
+                        startActivity(new Intent(RegisterSuperAdminActivity.this, SuperAdminDashboardActivity.class));
+                        break;
+                    case R.id.superadmin_manage_account:
+                        startActivity( new Intent(RegisterSuperAdminActivity.this, ManageSuperAdminAccountActivity.class));
+                        break;
+
+                    case R.id.superadmin_manage_admin:
+                        break;
+
+                    case R.id.superadmin_manage_users:
+                        startActivity(new Intent(RegisterSuperAdminActivity.this, SuperAdminUsersActivity.class));
+                        break;
+
+                    case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(RegisterSuperAdminActivity.this, ManageSuperAdminActivity.class));
+                        break;
+
+                    case R.id.superadmin_settings:
+                        startActivity(new Intent(RegisterSuperAdminActivity.this, SuperAdminSettingsActivity.class));
+                        break;
+                    case R.id.superadmin_logout:
+                        auth.signOut();
+                        startActivity(new Intent(RegisterSuperAdminActivity.this, LoginActivity.class));
+                        finish();
+                        break;
+                }
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
 
         spinner=(MaterialSpinner)findViewById(R.id.create_superadmin_gender_spinner);
         spinner.setItems("Male","Female");
@@ -119,6 +183,45 @@ public class RegisterSuperAdminActivity extends AppCompatActivity {
             }
         });
 
+        dark_mode_switch=(Button) findViewById(R.id.dar);
 
+        dark_mode_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                else{
+                    if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                    else
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                }}
+        });
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+    public void setUpToolbar() {
+        drawerLayout = findViewById(R.id.drawerLayout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
+        actionBarDrawerToggle.syncState();
     }
 }

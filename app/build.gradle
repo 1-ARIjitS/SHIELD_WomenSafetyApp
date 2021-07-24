@@ -47,6 +47,7 @@ dependencies {
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'com.google.firebase:firebase-firestore:23.0.0'
+    implementation 'com.google.firebase:firebase-firestore:23.0.1'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -62,4 +63,9 @@ dependencies {
 
     implementation 'com.github.shivpujan12:LocationPicker:2.0'
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.firebaseui:firebase-ui-storage:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }

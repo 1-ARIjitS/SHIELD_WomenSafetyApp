@@ -1,8 +1,10 @@
 package com.example.womensafety.SuperAdmin.Activities;
 
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,7 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.womensafety.Activities.LoginActivity;
-import com.example.womensafety.Activities.ManageActivity;
+//import com.example.womensafety.Activities.ManageActivity;
 import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Activities.SettingsActivity;
 import com.example.womensafety.R;
@@ -32,6 +34,9 @@ public class SuperAdminHomepage extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    /*SwitchCompat dark_mode_switch;*/
+    Button dark_mode_switch;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -206,6 +211,27 @@ public class SuperAdminHomepage extends AppCompatActivity {
         });
         Log.d("Email",email);
         /*super_admin_username.setText("Welcome "+username);*/
+
+        dark_mode_switch=(Button) findViewById(R.id.dar);
+
+        dark_mode_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                else{
+                    if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                    else
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                }}
+        });
     }
 
     @Override

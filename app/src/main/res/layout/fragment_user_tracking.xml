@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".Activities.UserTrackingFragment">
+    tools:context=".Activities.UserTrackingFragment"
+    android:background="@color/bckcolor">
 
 
     <TextView
@@ -16,7 +16,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="User Tracking"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textSize="60sp"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         map:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.0"
@@ -39,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:background="#E6E5E5"
+        android:background="@color/feedbck"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent">

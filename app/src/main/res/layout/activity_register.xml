@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.RegisterActivity"
+    android:background="@color/bckcolor"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,469 +18,460 @@
         android:clipChildren="false"
         android:clipToPadding="false">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/login_card_view"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="405dp"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="0dp"
+            android:background="@color/bckcolor"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible"
+            tools:ignore="MissingConstraints">
 
-            app:cardBackgroundColor="#07FFFFFF"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            <androidx.cardview.widget.CardView
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#000000"
+                app:cardCornerRadius="50dp">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="405dp"
+                <ImageView
+                    android:id="@+id/login_image"
+                    android:layout_width="78dp"
+                    android:layout_height="89dp"
+                    android:layout_gravity="center"
+
+                    android:background="#E1B252"
+                    app:srcCompat="@drawable/flash_screen" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="212dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:paddingLeft="3dp"
+                android:text="Registration"
+                android:textColor="@color/textColor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginLeft="50dp"
+                android:paddingLeft="3dp"
+                android:layout_marginBottom="20dp"
+                android:text="Please fill all the details to continue"
+                android:textColor="@color/subtextcolor"
+                />
+
+            <EditText
+                android:id="@+id/registration_full_name"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:hint="Full Name"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor" />
+
+            <EditText
+                android:id="@+id/registration_age"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Age"
+                android:paddingLeft="15dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/gender_spinner"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+                android:paddingRight="30dp"
+                android:text="Female"
+                android:paddingLeft="10dp"
+                android:textAlignment="center"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/registration_email"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:hint="Email Id"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/registration_phone_number"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Mobile Number"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="phone"
+                />
+
+            <!--
+            <Button
+                android:id="@+id/registration_otp"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:background="#4DFFFFFF"
-                android:orientation="vertical"
-                android:visibility="visible"
-                tools:visibility="visible"
-                >
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="112dp"
-                    android:layout_height="112dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginBottom="20dp"
-                    app:cardBackgroundColor="#0B0A0A"
-                    app:cardCornerRadius="50dp">
+                android:layout_gravity="center"
 
-                    <ImageView
-                        android:id="@+id/login_image"
-                        android:layout_width="78dp"
-                        android:layout_height="89dp"
-                        android:layout_gravity="center"
+                android:background="@drawable/button_view"
+                android:text="verify mobile number"
+                android:textColor="#FFFFFF" />
+            -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="1dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="1dp">
 
-
-                        android:background="#E1B252"
-                        app:srcCompat="@drawable/vig" />
-
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="212dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp"
-
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="3dp"
-                    android:text="Registration"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="250dp"
-                    android:layout_height="30dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="Please fill all the details to continue"
-                    android:textColor="#6A000000"
-                    />
-
-                <EditText
-                    android:id="@+id/registration_full_name"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Full Name"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor" />
-
-                <EditText
-                    android:id="@+id/registration_age"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Age"
-                    android:paddingLeft="15dp"
-
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="number" />
-
-                <TextView
-                    android:id="@+id/gender_spinner"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-                    android:paddingRight="30dp"
-                    android:text="Female"
-                    android:paddingLeft="10dp"
-                    android:textAlignment="center"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="number"
-                    android:padding="10dp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:textSize="18dp" />
-
-                <EditText
-                    android:id="@+id/registration_email"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Email Id"
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="textEmailAddress" />
-
-                <EditText
-                    android:id="@+id/registration_phone_number"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Mobile Number"
-
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="phone"
-                    />
-
-                <!--
-                <Button
-                    android:id="@+id/registration_otp"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_gravity="center"
-
-                    android:background="@drawable/button_view"
-                    android:text="verify mobile number"
-                    android:textColor="#FFFFFF" />
-                -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:paddingTop="1dp"
-                    android:paddingRight="27dp"
-                    android:paddingLeft="25dp"
-                    android:paddingBottom="1dp">
-
-                    <Button
-                        android:id="@+id/pickCountry"
-                        android:layout_width="120dp"
-                        android:layout_height="40dp"
-                        android:text="Country"
-                        android:background="@drawable/text_fields"
-                        android:drawableEnd="@drawable/ic_drop_down"
-
-                        android:paddingRight="10dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
-
-                    <TextView
-                        android:id="@+id/txtCountry"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:textSize="18sp"
-                        android:layout_gravity="center"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:layout_marginRight="20dp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:paddingTop="1dp"
-                    android:paddingRight="27dp"
-                    android:paddingLeft="25dp"
-                    android:paddingBottom="1dp">
-
-                    <Button
-                        android:id="@+id/pickStateButton"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:text="State"
-                        android:background="@drawable/text_fields"
-                        android:drawableEnd="@drawable/ic_drop_down"
-
-                        android:paddingRight="10dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
-
-                    <TextView
-                        android:id="@+id/txtState"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        android:layout_marginRight="20dp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:paddingTop="1dp"
-                    android:paddingRight="27dp"
-                    android:paddingLeft="25dp"
-                    android:paddingBottom="1dp">
-
-                    <Button
-                        android:id="@+id/pickCity"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:text="City"
-                        android:background="@drawable/text_fields"
-                        android:drawableEnd="@drawable/ic_drop_down"
-
-                        android:paddingRight="10dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
-
-                    <TextView
-                        android:id="@+id/txtCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        android:layout_marginRight="20dp"
-                        />
-
-                </LinearLayout>
-
-
-                <!--
                 <Button
                     android:id="@+id/pickCountry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pick Country"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:text="Country"
                     android:background="@drawable/text_fields"
-                    android:layout_margin="10dp"/>
+                    android:drawableEnd="@drawable/ic_drop_down"
+
+                    android:paddingRight="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:id="@+id/txtCountry"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:layout_margin="10dp"/>
-
-                <Button
-                    android:id="@+id/pickStateButton"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Pick State"
-                    android:background="@drawable/text_fields"
-                    android:layout_margin="10dp"/>
-                <TextView
-                    android:id="@+id/txtState"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:layout_margin="10dp"/>
-
-                <Button
-                    android:id="@+id/pickCity"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Pick City"
-                    android:background="@drawable/text_fields"
-                    android:layout_margin="10dp"/>
-                <TextView
-                    android:id="@+id/txtCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:layout_margin="10dp"/>
-                -->
-
-                <EditText
-                    android:id="@+id/registration_address"
-                    android:layout_width="298dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-                    android:hint="Address"
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="textMultiLine"
-                    android:paddingTop="30dp"
-                    android:paddingBottom="30dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="20dp"
                     />
-
-                <EditText
-                    android:id="@+id/registration_uvc"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Unique Verification Code"
-
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="textPassword"
-
-
-                    />
-
-                <EditText
-                    android:id="@+id/registration_confirm_uvc"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Confirm Unique Verification Code"
-
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="textPassword"
-
-                    />
-
-                <EditText
-                    android:id="@+id/registration_pass"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Password"
-
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="textPassword"
-
-                    />
-
-                <EditText
-                    android:id="@+id/registration_confirm_pass"
-                    android:layout_width="298dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/text_fields"
-                    android:elevation="5dp"
-
-                    android:hint="Confirm Password"
-
-                    android:paddingLeft="15dp"
-                    android:textCursorDrawable="@drawable/shape_cursor"
-                    android:inputType="textPassword"
-                    />
-
-                <Button
-                    android:id="@+id/registration_verify_button"
-                    android:layout_width="150dp"
-                    android:layout_height="55dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginBottom="15dp"
-                    android:alpha="3.0"
-                    android:paddingRight="30dp"
-                    android:paddingLeft="10dp"
-                    android:drawableEnd="@drawable/ic_arrow_forward"
-                    android:background="@drawable/button_view"
-
-                    android:text="Sign Up"
-                    android:textSize="22sp"
-                    android:textColor="#FFFFFF"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/button"
-                    android:layout_width="fill_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="45dp"
-                    android:padding="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="200dp"
-                        android:layout_height="30dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:layout_marginLeft="40dp"
-                        android:paddingLeft="3dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="Already have an account?"
-                        android:textSize="15sp"
-                        android:textColor="#6A000000"
-
-                        />
-
-                    <Button
-                        android:id="@+id/registration_already_an_user"
-                        android:layout_width="80dp"
-                        android:layout_height="35dp"
-
-
-                        android:paddingBottom="9dp"
-
-                        android:backgroundTint="#FFFFFF"
-                        android:text="Login"
-                        android:textColor="#F1BE3E" />
-
-                </LinearLayout>
-
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="1dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="1dp">
+
+                <Button
+                    android:id="@+id/pickStateButton"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="State"
+                    android:background="@drawable/text_fields"
+                    android:drawableEnd="@drawable/ic_drop_down"
+
+                    android:paddingRight="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtState"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="20dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="1dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="1dp">
+
+                <Button
+                    android:id="@+id/pickCity"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:background="@drawable/text_fields"
+                    android:drawableEnd="@drawable/ic_drop_down"
+
+                    android:paddingRight="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="20dp"
+                    />
+
+            </LinearLayout>
+
+
+            <!--
+            <Button
+                android:id="@+id/pickCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick Country"
+                android:background="@drawable/text_fields"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/txtCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/pickStateButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Pick State"
+                android:background="@drawable/text_fields"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:id="@+id/txtState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/pickCity"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Pick City"
+                android:background="@drawable/text_fields"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:id="@+id/txtCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_margin="10dp"/>
+            -->
+
+            <EditText
+                android:id="@+id/registration_address"
+                android:layout_width="298dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+                android:hint="Address"
+                android:paddingLeft="15dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textMultiLine"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                />
+
+            <EditText
+                android:id="@+id/registration_uvc"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Unique Verification Code"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textPassword"
+
+
+                />
+
+            <EditText
+                android:id="@+id/registration_confirm_uvc"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Confirm Unique Verification Code"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textPassword"
+
+                />
+
+            <EditText
+                android:id="@+id/registration_pass"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Password"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textPassword"
+
+                />
+
+            <EditText
+                android:id="@+id/registration_confirm_pass"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Confirm Password"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textPassword"
+                />
+
+            <Button
+                android:id="@+id/registration_verify_button"
+                android:layout_width="150dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"
+                android:alpha="3.0"
+                android:paddingRight="30dp"
+                android:paddingLeft="10dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:background="@drawable/button_view"
+
+                android:text="Sign Up"
+                android:textSize="22sp"
+                android:textColor="#FFFFFF"
+                />
+
+            <LinearLayout
+                android:id="@+id/button"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="45dp"
+                android:padding="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginLeft="40dp"
+                    android:paddingLeft="3dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Already have an account?"
+                    android:textSize="15sp"
+                    android:textColor="@color/subtextcolor"
+
+                    />
+
+                <Button
+                    android:id="@+id/registration_already_an_user"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+
+
+                    android:paddingBottom="9dp"
+
+                    android:backgroundTint="#FFFFFF"
+                    android:text="Login"
+                    android:textColor="#F1BE3E" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

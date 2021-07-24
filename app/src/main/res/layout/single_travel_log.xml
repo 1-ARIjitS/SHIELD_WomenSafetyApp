@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/bckcolor">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/each_travel_log_card"
@@ -14,7 +15,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@color/bckcolor"
         app:cardCornerRadius="10dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +39,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/textColor"
                 tools:text="Date"
+                android:background="@drawable/text_fields"
                 android:drawableRight="@drawable/ic_drop_down"
                 android:drawablePadding="10dp" />
 
@@ -51,13 +56,15 @@
                     android:textSize="18sp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     tools:text="Estimated Time" />
 
                 <ImageView
                     android:id="@+id/each_trael_log_vehicle_image"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
+                    android:background="@color/txtfldcolor"
                     android:layout_below="@+id/each_travel_log_time"
                     tools:srcCompat="@tools:sample/avatars" />
 
@@ -68,7 +75,8 @@
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="17sp"
                     tools:text="vehicle number"
                     android:layout_below="@+id/each_trael_log_vehicle_image"/>
@@ -77,11 +85,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-
+                    android:background="@color/txtfldcolor"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/subtextcolor"
                     android:textSize="17sp"
                     tools:text="actual arrival time"
                     android:layout_below="@+id/each_travel_log_vehicle_number" />
@@ -94,7 +102,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="17sp"
                     tools:text="travelling from"
                     android:layout_below="@+id/each_travel_log_actual_arrival_time" />
@@ -106,7 +115,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/subtextcolor"
+                    android:background="@color/txtfldcolor"
                     android:textSize="17sp"
                     tools:text="travelling to"
                     android:layout_below="@id/each_travel_log_travelling_from" />

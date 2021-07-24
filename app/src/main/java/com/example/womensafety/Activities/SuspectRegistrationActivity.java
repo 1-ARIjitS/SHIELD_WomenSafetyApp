@@ -1,5 +1,6 @@
 package com.example.womensafety.Activities;
 
+import android.os.Build;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.example.womensafety.Models.suspect_registered;
@@ -43,6 +45,9 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
 
     View hView;
     TextView Username;
+
+    /*SwitchCompat dark_mode_switch;*/
+    Button dark_mode_switch;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -106,10 +111,13 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
                         startActivity(new Intent(SuspectRegistrationActivity.this, SettingsActivity.class));
                         break;
 
+                        /*
                     case R.id.nav_manageAccount:
                         startActivity(new Intent(SuspectRegistrationActivity.this, ManageActivity.class));
                         break;
 
+
+                         */
                     case R.id.nav_travelLog:
                         startActivity(new Intent(SuspectRegistrationActivity.this, TravelLogContent.class));
                         break;
@@ -171,6 +179,27 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        dark_mode_switch=(Button) findViewById(R.id.dar);
+
+        dark_mode_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                else{
+                    if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                    else
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                }}
+        });
+
     }
 
     @Override
@@ -188,7 +217,7 @@ public class SuspectRegistrationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 

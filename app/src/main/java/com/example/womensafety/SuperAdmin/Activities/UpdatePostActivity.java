@@ -95,7 +95,7 @@ public class UpdatePostActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(UpdatePostActivity.this,"caption of the post is updated successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UpdatePostActivity.this, AdminHomepageActivity.class));
+                            startActivity(new Intent(UpdatePostActivity.this, SuperAdminDashboardActivity.class));
                         }
                     });
                 }else{
@@ -139,7 +139,7 @@ public class UpdatePostActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(UpdatePostActivity.this,"Post Deleted Successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UpdatePostActivity.this,AdminHomepageActivity.class));
+                            startActivity(new Intent(UpdatePostActivity.this,SuperAdminDashboardActivity.class));
                         }
                     }
                 });

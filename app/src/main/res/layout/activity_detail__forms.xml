@@ -7,12 +7,14 @@
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
     tools:openDrawer="start"
+
     android:id="@+id/drawerLayout"
     tools:context=".User.Detail_Forms">
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/bckcolor">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,10 +29,11 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
+                    android:background="@color/bckcolor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000"/>
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor"/>
 
             </LinearLayout>
 
@@ -54,7 +57,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="3dp"
                     android:text="@string/vehicle_number"
-                    android:textColor="#000000"
+                    android:textColor="@color/textColor"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     />
@@ -69,7 +72,9 @@
                     android:background="@drawable/text_fields"
                     android:elevation="5dp"
                     android:hint="Enter Vehicle Number"
+                    android:textColorHint="@color/subtextcolor"
                     android:paddingLeft="15dp"
+                    android:textColor="@color/textColor"
                     android:textCursorDrawable="@drawable/shape_cursor"
                     />
                 <!--
@@ -187,7 +192,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     />
 
@@ -216,7 +221,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
 
                 <!--
@@ -259,7 +264,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:textColor="#000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     android:visibility="gone" />
 
@@ -362,7 +367,7 @@
         android:layout_gravity="start"
         app:menu="@menu/menu"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor">
+        app:itemTextColor="@color/black">
 
     </com.google.android.material.navigation.NavigationView>
 

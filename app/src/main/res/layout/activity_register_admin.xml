@@ -1,325 +1,504 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SuperAdmin.Activities.RegisterAdminActivity">
+    android:fitsSystemWindows="true"
+    android:minWidth="20dp"
+    tools:context=".SuperAdmin.Activities.RegisterAdminActivity"
+    tools:openDrawer="start"
+    android:background="@color/bckcolor">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="112dp"
-            android:layout_height="112dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="20dp"
-            app:cardBackgroundColor="#0B0A0A"
-            app:cardCornerRadius="50dp">
-
-            <ImageView
-                android:id="@+id/login_image"
-                android:layout_width="78dp"
-                android:layout_height="89dp"
-                android:layout_gravity="center"
-
-
-                android:background="#E1B252"
-                app:srcCompat="@drawable/vig" />
-
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/activity_usage"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical"
-            android:paddingLeft="3dp"
-            android:text="Create a New Admin"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:fontFamily="sans-serif-medium"
-            android:layout_marginLeft="20dp"
-            android:paddingLeft="3dp"
-            android:layout_marginBottom="20dp"
-            android:text="Please fill all the details to continue"
-            android:textColor="#6A000000"
-            />
-
-        <EditText
-            android:id="@+id/create_admin_name"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:elevation="5dp"
-
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:paddingLeft="15dp"
-            android:textCursorDrawable="@drawable/shape_cursor" />
-
-        <EditText
-            android:id="@+id/create_admin_email"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:elevation="5dp"
-
-            android:hint="Email Id"
-            android:paddingLeft="15dp"
-            android:textCursorDrawable="@drawable/shape_cursor"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/create_admin_age"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:elevation="5dp"
-
-            android:hint="Age"
-            android:paddingLeft="15dp"
-
-            android:textCursorDrawable="@drawable/shape_cursor"
-            android:inputType="number" />
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="15dp"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:paddingRight="20dp"
-            >
+            android:orientation="vertical"
+            android:padding="10dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:background="@color/bckcolor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor"/>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#000000"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/login_image"
+                    android:layout_width="78dp"
+                    android:layout_height="89dp"
+                    android:layout_gravity="center"
+
+
+                    android:background="#E1B252"
+                    app:srcCompat="@drawable/flash_screen" />
+
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:id="@+id/activity_usage"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
 
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:paddingLeft="3dp"
+                android:text="Create a New Admin"
+                android:textColor="@color/textColor"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="3dp"
+                android:layout_marginBottom="20dp"
+                android:text="Please fill all the details to continue"
+                android:textColor="@color/subtextcolor"
+                />
+
+            <EditText
+                android:id="@+id/create_admin_name"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:background="@drawable/text_fields"
-                android:text="Gender : "
-                android:textAlignment="center"
-                android:padding="10dp"
+                android:elevation="5dp"
+
+                android:hint="Full Name"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor" />
+
+            <EditText
+                android:id="@+id/create_admin_email"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:hint="Email Id"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/create_admin_age"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+
+                android:hint="Age"
+                android:paddingLeft="15dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="number" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:paddingRight="20dp"
+                >
+
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+
+                    android:background="@drawable/text_fields"
+                    android:text="Gender : "
+                    android:textAlignment="center"
+                    android:padding="10dp"
+                    android:textColor="@color/textColor"
+                    android:textSize="20dp"
+                    />
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/create_admin_gender_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="8dp"
+                    app:ms_background_color="@color/txtfldcolor"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/button_view"
+                    android:textColor="@color/textColor"
+                    />
+
+
+            </LinearLayout>
+            <!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/actor"
+                android:text="gender"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                />
+                android:textStyle="bold" />
 
             <com.jaredrummler.materialspinner.MaterialSpinner
                 android:id="@+id/create_admin_gender_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/button_view"
                 android:textColor="@color/black"
-                />
-
-
-        </LinearLayout>
-        <!--
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/actor"
-            android:text="gender"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/create_admin_gender_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/button_view"
-            android:textColor="@color/black"
-            app:ms_arrow_tint="@color/colorAccent" />
-        -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="27dp"
-            android:paddingLeft="25dp"
-            android:paddingBottom="10dp">
-
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/kin_ccp"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/text_fields" />
-
-            <EditText
-                android:id="@+id/create_admin_mob"
+                app:ms_arrow_tint="@color/colorAccent" />
+            -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="10dp">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/kin_ccp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:ccp_arrowColor="@color/textColor"
+                    app:ccp_contentColor="@color/textColor"
+                    app:ccpDialog_textColor="@color/textColor"
+                    android:background="@drawable/text_fields" />
+
+                <EditText
+                    android:id="@+id/create_admin_mob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/text_fields"
+                    android:elevation="5dp"
+                    android:hint="Mobile Number"
+                    android:inputType="phone"
+                    android:padding="10dp"
+
+                    android:textColorHint="@color/textColor" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/create_admin_password"
+                android:layout_width="298dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:background="@drawable/text_fields"
                 android:elevation="5dp"
-                android:hint="Mobile Number"
-                android:inputType="phone"
-                android:padding="10dp"
 
-                android:textColorHint="@color/black" />
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/create_admin_password"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:elevation="5dp"
-
-            android:hint="Password"
-
-            android:paddingLeft="15dp"
-            android:textCursorDrawable="@drawable/shape_cursor"
-            android:inputType="textPassword" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:hint="Password"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textPassword" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="1dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="1dp">
 
                 <Button
                     android:id="@+id/admin_country"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_view"
-                    android:text="pick country"
-                     />
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:text="Country"
+                    android:background="@drawable/text_fields"
+                    android:drawableEnd="@drawable/ic_drop_down"
 
-                <Button
-                    android:id="@+id/admin_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_view"
-                    android:text="pick state"
-                     />
+                    android:paddingRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
-                <Button
-                    android:id="@+id/admin_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_view"
-                    android:text="pick city"
-                     />
+                <TextView
+                    android:id="@+id/admin_country_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="1dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="1dp">
 
-                <TextView
-                    android:id="@+id/admin_country_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
+                <Button
+                    android:id="@+id/admin_state"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:text="State"
                     android:background="@drawable/text_fields"
-                    android:padding="10dp"
+                    android:drawableEnd="@drawable/ic_drop_down"
 
-                    android:visibility="gone" />
+                    android:paddingRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:id="@+id/admin_state_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="1dp"
+                android:paddingRight="27dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="1dp">
+
+                <Button
+                    android:id="@+id/admin_city"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:text="Country"
                     android:background="@drawable/text_fields"
-                    android:padding="10dp"
-                    android:visibility="gone" />
+                    android:drawableEnd="@drawable/ic_drop_down"
+
+                    android:paddingRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:id="@+id/admin_city_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/text_fields"
-                    android:padding="10dp"
-                    android:visibility="gone" />
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dp"
+                    />
 
             </LinearLayout>
-        </LinearLayout>
 
-        <EditText
-            android:id="@+id/create_admin_address"
-            android:layout_width="298dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/text_fields"
-            android:elevation="5dp"
-            android:hint="Address"
-            android:paddingLeft="15dp"
-            android:textCursorDrawable="@drawable/shape_cursor"
-            android:inputType="textMultiLine"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp" />
+            <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/admin_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_view"
+                        android:text="pick country"
+                         />
+
+                    <Button
+                        android:id="@+id/admin_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_view"
+                        android:text="pick state"
+                         />
+
+                    <Button
+                        android:id="@+id/admin_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_view"
+                        android:text="pick city"
+                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/admin_country_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_fields"
+                        android:padding="10dp"
+
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/admin_state_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_fields"
+                        android:padding="10dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/admin_city_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_fields"
+                        android:padding="10dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+            </LinearLayout>
+            -->
+
+            <EditText
+                android:id="@+id/create_admin_address"
+                android:layout_width="298dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/text_fields"
+                android:elevation="5dp"
+                android:hint="Address"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/subtextcolor"
+                android:paddingLeft="15dp"
+                android:textCursorDrawable="@drawable/shape_cursor"
+                android:inputType="textMultiLine"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp" />
+
+            <Button
+                android:id="@+id/create_admin_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"
+                android:alpha="3.0"
+                android:paddingRight="20dp"
+                android:paddingLeft="10dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:background="@drawable/button_view"
+                android:drawablePadding="10dp"
+                android:text="Create"
+                android:textSize="22sp"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationMenu"
+        android:layout_width="275dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/super_menu">
 
         <Button
-            android:id="@+id/create_admin_button"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="15dp"
-            android:alpha="3.0"
-            android:paddingRight="30dp"
-            android:paddingLeft="10dp"
-            android:drawableEnd="@drawable/ic_arrow_forward"
-            android:background="@drawable/button_view"
-            android:drawablePadding="10dp"
-            android:text="Create"
-            android:textSize="22sp"
-            android:textColor="#FFFFFF" />
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
 
-    </LinearLayout>
-</ScrollView>
+            android:drawableTint="#FFFFFF"/>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

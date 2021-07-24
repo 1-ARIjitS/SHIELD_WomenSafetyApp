@@ -1,3 +1,4 @@
+/*
 package com.example.womensafety.Activities;
 
 import android.content.Intent;
@@ -48,9 +49,9 @@ public class ManageActivity extends AppCompatActivity {
     TextView etEmail;
     TextView etAge;
     TextView etMobile;
-    TextView etCountry;
-    TextView etState;
-    TextView etCity;
+//    TextView etCountry;
+  //  TextView etState;
+    //TextView etCity;
     View hView;
     Button btnChangePass;
     Button btnChangeVerificationCode;
@@ -61,7 +62,7 @@ public class ManageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage);
+        setContentView(R.layout.activity_settings);
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference("registered_users");
@@ -78,9 +79,9 @@ public class ManageActivity extends AppCompatActivity {
         etEmail= (TextView)findViewById(R.id.etEmail);
         etAge= (TextView)findViewById(R.id.etAge);
         etMobile= (TextView)findViewById(R.id.etMobile);
-        etCountry= (TextView)findViewById(R.id.etCountry);
-        etState= (TextView)findViewById(R.id.etState);
-        etCity= (TextView)findViewById(R.id.etCity);
+    //    etCountry= (TextView)findViewById(R.id.etCountry);
+      //  etState= (TextView)findViewById(R.id.etState);
+        //etCity= (TextView)findViewById(R.id.etCity);
         btnChangePass=(Button)findViewById(R.id.btnChangePass);
         btnChangeVerificationCode=(Button)findViewById(R.id.btnChangeVerificationCode);
 
@@ -93,9 +94,9 @@ public class ManageActivity extends AppCompatActivity {
                     String email= Objects.requireNonNull(snapshot.child(cud).child("mEmail_id").getValue()).toString();
                     String age= Objects.requireNonNull(snapshot.child(cud).child("mAge").getValue()).toString();
                     String mobile= Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
-                    String country= Objects.requireNonNull(snapshot.child(cud).child("country").getValue()).toString();
-                    String state= Objects.requireNonNull(snapshot.child(cud).child("state").getValue()).toString();
-                    String city= Objects.requireNonNull(snapshot.child(cud).child("city").getValue()).toString();
+                //    String country= Objects.requireNonNull(snapshot.child(cud).child("country").getValue()).toString();
+                  //  String state= Objects.requireNonNull(snapshot.child(cud).child("state").getValue()).toString();
+                    //String city= Objects.requireNonNull(snapshot.child(cud).child("city").getValue()).toString();
                     password= Objects.requireNonNull(snapshot.child(cud).child("mPassword").getValue()).toString();
                     verificationCode= Objects.requireNonNull(snapshot.child(cud).child("mUVC").getValue()).toString();
                     etUserName.setText(name);
@@ -103,32 +104,13 @@ public class ManageActivity extends AppCompatActivity {
                     etEmail.setText(email);
                     etAge.setText(age);
                     etMobile.setText(mobile);
-                    etCountry.setText(country);
-                    etState.setText(state);
-                    etCity.setText(city);
+                //    etCountry.setText(country);
+                  //  etState.setText(state);
+                    //etCity.setText(city);
                 } catch(NullPointerException ignored) {
 
                 }
-                /*
-                String name= Objects.requireNonNull(snapshot.child(cud).child("full_name").getValue()).toString();
-                String email= Objects.requireNonNull(snapshot.child(cud).child("mEmail_id").getValue()).toString();
-                String age= Objects.requireNonNull(snapshot.child(cud).child("mAge").getValue()).toString();
-                String mobile= Objects.requireNonNull(snapshot.child(cud).child("mMobile_number").getValue()).toString();
-                String country= Objects.requireNonNull(snapshot.child(cud).child("country").getValue()).toString();
-                String state= Objects.requireNonNull(snapshot.child(cud).child("state").getValue()).toString();
-                String city= Objects.requireNonNull(snapshot.child(cud).child("city").getValue()).toString();
-                password= Objects.requireNonNull(snapshot.child(cud).child("mPassword").getValue()).toString();
-                verificationCode= Objects.requireNonNull(snapshot.child(cud).child("mUVC").getValue()).toString();
-                etUserName.setText(name);
-                etFullName.setText(name);
-                etEmail.setText(email);
-                etAge.setText(age);
-                etMobile.setText(mobile);
-                etCountry.setText(country);
-                etState.setText(state);
-                etCity.setText(city);
 
-                 */
             }
 
             @Override
@@ -310,7 +292,9 @@ public class ManageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.textColor));
         actionBarDrawerToggle.syncState();
     }
 }
+
+ */

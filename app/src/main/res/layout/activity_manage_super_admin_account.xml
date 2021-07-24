@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bckcolor"
         >
 
         <LinearLayout
@@ -27,10 +28,11 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:background="@color/bckcolor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:subtitleTextColor="#000"
-                app:titleTextColor="#000" />
+                app:subtitleTextColor="@color/textColor"
+                app:titleTextColor="@color/textColor" />
 
         </LinearLayout>
 
@@ -76,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/full_name"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:layout_gravity="center"
                     android:layout_marginLeft="25dp"
                     />
@@ -88,7 +90,7 @@
                     android:layout_gravity="center"
                     android:textSize="18sp"
                     android:text="Ab Cd"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     />
 
             </LinearLayout>
@@ -103,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/email"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:layout_gravity="center"
                     android:layout_marginLeft="25dp"
                     />
@@ -115,7 +117,7 @@
                     android:layout_gravity="center"
                     android:textSize="18sp"
                     android:text="abcd@gmail.com"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     />
 
             </LinearLayout>
@@ -130,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/age"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:layout_gravity="center"
                     android:layout_marginLeft="25dp"
                     />
@@ -142,7 +144,7 @@
                     android:layout_gravity="center"
                     android:textSize="18sp"
                     android:text="15"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     />
 
             </LinearLayout>
@@ -157,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/mobile"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:layout_gravity="center"
                     android:layout_marginLeft="25dp"
                     />
@@ -169,7 +171,7 @@
                     android:layout_gravity="center"
                     android:textSize="18sp"
                     android:text="123456789"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     />
 
             </LinearLayout>
@@ -324,8 +326,21 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="#000"
+        app:itemTextColor="@color/black"
         app:menu="@menu/super_menu">
+
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
     </com.google.android.material.navigation.NavigationView>
 

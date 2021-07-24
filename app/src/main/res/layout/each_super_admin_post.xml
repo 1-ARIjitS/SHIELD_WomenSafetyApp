@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#E6E5E5"
+    android:background="@color/feedbck"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -29,7 +29,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F6F4F4"
+            android:background="@color/feedusername"
             android:orientation="horizontal">
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_gravity="left"
                 android:fontFamily="sans-serif-black"
                 android:paddingLeft="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Username" />
@@ -54,7 +54,7 @@
                 android:fontFamily="sans-serif-black"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:textSize="18sp"
                 android:textStyle="normal|italic"
                 tools:text="date and time" />
@@ -70,6 +70,7 @@
                 android:paddingLeft="10dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/textColor"
+                android:background="@color/bckcolor"
                 android:textSize="17sp"
                 tools:text="caption" />
 
@@ -77,12 +78,14 @@
                 android:id="@+id/each_post_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:background="@color/bckcolor"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:background="@color/bckcolor"
                 android:padding="5dp">
 
                 <LinearLayout
@@ -97,6 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:background="@color/bckcolor"
                         android:layout_marginRight="10dp"/>
 
                     <TextView
@@ -116,7 +120,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:background="@color/bckcolor">
 
                 <TextView
                     android:id="@+id/edit_post"

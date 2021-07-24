@@ -9,7 +9,8 @@
     android:fitsSystemWindows="true"
     android:minWidth="20dp"
     tools:context=".Activities.SuspectListActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:background="@color/bckcolor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,10 +38,11 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
+                    android:background="@color/bckcolor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:subtitleTextColor="#000"
-                    app:titleTextColor="#000" />
+                    app:subtitleTextColor="@color/textColor"
+                    app:titleTextColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -70,7 +72,7 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/round_btn"
                 android:drawableLeft="@drawable/ic_baseline_add_24"
-                android:drawableTint="#fff"
+                android:backgroundTint="@color/floatcolor"
                 android:padding="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +87,21 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu">
+
+        <Button
+            android:id="@+id/dar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableRight="@drawable/nights_stay"
+
+            android:drawableTint="#FFFFFF"/>
 
     </com.google.android.material.navigation.NavigationView>
 

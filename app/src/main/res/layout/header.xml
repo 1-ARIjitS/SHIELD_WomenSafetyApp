@@ -7,6 +7,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
 
+    <!--
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
+        android:background="@color/colorAccent"
+        android:src="@drawable/nights_stay" />
+    -->
+
     <LinearLayout
         android:layout_width="275dp"
         android:layout_height="145dp"
@@ -50,7 +62,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="275dp"
         android:layout_height="50dp"
-        app:cardBackgroundColor="#FAFAFA"
+        app:cardBackgroundColor="@color/header"
         app:cardCornerRadius="20dp">
 
     </androidx.cardview.widget.CardView>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#FFFFFF</color> //toolbar
     <color name="colorPrimaryDark">#18181C</color>
     <color name="colorAccent">#075E55</color>
 
@@ -8,4 +8,19 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="yellow">#F1BE3E</color>
+    <color name="subtextcolor">#6A000000</color>
+    <color name="bckcolor">#FAFAFA</color>
+    <color name="header">#FAFAFA</color>
+    <color name="txtfldcolor">#FFFFFF</color>
+    <color name="cursor">#000000</color>
+    <color name="feedbck">#E6E5E5</color>
+    <color name="feedusername">#F6F4F4</color>
+    <color name="add">#FFFFFF</color>
+    <color name="floatcolor">#043965</color>
+    <color name="icon">#5A5A5A</color>
+    <color name="commentuser">#6A000000</color>
+    <!--
+    <color name="floatcolor">#010D17</color>
+    -->
+    <color name="laboutbck">#FFFFFF</color>
 </resources>
