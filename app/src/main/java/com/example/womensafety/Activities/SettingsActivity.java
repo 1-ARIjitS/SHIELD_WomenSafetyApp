@@ -13,7 +13,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
+import com.example.womensafety.Services.SosService;
 import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +32,8 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     FloatingActionButton dark_mode_switch;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +112,6 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
 

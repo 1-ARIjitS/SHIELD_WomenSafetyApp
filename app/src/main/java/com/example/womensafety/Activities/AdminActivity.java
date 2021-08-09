@@ -14,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -37,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.womensafety.Adapters.postAdapter;
 import com.example.womensafety.Services.SosService;
+import com.example.womensafety.Services.service;
 import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
@@ -118,7 +121,11 @@ public class AdminActivity extends AppCompatActivity {
     public static final String HELP_SOS_STRING="help help help";
     String result_string;
 
+    //sos service buttons
+    Button sos_start,sos_end;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,6 +261,7 @@ public class AdminActivity extends AppCompatActivity {
 
         ActivityCompat.requestPermissions(AdminActivity.this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(AdminActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(AdminActivity.this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
         Dexter.withContext(getApplicationContext())
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new PermissionListener() {
@@ -390,6 +398,51 @@ public class AdminActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 return false;
+            }
+        });
+
+        //sos service events starting here
+
+        sos_start=findViewById(R.id.start_sos);
+        sos_end=findViewById(R.id.stop_sos);
+
+        sos_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder autostartDialog=new AlertDialog.Builder(v.getContext());
+                autostartDialog.setTitle("ENABLE APP AUTOSTART");
+                autostartDialog.setMessage("Enable the autostart settings for shield SOS services to work perfectly");
+
+                autostartDialog.setPositiveButton("ENABLE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    }
+                });
+
+                autostartDialog.setNegativeButton("ALREADY ENABLED", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent serviceIntent=new Intent(AdminActivity.this, SosService.class);
+                        startForegroundService(serviceIntent);
+                    }
+                });
+
+                autostartDialog.create().show();
+            }
+        });
+
+        //ending the sos service
+        sos_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent serviceIntent=new Intent(AdminActivity.this, SosService.class);
+
+                stopService(serviceIntent);
             }
         });
 
