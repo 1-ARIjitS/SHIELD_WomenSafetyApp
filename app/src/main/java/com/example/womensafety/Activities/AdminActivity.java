@@ -18,6 +18,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -124,6 +125,9 @@ public class AdminActivity extends AppCompatActivity {
     //sos service buttons
     Button sos_start,sos_end;
 
+    //shared preferences
+    SharedPreferences prf;
+
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -176,6 +180,7 @@ public class AdminActivity extends AppCompatActivity {
         });*/
 
         //kin contacts snap from firebase realtime database
+        prf = getSharedPreferences("user_details",MODE_PRIVATE);
 
         contactsList = new ArrayList<String>();
         kinContacts.addValueEventListener(new ValueEventListener() {
@@ -247,6 +252,9 @@ public class AdminActivity extends AppCompatActivity {
 
                     case R.id.nav_logout:
                         auth.signOut();
+                        SharedPreferences.Editor editor = prf.edit();
+                        editor.putBoolean("isLogin",false);
+                        editor.apply();
                         startActivity(new Intent(AdminActivity.this, LoginActivity.class));
                         finish();
                         break;
